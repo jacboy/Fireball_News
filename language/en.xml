@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="en">
+	<category name="cms.acp.content">
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news"><![CDATA[News]]></item>
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type"><![CDATA[Pattern]]></item>
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.standard"><![CDATA[Standart]]></item>
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.boxed"><![CDATA[Without borders]]></item>
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple1"><![CDATA[Simple without image]]></item>
+		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple2"><![CDATA[Simple without teaser]]></item>
+	</category>
+
+	<category name="cms.acp.menu">
+		<item name="cms.acp.menu.link.cms.news.category.add"><![CDATA[Add category]]></item>
+		<item name="cms.acp.menu.link.cms.news.category.list"><![CDATA[List categories]]></item>
+		<item name="cms.acp.menu.link.cms.news"><![CDATA[News]]></item>
+		<item name="cms.acp.menu.link.cms.news.image.list"><![CDATA[List news images]]></item>
+		<item name="cms.acp.menu.link.cms.news.image.add"><![CDATA[Add news image]]></item>
+	</category>
+
+	<category name="cms.acp.news">
+		<item name="cms.acp.news.image.data"><![CDATA[Data]]></item>
+		<item name="cms.acp.news.image.title"><![CDATA[Title]]></item>
+		<item name="cms.acp.news.image"><![CDATA[News image]]></item>
+		<item name="cms.acp.news.image.add"><![CDATA[Add news image]]></item>
+		<item name="cms.acp.news.image.list"><![CDATA[Newsimages]]></item>
+		<item name="cms.acp.news.image.title"><![CDATA[Title]]></item>
+		<item name="cms.acp.news.image"><![CDATA[Preview]]></item>
+	</category>
+
+	<category name="cms.news">
+		<item name="cms.news.news"><![CDATA[Nachrichten]]></item>
+		<item name="cms.news.categorizedNews"><![CDATA[News in „{$category->getTitle()|language}“]]></item>
+		<item name="cms.news.image.no"><![CDATA[Use no specific image]]></item>
+		<item name="cms.news.comments.noEntries"><![CDATA[No Entries.]]></item>
+		<item name="cms.news.searchNews"><![CDATA[Search news]]></item>
+		<item name="cms.news.markAllAsRead"><![CDATA[Mark all news as read]]></item>
+		<item name="cms.news.category.categories"><![CDATA[Categories]]></item>
+		<item name="cms.news.category.categories.description"><![CDATA[Choose one or more categories]]></item>
+		<item name="cms.news.general"><![CDATA[General]]></item>
+		<item name="cms.news.teaser"><![CDATA[Teaser]]></item>
+		<item name="cms.news.teaser.description"><![CDATA[]]></item>
+		<item name="cms.news.clicks"><![CDATA[Clicks]]></item>
+		<item name="cms.news.message"><![CDATA[News]]></item>
+		<item name="cms.news.author"><![CDATA[Author]]></item>
+		<item name="cms.news.time.toPublish"><![CDATA[Date of publication]]></item>
+		<item name="cms.news.publication.delayed"><![CDATA[This news has not been published, yet!]]></item>
+		<item name="cms.news.add"><![CDATA[Add news]]></item>
+		<item name="cms.news.edit"><![CDATA[Edit news &raquo;{$news->getTitle()|language}&laquo;]]></item>
+		<item name="cms.news.comments"><![CDATA[Comments]]></item>
+		<item name="cms.news.commentResponse"><![CDATA[Response (Newscomment)]]></item>
+		<item name="cms.news.comments.count"><![CDATA[{#$news->comments} {if $news->comments == 1}Comment{else}Comments{/if}]]></item>
+		<item name="cms.news.read"><![CDATA[Continue]]></item>
+		<item name="cms.news.ipAddress"><![CDATA[IP-Address]]></item>
+		<item name="cms.news.ipAddress.title"><![CDATA[IP-Address]]></item>
+		<item name="cms.news.ipAddress.news"><![CDATA[IP-Address of „{$news->username}“]]></item>
+		<item name="cms.news.ipAddress.author"><![CDATA[More IP-Addresses of „{$news->username}“]]></item>
+		<item name="cms.news.ipAddress.otherUsers"><![CDATA[Other users with this ip-address]]></item>
+		<item name="cms.news.delete.sure"><![CDATA[Are you sure you want to delete this news?]]></item>
+		<item name="cms.news.comment.notification.title"><![CDATA[New comment (news)]]></item>
+		<item name="cms.news.comment.notification.message"><![CDATA[Commented on your news “{$news->subject}”.]]></item>
+		<item name="cms.news.comment.notification.mail"><![CDATA[{@$author->username} commented on your news "{@$news->subject}":
+{link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
+		</item>
+		<item name="cms.news.commentResponse.notification.title"><![CDATA[New reply (news)]]></item>
+		<item name="cms.news.commentResponse.notification.message"><![CDATA[Replied to your comment on the news “{$news->subject}”.]]></item>
+		<item name="cms.news.commentResponse.notification.mail"><![CDATA[{@$author->username} replied to your comment on the news "{@$news->subject}":
+{link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
+		</item>
+		<item name="cms.news.commentResponseOwner.notification.title"><![CDATA[New reply (news)]]></item>
+		<item name="cms.news.commentResponseOwner.notification.message"><![CDATA[Replied to a comment by “{$commentAuthor->username}” on the news “{$news->subject}”.]]></item>
+		<item name="cms.news.commentResponseOwner.notification.mail"><![CDATA[{@$author->username} replied to a comment by "{@$commentAuthor->username}" on the news "{@$news->subject}":
+{link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
+		</item>
+		<item name="cms.news.comments.noEntries"><![CDATA[No Comments available]]></item>
+		<item name="cms.news.image"><![CDATA[News image]]></item>
+		<item name="cms.news.image.select"><![CDATA[Select an image]]></item>
+	</category>
+
+
+	<category name="cms.user">
+		<item name="cms.user.usersOnline.location.newsPage"><![CDATA[<a href="{link controller='News' application='cms' object=$news}{/link}">News: {$news->getTitle()|language}</a>]]></item>
+		<item name="cms.user.usersOnline.location.newsAddForm"><![CDATA[Adds a news]]></item>
+		<item name="cms.user.usersOnline.location.newsCategoryListPage"><![CDATA[News]]></item>
+		<item name="cms.user.usersOnline.location.newsListPage"><![CDATA[Newscategory: <a href="{link controller='NewsList' application='cms' object=$category}{/link}">„{$category->title|language}“</a>]]></item>
+	</category>
+
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.mod.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.acp.group.option.mod.cms.news.canModerateNews"><![CDATA[Can moderate news]]></item>
+		<item name="wcf.acp.group.option.mod.cms.news.canEditComment"><![CDATA[Can edit comments]]></item>
+		<item name="wcf.acp.group.option.mod.cms.news.canDeleteComment"><![CDATA[Can delete comments]]></item>
+		<item name="wcf.acp.group.option.category.admin.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.acp.group.option.admin.cms.news.canManageCategory"><![CDATA[Can manage categories]]></item>
+		<item name="wcf.acp.group.option.mod.cms.news.canModerateComment"><![CDATA[Can moderate comments]]></item>
+		<item name="wcf.acp.group.option.category.user.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canViewNews"><![CDATA[Can see news]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canStartPoll"><![CDATA[Can start poll]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canStartPublicPoll"><![CDATA[Can start public poll]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canVotePoll"><![CDATA[Can vote poll]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canAddNews"><![CDATA[Can add news]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canAddComment"><![CDATA[Can add comments]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canDeleteComment"><![CDATA[Can delete own comments]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canEditComment"><![CDATA[Can edit own comments]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canViewCategory"><![CDATA[Can view categories]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canUploadAttachment"><![CDATA[Can attach files]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.attachmentMaxSize"><![CDATA[Maximum filesize]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Allowed file extensions]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Allowed file extensions]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Can download attachments]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximum number of attachments per news]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Can see unpublished news]]></item>
+
+	</category>
+
+	<category name="wcf.acl.option">
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewCategory"><![CDATA[Can view category]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewNews"><![CDATA[Can view news]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canAddNews"><![CDATA[Can add news]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can moderate news]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can see unpublished news]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Can view delayed news]]></item>
+	</category>
+
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cms.news.images"><![CDATA[Images]]></item>
+		<item name="wcf.acp.option.category.cms.news.categories"><![CDATA[Categories]]></item>
+		<item name="wcf.acp.option.category.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.acp.option.cms_news_per_page"><![CDATA[News per page]]></item>
+		<item name="wcf.acp.option.cms_news_comments"><![CDATA[Use Comment-System]]></item>
+		<item name="wcf.acp.option.cms_news_languageicon"><![CDATA[Show language icon]]></item>
+		<item name="wcf.acp.option.cms_news_latest_limit"><![CDATA[Latest news limit]]></item>
+		<item name="wcf.acp.option.cms_news_latest_limit.description"><![CDATA[Amount of latest news in dashboard box]]></item>
+		<item name="wcf.acp.option.cms_news_sidebar_categories"><![CDATA[Show categories in sidebar]]></item>
+		<item name="wcf.acp.option.cms_news_sidebar_categories_main"><![CDATA[Show only main categories]]></item>
+		<item name="wcf.acp.option.cms_news_signatures"><![CDATA[Show signatures]]></item>
+		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Authors are able to show they're signatures]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Show news images above message]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Shows news images if available above the text message]]></item>
+	</category>
+
+	<category name="wcf.dashboard">
+		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Newslist]]></item>
+		<item name="wcf.dashboard.objectType.de.codequake.cms.news.news"><![CDATA[CMS: News]]></item>
+		<item name="wcf.dashboard.box.de.codequake.cms.latestNews"><![CDATA[Latest news]]></item>
+		<item name="wcf.dashboard.box.de.codequake.cms.mostReadNews"><![CDATA[Most read news]]></item>
+	</category>
+
+	<category name="wcf.user.profile">
+		<item name="wcf.user.profile.recentActivity.news"><![CDATA[added the news &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>&laquo;.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[commented on &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>&laquo;.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsCommentResponse"><![CDATA[answered the comment by <a class="userLink" data-user-id="{$author->userID}" href="{link controller=User object=$author}{/link}">{$author->username}</a> on &raquo;<a class="cmsNewsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}#comments{/link}">{$news->getTitle()}</a>&laquo;.]]></item>
+	</category>
+
+	<category name="wcf.user.recentActivity">
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[News]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Comment (News)]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Response (News)]]></item>
+	</category>
+
+	<category name="wcf.user.activityPoint">
+		<item name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[News]]></item>
+	</category>
+
+	<category name="wcf.tagging">
+		<item name="wcf.tagging.taggedObjects.de.codequake.cms.news"><![CDATA[News with the tag „{$tag->name}“]]></item>
+		<item name="wcf.tagging.objectType.de.codequake.cms.news"><![CDATA[News]]></item>
+	</category>
+
+	<category name="wcf.page">
+		<item name="wcf.page.sitemap.news"><![CDATA[News]]></item>
+	</category>
+
+	<category name="wcf.search">
+		<item name="wcf.search.type.de.codequake.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.search.object.de.codequake.cms.news"><![CDATA[News]]></item>
+	</category>
+
+	<category name="wcf.user.notification">
+		<item name="wcf.user.notification.de.codequake.cms"><![CDATA[CMS]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.notification.comment"><![CDATA[New comment to one of your news]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponse"><![CDATA[New response to one of your comments to a news]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponseOwner"><![CDATA[New response to a comment to one of your news]]></item>
+		</category>
+
+	<category name="wcf.acp.dataImport">
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news"><![CDATA[News]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.category.news"><![CDATA[News categories]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.comment"><![CDATA[News comments]]></item>
+	</category>
+
+	<category name="wcf.clipboard">
+		<item name="wcf.clipboard.item.de.codequake.cms.news.delete"><![CDATA[Delete News ({#$count})]]></item>
+		<item name="wcf.clipboard.item.de.codequake.cms.news.delete.confirmMessage"><![CDATA[Are you sure you want to delete {if $count == 1}this news{else} this {#$count} news{/if}?]]></item>
+		<item name="wcf.clipboard.label.de.codequake.cms.news.marked"><![CDATA[{if $count == 1}1 News{else}{#$count} News{/if} marked]]></item>
+	</category>
+	<category name="wcf.acp.dataImport">
+		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
+		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
+	</category>
+</language>
