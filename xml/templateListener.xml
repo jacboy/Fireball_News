@@ -13,7 +13,7 @@
 			<environment>user</environment>
 			<templatename>headInclude</templatename>
 			<eventname>javascriptInit</eventname>
-			<templatecode><![CDATA[{include file='__newsJavascriptInit' application='cms'}]]></templatecode>
+			<templatecode><![CDATA[{include file='__javascriptInit' application='cms'}]]></templatecode>
 		</templatelistener>
 
 		<templatelistener name="searchAreaSettings">

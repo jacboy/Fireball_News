@@ -28,9 +28,6 @@ use wcf\util\StringUtil;
  */
 class NewsAddForm extends MessageForm {
 	public $action = 'add';
-	public $neededModules = array(
-		'MODULE_NEWS'
-	);
 	public $categoryIDs = array();
 	public $categoryList = array();
 	public $activeMenuItem = 'cms.page.news';

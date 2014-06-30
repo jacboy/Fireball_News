@@ -3,6 +3,7 @@
 	<packageinformation>
 		<packagename>Fireball CMS - Nachrichtensystem</packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
+		<plugin>de.codequake.cms</plugin>
 		<version>1.0.0 alpha 1</version>
 		<date>2014-06-30</date>
 	</packageinformation>

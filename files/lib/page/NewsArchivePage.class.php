@@ -17,9 +17,6 @@ use wcf\system\WCF;
 class NewsArchivePage extends SortablePage {
 	public $activeMenuItem = 'cms.page.news.archive';
 	public $enableTracking = true;
-	public $neededModules = array(
-		'MODULE_NEWS'
-	);
 	public $itemsPerPage = CMS_NEWS_PER_PAGE;
 	public $limit = 10;
 	public $categoryList = null;

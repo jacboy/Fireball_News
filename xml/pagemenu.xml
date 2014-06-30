@@ -5,13 +5,11 @@
 			<controller><![CDATA[cms\page\NewsCategoryListPage]]></controller>
 			<position>header</position>
 			<classname>cms\system\menu\page\NewsListPageMenuItemProvider</classname>
-			<options>module_news</options>
 		</pagemenuitem>
 		<pagemenuitem name="cms.page.news.archive">
 			<controller><![CDATA[cms\page\NewsArchivePage]]></controller>
 			<position>header</position>
 			<parent>cms.page.news</parent>
-			<options>module_news</options>
 		</pagemenuitem>
 	</import>
 </data>

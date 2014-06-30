@@ -24,9 +24,6 @@ use wcf\system\WCF;
 class NewsListPage extends SortablePage {
 	public $activeMenuItem = 'cms.page.news';
 	public $enableTracking = true;
-	public $neededModules = array(
-		'MODULE_NEWS'
-	);
 	public $itemsPerPage = CMS_NEWS_PER_PAGE;
 	public $validSortFields = array(
 		'username',
@@ -71,7 +68,7 @@ class NewsListPage extends SortablePage {
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsCategoryList', array(
 			'application' => 'cms'
 		))));
-		
+
 		// get categories
 		$categoryTree = new NewsCategoryNodeTree('de.codequake.cms.category.news');
 		$this->categoryList = $categoryTree->getIterator();
@@ -80,7 +77,7 @@ class NewsListPage extends SortablePage {
 
 	public function assignVariables() {
 		parent::assignVariables();
-		
+
 		DashboardHandler::getInstance()->loadBoxes('de.codequake.cms.news.newsList', $this);
 		WCF::getTPL()->assign(array(
 			'category' => $this->category,
