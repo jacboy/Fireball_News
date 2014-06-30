@@ -3,7 +3,7 @@
 	<packageinformation>
 		<packagename>Fireball CMS - Nachrichtensystem</packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
-		<version>1.0.0</version>
+		<version>1.0.0 alpha 1</version>
 		<date>2014-06-30</date>
 	</packageinformation>
 
@@ -39,7 +39,6 @@
 		<instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
 		<instruction type="pageMenu">xml/pagemenu.xml</instruction>
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
-		<instruction type="objectTypeDefinition">xml/objectTypeDefinition.xml</instruction>
 		<instruction type="objectType">xml/objectType.xml</instruction>
 		<instruction type="clipboardAction">xml/clipboardAction.xml</instruction>
 		<instruction type="userNotificationEvent">xml/userNotificationEvent.xml</instruction>
