@@ -6,7 +6,7 @@
 			<environment>user</environment>
 			<templatename>headInclude</templatename>
 			<eventname>javascriptInclude</eventname>
-			<templatecode><![CDATA[{include file='__newsJavascriptInclude' application='cms'}]]></templatecode>
+			<templatecode><![CDATA[{include file='__javascriptInclude' application='cms'}]]></templatecode>
 		</templatelistener>
 
 		<templatelistener name="javascriptInit">
