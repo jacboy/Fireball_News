@@ -21,7 +21,7 @@ class NewsContentType extends AbstractContentType {
 
 	public $objectType = 'de.codequake.cms.content.type.news';
 
-	public function validate($data){
+	public function validate($data) {
 		if (empty($data['categoryIDs'])) throw new UserInputException('categoryIDs', 'empty');
 	}
 
