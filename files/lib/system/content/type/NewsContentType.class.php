@@ -5,6 +5,7 @@ use cms\data\category\NewsCategory;
 use cms\data\category\NewsCategoryNodeTree;
 use cms\data\content\Content;
 use cms\data\news\CategoryNewsList;
+use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 
 /**
@@ -19,6 +20,10 @@ class NewsContentType extends AbstractContentType {
 	protected $icon = 'icon-archive';
 
 	public $objectType = 'de.codequake.cms.content.type.news';
+
+	public function validate($data){
+		if (empty($data['categoryIDs'])) throw new UserInputException('categoryIDs', 'empty');
+	}
 
 	public function getFormTemplate() {
 		$excludedCategoryIDs = array_diff(NewsCategory::getAccessibleCategoryIDs(), NewsCategory::getAccessibleCategoryIDs(array(
