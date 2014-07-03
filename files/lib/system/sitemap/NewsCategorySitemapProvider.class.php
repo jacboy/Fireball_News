@@ -15,16 +15,14 @@ class NewsCategorySitemapProvider implements ISitemapProvider {
 	public $objectTypeName = 'de.codequake.cms.category.news';
 
 	public function getTemplate() {
-		if (MODULE_NEWS) {
 			$nodeTree = new NewsCategoryNodeTree($this->objectTypeName);
 			$nodeList = $nodeTree->getIterator();
-			
+
 			WCF::getTPL()->assign(array(
 				'nodeList' => $nodeList
 			));
-			
+
 			return WCF::getTPL()->fetch('newsSitemap', 'cms');
-		}
-		return;
+
 	}
 }
