@@ -15,26 +15,32 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsArchivePage extends SortablePage {
+
 	public $activeMenuItem = 'cms.page.news.archive';
+
 	public $enableTracking = true;
+
 	public $itemsPerPage = CMS_NEWS_PER_PAGE;
+
 	public $limit = 10;
+
 	public $categoryList = null;
+
 	public $defaultSortField = 'time';
+
 	public $defaultSortOrder = 'DESC';
+
 	public $validSortFields = array(
 		'subject',
 		'time',
 		'clicks'
 	);
 
-
 	protected function initObjectList() {
 		$categoryIDs = NewsCategory::getAccessibleCategoryIDs();
 		if ($categoryIDs) {
 			$this->objectList = new CategoryNewsList($categoryIDs);
-		}
-		else
+		} else
 			throw new PermissionDeniedException();
 	}
 

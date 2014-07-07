@@ -14,6 +14,7 @@ use wcf\system\importer\ImportHandler;
  * @package	de.codequake.cms
  */
 class NewsCommentImporter extends AbstractCommentImporter {
+
 	protected $objectTypeName = 'de.codequake.cms.news.comment';
 
 	public function __construct() {

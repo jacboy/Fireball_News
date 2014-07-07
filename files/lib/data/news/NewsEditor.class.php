@@ -14,6 +14,7 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsEditor extends DatabaseObjectEditor {
+
 	protected static $baseClass = 'cms\data\news\News';
 
 	public function updateCategoryIDs(array $categoryIDs = array()) {

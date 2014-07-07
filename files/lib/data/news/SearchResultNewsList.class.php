@@ -8,5 +8,6 @@ namespace cms\data\news;
  * @package	de.codequake.cms
  */
 class SearchResultNewsList extends ViewableNewsList {
+
 	public $decoratorClassName = 'cms\data\news\SearchResultNews';
 }

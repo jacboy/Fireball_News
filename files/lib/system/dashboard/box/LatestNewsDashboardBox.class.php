@@ -14,6 +14,7 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class LatestNewsDashboardBox extends AbstractSidebarDashboardBox {
+
 	public $latestNews = null;
 
 	public function init(DashboardBox $box, IPage $page) {

@@ -16,6 +16,7 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsFeedPage extends AbstractFeedPage {
+
 	public $itemsPerPage = CMS_NEWS_PER_PAGE;
 
 	public function readParameters() {
@@ -23,8 +24,7 @@ class NewsFeedPage extends AbstractFeedPage {
 		
 		if (empty($this->objectIDs)) {
 			$this->objectIDs = NewsCategory::getAccessibleCategoryIDs();
-		}
-		else {
+		} else {
 			foreach ($this->objectIDs as $objectID) {
 				$category = NewsCategory::getCategory($objectID);
 				

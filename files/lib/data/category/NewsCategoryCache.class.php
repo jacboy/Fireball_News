@@ -16,7 +16,9 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsCategoryCache extends SingletonFactory {
+
 	protected $unreadNews = array();
+
 	public $sql;
 
 	protected function initUnreadNews() {

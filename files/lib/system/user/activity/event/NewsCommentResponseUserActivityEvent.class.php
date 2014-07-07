@@ -71,8 +71,7 @@ class NewsCommentResponseUserActivityEvent extends SingletonFactory implements I
 						$event->setIsAccessible();
 					}
 				}
-			}
-			else {
+			} else {
 				$event->setIsOrphaned();
 			}
 		}

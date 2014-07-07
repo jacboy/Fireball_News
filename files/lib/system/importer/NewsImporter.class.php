@@ -18,7 +18,9 @@ use wcf\util\StringUtil;
  * @package	de.codequake.cms
  */
 class NewsImporter extends AbstractImporter {
+
 	protected $className = 'cms\data\news\News';
+
 	private $importCategoryID = 0;
 
 	public function import($oldID, array $data, array $additionalData = array()) {
@@ -85,8 +87,7 @@ class NewsImporter extends AbstractImporter {
 			$row = $statement->fetchArray();
 			if ($row !== false) {
 				$this->importCategoryID = $row['categoryID'];
-			}
-			else {
+			} else {
 				$sql = "INSERT INTO	wcf" . WCF_N . "_category
 							(objectTypeID, parentCategoryID, title, showOrder, time)
 					VALUES		(?, ?, ?, ?, ?)";

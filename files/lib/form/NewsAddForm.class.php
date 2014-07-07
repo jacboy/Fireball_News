@@ -27,19 +27,31 @@ use wcf\util\StringUtil;
  * @package	de.codequake.cms
  */
 class NewsAddForm extends MessageForm {
+
 	public $action = 'add';
+
 	public $categoryIDs = array();
+
 	public $categoryList = array();
+
 	public $activeMenuItem = 'cms.page.news';
+
 	public $enableTracking = true;
+
 	public $neededPermissions = array(
 		'user.cms.news.canAddNews'
 	);
+
 	public $enableMultilingualism = true;
+
 	public $attachmentObjectType = 'de.codequake.cms.news';
+
 	public $image = null;
+
 	public $time = TIME_NOW;
+
 	public $teaser = '';
+
 	public $tags = array();
 
 	public function readFormParameters() {
@@ -48,7 +60,7 @@ class NewsAddForm extends MessageForm {
 		if (isset($_POST['time']) && $_POST['time'] != 0) $this->time = strtotime($_POST['time']);
 		if (isset($_POST['imageID'])) $this->image = new NewsImage(intval($_POST['imageID']));
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
-
+		
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->readFormParameters();
 	}
 
@@ -61,29 +73,29 @@ class NewsAddForm extends MessageForm {
 
 	public function readData() {
 		parent::readData();
-
+		
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsCategoryList', array(
 			'application' => 'cms'
 		))));
-
+		
 		$excludedCategoryIDs = array_diff(NewsCategory::getAccessibleCategoryIDs(), NewsCategory::getAccessibleCategoryIDs(array(
 			'canAddNews'
 		)));
 		$categoryTree = new NewsCategoryNodeTree('de.codequake.cms.category.news', 0, false, $excludedCategoryIDs);
 		$this->categoryList = $categoryTree->getIterator();
 		$this->categoryList->setMaxDepth(0);
-
+		
 		// default values
 		if (! count($_POST)) {
 			$this->username = WCF::getSession()->getVar('username');
-
+			
 			// multilingualism
 			if (! empty($this->availableContentLanguages)) {
 				if (! $this->languageID) {
 					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
-
+				
 				if (! isset($this->availableContentLanguages[$this->languageID])) {
 					$languageIDs = array_keys($this->availableContentLanguages);
 					$this->languageID = array_shift($languageIDs);
@@ -98,15 +110,15 @@ class NewsAddForm extends MessageForm {
 		if (empty($this->categoryIDs)) {
 			throw new UserInputException('categoryIDs');
 		}
-
+		
 		foreach ($this->categoryIDs as $categoryID) {
 			$category = CategoryHandler::getInstance()->getCategory($categoryID);
 			if ($category === null) throw new UserInputException('categoryIDs');
-
+			
 			$category = new NewsCategory($category);
 			if (! $category->isAccessible() || ! $category->getPermission('canAddNews')) throw new UserInputException('categoryIDs');
 		}
-
+		
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->validate();
 	}
 
@@ -125,7 +137,7 @@ class NewsAddForm extends MessageForm {
 			'username' => WCF::getUser()->username,
 			'isDisabled' => ($this->time > TIME_NOW) ? 1 : 0,
 			'enableBBCodes' => $this->enableBBCodes,
-			'showSignature'	=> $this->showSignature,
+			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
 			'enableSmilies' => $this->enableSmilies,
 			'imageID' => $this->image->imageID,
@@ -138,10 +150,10 @@ class NewsAddForm extends MessageForm {
 			'categoryIDs' => $this->categoryIDs
 		);
 		$newsData['tags'] = $this->tags;
-
+		
 		$action = new NewsAction(array(), 'create', $newsData);
 		$resultValues = $action->executeAction();
-
+		
 		// save polls
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) {
 			$pollID = PollManager::getInstance()->save($resultValues['returnValues']->newsID);
@@ -150,12 +162,12 @@ class NewsAddForm extends MessageForm {
 				$editor->update(array(
 					'pollID' => $pollID
 				));
-
+			
 			}
 		}
-
+		
 		$this->saved();
-
+		
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $resultValues['returnValues']
@@ -165,9 +177,9 @@ class NewsAddForm extends MessageForm {
 
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->assignVariables();
-
+		
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,

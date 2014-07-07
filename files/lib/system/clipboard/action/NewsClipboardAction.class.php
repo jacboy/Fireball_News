@@ -6,10 +6,13 @@ use wcf\system\clipboard\action\AbstractClipboardAction;
 use wcf\system\WCF;
 
 class NewsClipboardAction extends AbstractClipboardAction {
+
 	protected $news = array();
+
 	protected $actionClassActions = array(
 		'delete'
 	);
+
 	protected $supportedActions = array(
 		'delete'
 	);
@@ -18,7 +21,7 @@ class NewsClipboardAction extends AbstractClipboardAction {
 		if (empty($this->news)) {
 			$this->news = $objects;
 		}
-
+		
 		$item = parent::execute($objects, $action);
 		if ($item === null) {
 			return null;
@@ -44,7 +47,6 @@ class NewsClipboardAction extends AbstractClipboardAction {
 		return 'cms\data\news\NewsAction';
 	}
 
-
 	protected function validateDelete() {
 		$newsIDs = array();
 		foreach ($this->news as $news) {
@@ -52,7 +54,7 @@ class NewsClipboardAction extends AbstractClipboardAction {
 				$newsIDs[] = $news->newsID;
 			}
 		}
-
+		
 		return $newsIDs;
 	}
 }

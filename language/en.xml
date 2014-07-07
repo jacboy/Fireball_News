@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="en">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd"
+	languagecode="en">
 	<category name="cms.acp.content">
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news"><![CDATA[News]]></item>
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type"><![CDATA[Pattern]]></item>
-		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.standard"><![CDATA[Standart]]></item>
-		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.boxed"><![CDATA[Without borders]]></item>
-		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple1"><![CDATA[Simple without image]]></item>
-		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple2"><![CDATA[Simple without teaser]]></item>
+		<item
+			name="cms.acp.content.type.de.codequake.cms.content.type.news.type.standard"><![CDATA[Standart]]></item>
+		<item
+			name="cms.acp.content.type.de.codequake.cms.content.type.news.type.boxed"><![CDATA[Without borders]]></item>
+		<item
+			name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple1"><![CDATA[Simple without image]]></item>
+		<item
+			name="cms.acp.content.type.de.codequake.cms.content.type.news.type.simple2"><![CDATA[Simple without teaser]]></item>
 	</category>
 
 	<category name="cms.acp.menu">
@@ -38,7 +44,8 @@
 		<item name="cms.news.category.categories.description"><![CDATA[Choose one or more categories]]></item>
 		<item name="cms.news.general"><![CDATA[General]]></item>
 		<item name="cms.news.teaser"><![CDATA[Teaser]]></item>
-		<item name="cms.news.teaser.description"><![CDATA[]]></item>
+		<item name="cms.news.teaser.description"><![CDATA[]]>
+		</item>
 		<item name="cms.news.clicks"><![CDATA[Clicks]]></item>
 		<item name="cms.news.message"><![CDATA[News]]></item>
 		<item name="cms.news.author"><![CDATA[Author]]></item>
@@ -118,7 +125,8 @@
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canAddNews"><![CDATA[Can add news]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can moderate news]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can see unpublished news]]></item>
-		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Can view delayed news]]></item>
+		<item
+			name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Can view delayed news]]></item>
 	</category>
 
 	<category name="wcf.acp.option">
@@ -152,13 +160,17 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[News]]></item>
-		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Comment (News)]]></item>
-		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Response (News)]]></item>
+		<item
+			name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[News]]></item>
+		<item
+			name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Comment (News)]]></item>
+		<item
+			name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Response (News)]]></item>
 	</category>
 
 	<category name="wcf.user.activityPoint">
-		<item name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[News]]></item>
+		<item
+			name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[News]]></item>
 	</category>
 
 	<category name="wcf.tagging">
@@ -177,10 +189,13 @@
 
 	<category name="wcf.user.notification">
 		<item name="wcf.user.notification.de.codequake.cms"><![CDATA[CMS]]></item>
-		<item name="wcf.user.notification.de.codequake.cms.news.comment.notification.comment"><![CDATA[New comment to one of your news]]></item>
-		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponse"><![CDATA[New response to one of your comments to a news]]></item>
-		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponseOwner"><![CDATA[New response to a comment to one of your news]]></item>
-		</category>
+		<item
+			name="wcf.user.notification.de.codequake.cms.news.comment.notification.comment"><![CDATA[New comment to one of your news]]></item>
+		<item
+			name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponse"><![CDATA[New response to one of your comments to a news]]></item>
+		<item
+			name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponseOwner"><![CDATA[New response to a comment to one of your news]]></item>
+	</category>
 
 	<category name="wcf.acp.dataImport">
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news"><![CDATA[News]]></item>
@@ -194,7 +209,9 @@
 		<item name="wcf.clipboard.label.de.codequake.cms.news.marked"><![CDATA[{if $count == 1}1 News{else}{#$count} News{/if} marked]]></item>
 	</category>
 	<category name="wcf.acp.dataImport">
-		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
-		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
+		<item
+			name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
+		<item
+			name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
 	</category>
 </language>

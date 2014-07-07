@@ -12,5 +12,6 @@ use wcf\data\DatabaseObjectList;
  * @package	de.codequake.cms
  */
 class NewsImageList extends DatabaseObjectList {
+
 	public $className = 'cms\data\news\image\NewsImage';
 }

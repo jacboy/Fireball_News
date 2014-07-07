@@ -12,7 +12,9 @@ use wcf\data\category\CategoryNode;
  * @package	de.codequake.cms
  */
 class NewsCategoryNode extends CategoryNode {
+
 	protected static $baseClass = 'cms\data\category\NewsCategory';
+
 	protected $unreadNews = null;
 
 	public function getUnreadNews() {

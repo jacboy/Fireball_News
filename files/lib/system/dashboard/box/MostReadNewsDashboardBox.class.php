@@ -14,11 +14,12 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class MostReadNewsDashboardBox extends AbstractSidebarDashboardBox {
+
 	public $mostReadNews = null;
 
 	public function init(DashboardBox $box, IPage $page) {
 		parent::init($box, $page);
-
+		
 		$this->mostReadNews = new MostReadNewsList();
 		$this->mostReadNews->sqlLimit = CMS_NEWS_LATEST_LIMIT;
 		$this->mostReadNews->readObjects();
@@ -26,11 +27,11 @@ class MostReadNewsDashboardBox extends AbstractSidebarDashboardBox {
 
 	protected function render() {
 		if (! count($this->mostReadNews)) return '';
-
+		
 		WCF::getTPL()->assign(array(
-		'mostReadNews' => $this->mostReadNews
+			'mostReadNews' => $this->mostReadNews
 		));
-
+		
 		return WCF::getTPL()->fetch('dashboardBoxMostReadNews', 'cms');
 	}
 }

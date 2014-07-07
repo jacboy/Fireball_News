@@ -14,12 +14,14 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsList extends DatabaseObjectList {
+
 	public $className = 'cms\data\news\News';
+
 	public $categoryList = true;
 
 	public function readObjects() {
 		parent::readObjects();
-
+		
 		if ($this->categoryList) {
 			if (! empty($this->objectIDs)) {
 				$conditionBuilder = new PreparedStatementConditionBuilder();

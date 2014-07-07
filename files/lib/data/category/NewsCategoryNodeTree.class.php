@@ -10,5 +10,6 @@ use wcf\data\category\CategoryNodeTree;
  * @package	de.codequake.cms
  */
 class NewsCategoryNodeTree extends CategoryNodeTree {
+
 	protected $nodeClassName = 'cms\data\category\NewsCategoryNode';
 }

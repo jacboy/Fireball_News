@@ -11,6 +11,7 @@ use wcf\system\request\LinkHandler;
  * @package	de.codequake.cms
  */
 class LikeableNews extends AbstractLikeObject {
+
 	protected static $baseClass = 'cms\data\news\News';
 
 	public function getTitle() {

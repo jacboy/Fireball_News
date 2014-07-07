@@ -43,8 +43,10 @@ class NewsContentType extends AbstractContentType {
 		$list->sqlLimit = CMS_NEWS_LATEST_LIMIT;
 		$list->readObjects();
 		$list = $list->getObjects();
-		WCF::getTPL()->assign(array('objects' => $list,
-									'type' => $type));
+		WCF::getTPL()->assign(array(
+			'objects' => $list,
+			'type' => $type
+		));
 		return WCF::getTPL()->fetch('newsContentTypeOutput', 'cms');
 	}
 }

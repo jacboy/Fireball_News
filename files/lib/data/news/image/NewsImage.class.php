@@ -14,7 +14,9 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsImage extends CMSDatabaseObject implements IRouteController {
+
 	protected static $databaseTableName = 'news_image';
+
 	protected static $databaseTableIndexName = 'imageID';
 
 	public function __construct($id, $row = null, $object = null) {
@@ -27,10 +29,10 @@ class NewsImage extends CMSDatabaseObject implements IRouteController {
 				$id
 			));
 			$row = $statement->fetchArray();
-
+			
 			if ($row === false) $row = array();
 		}
-
+		
 		parent::__construct(null, $row, $object);
 	}
 

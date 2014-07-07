@@ -20,6 +20,7 @@ use wcf\system\WCF;
 class NewsCategory extends AbstractDecoratedCategory implements IBreadcrumbProvider {
 
 	const OBJECT_TYPE_NAME = 'de.codequake.cms.category.news';
+
 	protected $permissions = null;
 
 	public function isAccessible() {

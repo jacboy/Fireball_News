@@ -12,17 +12,18 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsCategorySitemapProvider implements ISitemapProvider {
+
 	public $objectTypeName = 'de.codequake.cms.category.news';
 
 	public function getTemplate() {
-			$nodeTree = new NewsCategoryNodeTree($this->objectTypeName);
-			$nodeList = $nodeTree->getIterator();
-
-			WCF::getTPL()->assign(array(
-				'nodeList' => $nodeList
-			));
-
-			return WCF::getTPL()->fetch('newsSitemap', 'cms');
-
+		$nodeTree = new NewsCategoryNodeTree($this->objectTypeName);
+		$nodeList = $nodeTree->getIterator();
+		
+		WCF::getTPL()->assign(array(
+			'nodeList' => $nodeList
+		));
+		
+		return WCF::getTPL()->fetch('newsSitemap', 'cms');
+	
 	}
 }

@@ -13,7 +13,9 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsUserActivityPointObjectProcessor implements IUserActivityPointObjectProcessor {
+
 	public $objectType = null;
+
 	public $limit = 5000;
 
 	public function __construct(ObjectType $objectType) {
@@ -38,10 +40,10 @@ class NewsUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			$statement->execute(array(
 				$this->objectType->objectTypeID
 			));
-		}
-		else {
+		} else {
 			// others
 			
+
 			// get newsIDs
 			$sql = "SELECT news.newsID
                 FROM    cms" . WCF_N . "_news news

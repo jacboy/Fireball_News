@@ -1,5 +1,6 @@
 <?php
 namespace cms\system\poll;
+
 use cms\data\news\News;
 use wcf\data\poll\Poll;
 use wcf\system\poll\AbstractPollHandler;
@@ -26,7 +27,7 @@ class NewsPollHandler extends AbstractPollHandler {
 		if ($news->newsID && $news->pollID == $poll->pollID) {
 			return $news;
 		}
-
+		
 		return null;
 	}
 }

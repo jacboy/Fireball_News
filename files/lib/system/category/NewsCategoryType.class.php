@@ -11,9 +11,13 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsCategoryType extends AbstractCategoryType {
+
 	protected $langVarPrefix = 'cms.category.news';
+
 	protected $forceDescription = false;
+
 	protected $maximumNestingLevel = 1;
+
 	protected $objectTypes = array(
 		'com.woltlab.wcf.acl' => 'de.codequake.cms.category.news'
 	);

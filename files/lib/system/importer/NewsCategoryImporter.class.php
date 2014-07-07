@@ -11,6 +11,7 @@ use wcf\system\importer\AbstractCategoryImporter;
  * @package	de.codequake.cms
  */
 class NewsCategoryImporter extends AbstractCategoryImporter {
+
 	protected $objectTypeName = 'de.codequake.cms.category.news';
 
 	public function __construct() {

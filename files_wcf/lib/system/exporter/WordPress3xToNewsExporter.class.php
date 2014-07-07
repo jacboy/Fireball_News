@@ -17,13 +17,14 @@ use wcf\util\StringUtil;
  * @category	Community Framework
  */
 class WordPress3xToNewsExporter extends AbstractExporter {
+
 	/**
 	 * category cache
 	 *
 	 * @var array
 	 */
 	protected $categoryCache = array();
-	
+
 	/**
 	 *
 	 * @see \wcf\system\exporter\AbstractExporter::$methods
@@ -356,8 +357,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 					'message' => StringUtil::decodeHTML($row['comment_content']),
 					'time' => @strtotime($row['comment_date_gmt'])
 				));
-			}
-			else {
+			} else {
 				$parentID = $row['comment_parent'];
 				
 				do {
@@ -377,8 +377,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 						break;
 					}
 					$parentID = $row2['comment_parent'];
-				}
-				while (true);
+				} while (true);
 			}
 		}
 	}

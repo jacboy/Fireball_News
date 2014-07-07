@@ -14,11 +14,17 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsCommentManager extends AbstractCommentManager {
+
 	protected $permissionAdd = 'user.cms.news.canAddComment';
+
 	protected $permissionCanModerate = 'mod.cms.news.canModerateComment';
+
 	protected $permissionDelete = 'user.cms.news.canDeleteComment';
+
 	protected $permissionEdit = 'user.cms.news.canEditComment';
+
 	protected $permissionModDelete = 'mod.cms.news.canDeleteComment';
+
 	protected $permissionModEdit = 'mod.cms.news.canEditComment';
 
 	public function isAccessible($objectID, $validateWritePermission = false) {

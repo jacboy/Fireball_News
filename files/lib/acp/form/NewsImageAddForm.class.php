@@ -17,12 +17,17 @@ use wcf\util\StringUtil;
  * @package	de.codequake.cms
  */
 class NewsImageAddForm extends AbstractForm {
+
 	public $neededPermissions = array(
 		'admin.cms.news.canManageCategory'
 	);
+
 	public $activeMenuItem = 'cms.acp.menu.link.cms.news.image.add';
+
 	public $action = 'add';
+
 	public $title = '';
+
 	public $filename = '';
 
 	public function readFormParameters() {
@@ -38,7 +43,7 @@ class NewsImageAddForm extends AbstractForm {
 			throw new UserInputException('image', 'empty');
 		}
 		if (empty($this->image['tmp_name'])) throw new UserInputException('image', 'empty');
-
+		
 		$allowedTypes = ArrayUtil::trim(explode(",", 'jpg,png,JPEG,JPG,jpeg,gif,GIF,PNG'));
 		$tmp = explode('.', $this->image['name']);
 		$fileType = array_pop($tmp);
@@ -51,21 +56,21 @@ class NewsImageAddForm extends AbstractForm {
 		$this->filename = 'FB-File-' . md5($this->image['tmp_name'] . time()) . '.' . array_pop($tmp);
 		$path = CMS_DIR . 'images/news/' . $this->filename;
 		move_uploaded_file($this->image['tmp_name'], $path);
-
+		
 		$data = array(
 			'data' => array(
 				'title' => $this->title,
 				'filename' => $this->filename
 			)
 		);
-
+		
 		$action = new NewsImageAction(array(), 'create', $data);
 		$action->executeAction();
-
+		
 		$this->saved();
-
+		
 		WCF::getTPL()->assign('success', true);
-
+		
 		$this->title = '';
 		$this->filename = '';
 	}

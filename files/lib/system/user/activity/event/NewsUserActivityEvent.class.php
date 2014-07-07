@@ -35,8 +35,7 @@ class NewsUserActivityEvent extends SingletonFactory implements IUserActivityEve
 				$event->setTitle($text);
 				$event->setDescription($news->getExcerpt());
 				$event->setIsAccessible();
-			}
-			else {
+			} else {
 				$event->setIsOrphaned();
 			}
 		}

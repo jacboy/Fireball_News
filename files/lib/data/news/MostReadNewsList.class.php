@@ -8,6 +8,8 @@ namespace cms\data\news;
  * @package	de.codequake.cms
  */
 class MostReadNewsList extends ViewableNewsList {
+
 	public $sqlLimit = CMS_NEWS_LATEST_LIMIT;
+
 	public $sqlOrderBy = 'news.clicks DESC';
 }

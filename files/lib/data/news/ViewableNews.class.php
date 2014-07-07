@@ -14,7 +14,9 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class ViewableNews extends DatabaseObjectDecorator {
+
 	protected static $baseClass = 'cms\data\news\News';
+
 	protected $effectiveVisitTime = null;
 
 	public $userProfile = null;
@@ -23,15 +25,14 @@ class ViewableNews extends DatabaseObjectDecorator {
 		if ($this->effectiveVisitTime === null) {
 			if (WCF::getUser()->userID) {
 				$this->effectiveVisitTime = max($this->visitTime, VisitTracker::getInstance()->getVisitTime('de.codequake.cms.news'));
-			}
-			else {
+			} else {
 				$this->effectiveVisitTime = max(VisitTracker::getInstance()->getObjectVisitTime('de.codequake.cms.news', $this->newsID), VisitTracker::getInstance()->getVisitTime('de.codequake.cms.news'));
 			}
 			if ($this->effectiveVisitTime === null) {
 				$this->effectiveVisitTime = 0;
 			}
 		}
-
+		
 		return $this->effectiveVisitTime;
 	}
 
@@ -39,7 +40,7 @@ class ViewableNews extends DatabaseObjectDecorator {
 		if ($this->lastChangeTime > $this->getVisitTime()) {
 			return true;
 		}
-
+		
 		return false;
 	}
 
@@ -49,7 +50,7 @@ class ViewableNews extends DatabaseObjectDecorator {
 			$newsID
 		));
 		$list->readObjects();
-
+		
 		return $list->search($newsID);
 	}
 
@@ -57,7 +58,7 @@ class ViewableNews extends DatabaseObjectDecorator {
 		if ($this->userProfile === null) {
 			$this->userProfile = new UserProfile(new User($this->getDecoratedObject()->userID));
 		}
-
+		
 		return $this->userProfile;
 	}
 }

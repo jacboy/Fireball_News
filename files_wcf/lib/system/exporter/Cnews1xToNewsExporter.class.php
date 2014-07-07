@@ -7,7 +7,9 @@ use wcf\system\WCF;
 use wcf\util\StringUtil;
 
 class Cnews1xToNewsExporter extends AbstractExporter {
+
 	protected $dbNo = 1;
+
 	/**
 	 * category cache
 	 *
@@ -17,14 +19,14 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 
 	public function init() {
 		parent::init();
-
+		
 		if (preg_match('/^wcf(\d+)_$/', $this->databasePrefix, $match)) {
 			$this->dbNo = $match[1];
 		}
-
+		
 		// file system path
-		if (!empty($this->fileSystemPath)) {
-			if (!@file_exists($this->fileSystemPath . 'lib/core.functions.php') && @file_exists($this->fileSystemPath . 'wcf/lib/core.functions.php')) {
+		if (! empty($this->fileSystemPath)) {
+			if (! @file_exists($this->fileSystemPath . 'lib/core.functions.php') && @file_exists($this->fileSystemPath . 'wcf/lib/core.functions.php')) {
 				$this->fileSystemPath = $this->fileSystemPath . 'wcf/';
 			}
 		}
@@ -59,14 +61,14 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function getQueue() {
 		$queue = array();
-
+		
 		// news
 		if (in_array('de.codequake.cms.news', $this->selectedData)) {
 			if (in_array('de.codequake.cms.category.news', $this->selectedData)) $queue[] = 'de.codequake.cms.category.news';
 			$queue[] = 'de.codequake.cms.news';
 			if (in_array('de.codequake.cms.news.comment', $this->selectedData)) $queue[] = 'de.codequake.cms.news.comment';
 		}
-
+		
 		return $queue;
 	}
 
@@ -76,9 +78,9 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function validateDatabaseAccess() {
 		parent::validateDatabaseAccess();
-
+		
 		$sql = "SELECT	COUNT(*)
-			FROM	wcf".$this->dbNo."_cnews_news";
+			FROM	wcf" . $this->dbNo . "_cnews_news";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
 	}
@@ -104,7 +106,7 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function countNewsCategories() {
 		$sql = "SELECT	COUNT(*) AS count
-			FROM	wcf".$this->dbNo."_cnews_category";
+			FROM	wcf" . $this->dbNo . "_cnews_category";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
 		$row = $statement->fetchArray();
@@ -114,10 +116,10 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	/**
 	 * Exports categories.
 	 */
-
+	
 	public function exportNewsCategories($offset, $limit) {
 		$sql = "SELECT		*
-			FROM		wcf".$this->dbNo."_cnews_category
+			FROM		wcf" . $this->dbNo . "_cnews_category
 			ORDER BY	categoryID";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
@@ -137,7 +139,7 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function countNewsEntries() {
 		$sql = "SELECT	COUNT(*) AS count
-			FROM	wcf".$this->dbNo."_cnews_news";
+			FROM	wcf" . $this->dbNo . "_cnews_news";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
 		$row = $statement->fetchArray();
@@ -147,29 +149,29 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	/**
 	 * Exports blog entries.
 	 */
-
+	
 	public function exportNewsEntries($offset, $limit) {
 		$newsIDs = array();
 		$sql = "SELECT		*
-			FROM		wcf".$this->dbNo."_cnews_news
+			FROM		wcf" . $this->dbNo . "_cnews_news
 			ORDER BY	newsID";
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute();
 		while ($row = $statement->fetchArray()) {
 			$newsIDs[] = $row['newsID'];
 		}
-
+		
 		// get the news
 		$sql = "SELECT	*
-			FROM	wcf".$this->dbNo."_cnews_news";
+			FROM	wcf" . $this->dbNo . "_cnews_news";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
 		while ($row = $statement->fetchArray()) {
 			$additionalData = array();
-
+			
 			// categories
 			$additionalData['categories'][] = $row['categoryID'];
-
+			
 			ImportHandler::getInstance()->getImporter('de.codequake.cms.news')->import($row['newsID'], array(
 				'userID' => ($row['userID'] ?  : null),
 				'username' => ($row['username'] ?  : ''),
@@ -191,7 +193,7 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function countNewsComments() {
 		$sql = "SELECT	COUNT(*) AS count
-			FROM	wcf".$this->dbNo."_cnews_comment";
+			FROM	wcf" . $this->dbNo . "_cnews_comment";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
 		$row = $statement->fetchArray();
@@ -203,7 +205,7 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 	 */
 	public function exportNewsComments($offset, $limit) {
 		$sql = "SELECT		*
-			FROM		wcf".$this->dbNo."_cnews_comment
+			FROM		wcf" . $this->dbNo . "_cnews_comment
 			ORDER BY	commentID";
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute();
@@ -220,7 +222,7 @@ class Cnews1xToNewsExporter extends AbstractExporter {
 
 	private static function fixMessage($string) {
 		$string = str_replace("\n", "<br />\n", StringUtil::unifyNewlines($string));
-
+		
 		return $string;
 	}
 }

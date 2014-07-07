@@ -17,6 +17,7 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsSearch extends AbstractSearchableObjectType {
+
 	public $messageCache = array();
 
 	public function cacheObjects(array $objectIDs, array $additionalData = null) {

@@ -17,6 +17,7 @@ use wcf\system\WCF;
  * @package	de.codequake.cms
  */
 class NewsListPageMenuItemProvider extends DefaultPageMenuItemProvider {
+
 	protected $notifications = null;
 
 	public function getNotifications() {
@@ -72,8 +73,7 @@ class NewsListPageMenuItemProvider extends DefaultPageMenuItemProvider {
 					
 					// update storage data
 					UserStorageHandler::getInstance()->update(WCF::getUser()->userID, 'cmsUnreadNews', $this->notifications);
-				}
-				else {
+				} else {
 					$this->notifications = $data[WCF::getUser()->userID];
 				}
 			}
