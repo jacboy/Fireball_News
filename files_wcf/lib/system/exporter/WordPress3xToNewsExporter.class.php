@@ -8,7 +8,7 @@ use wcf\util\StringUtil;
 
 /**
  * Exporter for WordPress 3.x
- * 
+ *
  * @author	Marcel Werk (changed by Jens Krumsieck)
  * @copyright	2001-2013 WoltLab GmbH
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
@@ -56,19 +56,19 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 	 */
 	public function getQueue() {
 		$queue = array();
-		
+
 		// user
 		if (in_array('com.woltlab.wcf.user', $this->selectedData)) {
 			$queue[] = 'com.woltlab.wcf.user';
 		}
-		
+
 		// news
 		if (in_array('de.codequake.cms.news', $this->selectedData)) {
 			if (in_array('de.codequake.cms.category.news', $this->selectedData)) $queue[] = 'de.codequake.cms.category.news';
 			$queue[] = 'de.codequake.cms.news';
 			if (in_array('de.codequake.cms.news.comment', $this->selectedData)) $queue[] = 'de.codequake.cms.news.comment';
 		}
-		
+
 		return $queue;
 	}
 
@@ -78,7 +78,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 	 */
 	public function validateDatabaseAccess() {
 		parent::validateDatabaseAccess();
-		
+
 		$sql = "SELECT COUNT(*) FROM " . $this->databasePrefix . "posts";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
@@ -121,14 +121,14 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 			SET	password = ?
 			WHERE	userID = ?";
 		$passwordUpdateStatement = WCF::getDB()->prepareStatement($sql);
-		
+
 		// get users
 		$sql = "SELECT		*
 			FROM		" . $this->databasePrefix . "users
 			ORDER BY	ID";
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute();
-		
+
 		while ($row = $statement->fetchArray()) {
 			$data = array(
 				'username' => $row['user_login'],
@@ -136,10 +136,10 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 				'email' => $row['user_email'],
 				'registrationDate' => @strtotime($row['user_registered'])
 			);
-			
+
 			// import user
 			$newUserID = ImportHandler::getInstance()->getImporter('com.woltlab.wcf.user')->import($row['ID'], $data);
-			
+
 			// update password hash
 			if ($newUserID) {
 				// $passwordUpdateStatement->execute(array($row['user_pass'], $newUserID));
@@ -179,7 +179,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 		while ($row = $statement->fetchArray()) {
 			$this->categoryCache[$row['parent']][] = $row;
 		}
-		
+
 		$this->exportNewsCategoriesRecursively();
 	}
 
@@ -188,14 +188,14 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 	 */
 	protected function exportNewsCategoriesRecursively($parentID = 0) {
 		if (! isset($this->categoryCache[$parentID])) return;
-		
+
 		foreach ($this->categoryCache[$parentID] as $category) {
 			ImportHandler::getInstance()->getImporter('de.codequake.cms.category.news')->import($category['term_id'], array(
 				'title' => StringUtil::decodeHTML($category['name']),
 				'parentCategoryID' => $category['parent'],
 				'showOrder' => 0
 			));
-			
+
 			$this->exportNewsCategoriesRecursively($category['term_id']);
 		}
 	}
@@ -239,7 +239,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 		while ($row = $statement->fetchArray()) {
 			$entryIDs[] = $row['ID'];
 		}
-		
+
 		// get tags
 		$tags = array();
 		$conditionBuilder = new PreparedStatementConditionBuilder();
@@ -263,7 +263,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 			if (! isset($tags[$row['object_id']])) $tags[$row['object_id']] = array();
 			$tags[$row['object_id']][] = $row['name'];
 		}
-		
+
 		// get categories
 		$categories = array();
 		$conditionBuilder = new PreparedStatementConditionBuilder();
@@ -284,13 +284,13 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 			if (! isset($categories[$row['object_id']])) $categories[$row['object_id']] = array();
 			$categories[$row['object_id']][] = $row['term_id'];
 		}
-		
+
 		// get entries
 		$conditionBuilder = new PreparedStatementConditionBuilder();
 		$conditionBuilder->add('post.ID IN (?)', array(
 			$entryIDs
 		));
-		
+
 		$sql = "SELECT		post.*, user.user_login
 			FROM		" . $this->databasePrefix . "posts post
 			LEFT JOIN	" . $this->databasePrefix . "users user
@@ -302,10 +302,10 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 			$additionalData = array();
 			if (isset($tags[$row['ID']])) $additionalData['tags'] = $tags[$row['ID']];
 			if (isset($categories[$row['ID']])) $additionalData['categories'] = $categories[$row['ID']];
-			
+
 			$time = @strtotime($row['post_date_gmt']);
 			if (! $time) $time = @strtotime($row['post_date']);
-			
+
 			ImportHandler::getInstance()->getImporter('de.codequake.cms.news')->import($row['ID'], array(
 				'userID' => ($row['post_author'] ?  : null),
 				'username' => ($row['user_login'] ?  : ''),
@@ -342,7 +342,7 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 			FROM	" . $this->databasePrefix . "comments
 			WHERE	comment_ID = ?";
 		$parentCommentStatement = $this->database->prepareStatement($sql, $limit, $offset);
-		
+
 		$sql = "SELECT		*
 			FROM		" . $this->databasePrefix . "comments
 			ORDER BY	comment_parent, comment_ID";
@@ -359,13 +359,13 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 				));
 			} else {
 				$parentID = $row['comment_parent'];
-				
+
 				do {
 					$parentCommentStatement->execute(array(
 						$parentID
 					));
 					$row2 = $parentCommentStatement->fetchArray();
-					
+
 					if (! $row2['comment_parent']) {
 						ImportHandler::getInstance()->getImporter('de.codequake.cms.news.comment.response')->import($row['comment_ID'], array(
 							'commentID' => $row2['comment_ID'],
@@ -377,14 +377,15 @@ class WordPress3xToNewsExporter extends AbstractExporter {
 						break;
 					}
 					$parentID = $row2['comment_parent'];
-				} while (true);
+				}
+				while (true);
 			}
 		}
 	}
 
 	private static function fixMessage($string) {
 		$string = str_replace("\n", "<br />\n", StringUtil::unifyNewlines($string));
-		
+
 		return $string;
 	}
 }

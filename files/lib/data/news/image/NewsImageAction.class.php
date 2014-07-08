@@ -45,16 +45,16 @@ class NewsImageAction extends AbstractDatabaseObjectAction {
 				WCF::getTPL()->assign('image', $image);
 			}
 		}
-		
+
 		// news images
 		$list = new NewsImageList();
 		$list->readObjects();
 		$imageList = $list->getObjects();
-		
+
 		WCF::getTPL()->assign(array(
 			'images' => $imageList
 		));
-		
+
 		return array(
 			'images' => $imageList,
 			'template' => WCF::getTPL()->fetch('imageList', 'cms')
@@ -65,11 +65,11 @@ class NewsImageAction extends AbstractDatabaseObjectAction {
 		WCF::getSession()->checkPermissions(array(
 			'user.cms.news.canUploadAttachment'
 		));
-		
+
 		if (count($this->parameters['__files']->getFiles()) != 1) {
 			throw new UserInputException('files');
 		}
-		
+
 		$this->parameters['__files']->validateFiles(new DefaultUploadFileValidationStrategy(WCF::getSession()->getPermission('user.attachment.maxSize'), explode("\n", WCF::getSession()->getPermission('user.cms.news.image.allowedExtensions'))));
 	}
 
@@ -78,19 +78,19 @@ class NewsImageAction extends AbstractDatabaseObjectAction {
 		$files = $this->parameters['__files']->getFiles();
 		$file = $files[0];
 		try {
-			
+
 			if (! $file->getValidationErrorType()) {
 				$filename = 'FB-File-' . md5($file->getFilename() . time()) . '.' . $file->getFileExtension();
 				$data = array(
 					'title' => $file->getFilename(),
 					'filename' => $filename
 				);
-				
+
 				$image = NewsImageEditor::create($data);
 				$path = CMS_DIR . 'images/news/' . $filename;
 				if (@move_uploaded_file($file->getLocation(), $path)) {
 					@unlink($file->getLocation());
-					
+
 					return array(
 						'imageID' => $image->imageID,
 						'title' => $image->title,
@@ -103,13 +103,14 @@ class NewsImageAction extends AbstractDatabaseObjectAction {
 					$editor->delete();
 					throw new UserInputException('image', 'uploadFailed');
 				}
-			
+
 			}
-		
-		} catch (UserInputException $e) {
+
+		}
+		catch (UserInputException $e) {
 			$file->setValidationErrorType($e->getType());
 		}
-		
+
 		return array(
 			'errorType' => $file->getValidationErrorType()
 		);
