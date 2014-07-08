@@ -40,7 +40,7 @@ class NewsContentType extends AbstractContentType {
 		$data = $content->handleContentData();
 		$type = isset($data['type']) ? $data['type'] : 'standard';
 		$list = new CategoryNewsList($data['categoryIDs']);
-		$list->sqlLimit = CMS_NEWS_LATEST_LIMIT;
+		$list->sqlLimit = $data['limit'];
 		$list->readObjects();
 		$list = $list->getObjects();
 		WCF::getTPL()->assign(array(

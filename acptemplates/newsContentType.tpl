@@ -1,13 +1,13 @@
 
-   <script data-relocate="true">
-   	 //<![CDATA[
-        $(function () {
+<script data-relocate="true">
+		//<![CDATA[
+		$(function () {
 
 			new WCF.Category.NestedList();
-            });
-        //]]>
-   </script>
-    <ol class="nestedCategoryList doubleColumned jsCategoryList">
+			});
+		//]]>
+</script>
+	<ol class="nestedCategoryList doubleColumned jsCategoryList">
 	{foreach from=$categoryList item=categoryItem}
 		{if $categoryItem->isAccessible()}
 		<li>
@@ -43,5 +43,12 @@
 			<option value="simple1" {if $contentData['type']|isset && $contentData['type'] == 'simple1'}selected="selected"{/if}>{lang}cms.acp.content.type.de.codequake.cms.content.type.news.type.simple1{/lang}</option>
 			<option value="simple2" {if $contentData['type']|isset && $contentData['type'] == 'simple2'}selected="selected"{/if}>{lang}cms.acp.content.type.de.codequake.cms.content.type.news.type.simple2{/lang}</option>
 		<select>
+	</dd>
+</dl>
+
+<dl>
+	<dt><label for="contentData[limit]">{lang}cms.acp.content.type.de.codequake.cms.content.type.news.limi{/lang}</label></dt>
+	<dd>
+		<input type="number" name="contentData[limit]" id="contentData[limit]" value="{if $contentData['limit']|isset}{$contentData['limit']}{else}0{/if}" />
 	</dd>
 </dl>
