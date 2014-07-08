@@ -47,7 +47,7 @@
 </dl>
 
 <dl>
-	<dt><label for="contentData[limit]">{lang}cms.acp.content.type.de.codequake.cms.content.type.news.limi{/lang}</label></dt>
+	<dt><label for="contentData[limit]">{lang}cms.acp.content.type.de.codequake.cms.content.type.news.limit{/lang}</label></dt>
 	<dd>
 		<input type="number" name="contentData[limit]" id="contentData[limit]" value="{if $contentData['limit']|isset}{$contentData['limit']}{else}0{/if}" />
 	</dd>
