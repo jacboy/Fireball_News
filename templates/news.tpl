@@ -43,7 +43,11 @@
 			</div>
 			<div class="userDetails">
 				<div class="containerHeadline">
-					<h3><a class="userLink" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{$news->getUserProfile()->username}</a></h3>
+					{if $news->userID != 0}
+						<h3><a class="userLink" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{$news->getUserProfile()->username}</a></h3>
+					{else}
+						{$news->username}
+					{/if}
 				</div>
 			</div>
 		</div>
@@ -104,9 +108,13 @@
 										</h1>
 										<p>
 											<span class="username">
-												<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
+												{if $news->userID != 0}
+													<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
 													{$news->username}
-												</a>
+													</a>
+												{else}
+													{$news->username}
+												{/if}
 											</span>
 											<a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
 												{@$news->time|time}
