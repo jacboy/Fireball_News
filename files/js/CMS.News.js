@@ -68,7 +68,7 @@ CMS.News.Image.Form = Class.extend({
 
 		this._field.val($image.data('objectID'));
 
-		$image.clone().appendTo($('.newsImage ul').html(''));
+		$image.clone().appendTo($('.newsImageSelect ul').html(''));
 
 		this._dialog.wcfDialog('close');
 	}
