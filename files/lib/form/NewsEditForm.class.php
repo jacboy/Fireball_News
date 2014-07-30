@@ -12,6 +12,7 @@ use wcf\system\poll\PollManager;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
+use wcf\util\DateUtil;
 use wcf\util\HeaderUtil;
 
 /**
@@ -38,18 +39,23 @@ class NewsEditForm extends NewsAddForm {
 		parent::readParameters();
 		if (isset($_REQUEST['id'])) $this->newsID = intval($_REQUEST['id']);
 		if ($this->newsID == 0) throw new IllegalLinkException();
-		
+
 		// set attachment object id
 		$this->attachmentObjectID = $this->newsID;
-	
+
 	}
 
 	public function readData() {
 		parent::readData();
 		$this->news = new News($this->newsID);
-		
+
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->setObject('de.codequake.cms.news', $this->news->newsID, $this->news->pollID);
-		$this->time = $this->news->time;
+
+		$time = $this->news->time;
+		$dateTime = DateUtil::getDateTimeByTimestamp($time);
+		$dateTime->setTimezone(WCF::getUser()->getTimeZone());
+		$this->time = $dateTime->format('c');
+
 		$this->subject = $this->news->subject;
 		$this->teaser = $this->news->teaser;
 		$this->text = $this->news->message;
@@ -61,11 +67,11 @@ class NewsEditForm extends NewsAddForm {
 			'application' => 'cms',
 			'object' => $this->news
 		))));
-		
+
 		foreach ($this->news->getCategories() as $category) {
 			$this->categoryIDs[] = $category->categoryID;
 		}
-		
+
 		// tagging
 		if (MODULE_TAGGING) {
 			$tags = $this->news->getTags();
@@ -77,11 +83,13 @@ class NewsEditForm extends NewsAddForm {
 
 	public function save() {
 		MessageForm::save();
+		if ($this->time != '') $dateTime = \DateTime::createFromFormat("Y-m-d H:i", $this->time, WCF::getUser()->getTimeZone());
+
 		$data = array(
 			'subject' => $this->subject,
 			'message' => $this->text,
 			'teaser' => $this->teaser,
-			'time' => $this->time,
+			'time' => ($this->time != '') ? $dateTime->getTimestamp(): TIME_NOW,
 			'enableBBCodes' => $this->enableBBCodes,
 			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
@@ -98,7 +106,7 @@ class NewsEditForm extends NewsAddForm {
 			'tags' => $this->tags,
 			'attachmentHandler' => $this->attachmentHandler
 		);
-		
+
 		$action = new NewsAction(array(
 			$this->newsID
 		), 'update', $newsData);
@@ -106,7 +114,7 @@ class NewsEditForm extends NewsAddForm {
 		$this->saved();
 		// re-define after saving
 		$this->news = new News($this->newsID);
-		
+
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) {
 			$pollID = PollManager::getInstance()->save($this->news->newsID);
 			if ($pollID && $pollID != $this->news->pollID) {
@@ -114,21 +122,21 @@ class NewsEditForm extends NewsAddForm {
 				$editor->update(array(
 					'pollID' => $pollID
 				));
-			
+
 			} else if (! $pollID && $this->news->pollID) {
 				$editor = new NewsEditor($this->news);
 				$editor->update(array(
 					'pollID' => null
 				));
-			
+
 			}
 		}
-		
+
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $this->news
 		)));
-		
+
 		exit();
 	}
 

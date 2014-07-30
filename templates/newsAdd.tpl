@@ -153,6 +153,17 @@
 				</dl>
 			{event name='informationFields'}
 			</fieldset>
+
+			<fieldset class="jsOnly">
+					<legend>{lang}cms.news.time.toPublish{/lang}</legend>
+
+					<dl {if $errorField == 'time'} class="formError"{/if}>
+						<dt><label for="time">{lang}cms.news.time.toPublish{/lang}</label></dt>
+						<dd>
+							<input class="medium" id="time" type="datetime" name="time" value="{$time}"/>
+						</dd>
+					</dl>
+			</fieldset>
 			<fieldset>
 				<legend>{lang}cms.news.message{/lang}</legend>
 
@@ -181,17 +192,6 @@
 		{include file='messageFormTabs' wysiwygContainerID='text'}
 
 		{event name='fieldsets'}
-		</div>
-		<div class="container containerPadding marginTop">
-		<fieldset>
-				<legend>{lang}cms.news.time.toPublish{/lang}</legend>
-				<dl {if $errorField == 'time'} class="formError"{/if}>
-					<dt><label for="time">{lang}cms.news.time.toPublish{/lang}</label></dt>
-					<dd>
-						<input class="medium" id="time" type="datetime" name="time" value="{$time}"/>
-					</dd>
-				</dl>
-		</fieldset>
 		</div>
 		<div class="formSubmit">
 			<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />

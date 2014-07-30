@@ -15,6 +15,7 @@ use wcf\system\poll\PollManager;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
+use wcf\util\DateUtil;
 use wcf\util\HeaderUtil;
 use wcf\util\StringUtil;
 
@@ -48,7 +49,7 @@ class NewsAddForm extends MessageForm {
 
 	public $image = null;
 
-	public $time = TIME_NOW;
+	public $time = '';
 
 	public $teaser = '';
 
@@ -57,10 +58,10 @@ class NewsAddForm extends MessageForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
-		if (isset($_POST['time']) && $_POST['time'] != 0) $this->time = strtotime($_POST['time']);
+		if (isset($_POST['time'])) $this->time = $_POST['time'];
 		if (isset($_POST['imageID'])) $this->image = new NewsImage(intval($_POST['imageID']));
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
-		
+
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->readFormParameters();
 	}
 
@@ -73,29 +74,35 @@ class NewsAddForm extends MessageForm {
 
 	public function readData() {
 		parent::readData();
-		
+
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsCategoryList', array(
 			'application' => 'cms'
 		))));
-		
+
 		$excludedCategoryIDs = array_diff(NewsCategory::getAccessibleCategoryIDs(), NewsCategory::getAccessibleCategoryIDs(array(
 			'canAddNews'
 		)));
 		$categoryTree = new NewsCategoryNodeTree('de.codequake.cms.category.news', 0, false, $excludedCategoryIDs);
 		$this->categoryList = $categoryTree->getIterator();
 		$this->categoryList->setMaxDepth(0);
-		
+
+		if(empty($_POST)) {
+			$dateTime = DateUtil::getDateTimeByTimestamp(TIME_NOW);
+			$dateTime->setTimezone(WCF::getUser()->getTimeZone());
+			$this->time = $dateTime->format('c');
+		}
+
 		// default values
 		if (! count($_POST)) {
 			$this->username = WCF::getSession()->getVar('username');
-			
+
 			// multilingualism
 			if (! empty($this->availableContentLanguages)) {
 				if (! $this->languageID) {
 					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
-				
+
 				if (! isset($this->availableContentLanguages[$this->languageID])) {
 					$languageIDs = array_keys($this->availableContentLanguages);
 					$this->languageID = array_shift($languageIDs);
@@ -110,15 +117,15 @@ class NewsAddForm extends MessageForm {
 		if (empty($this->categoryIDs)) {
 			throw new UserInputException('categoryIDs');
 		}
-		
+
 		foreach ($this->categoryIDs as $categoryID) {
 			$category = CategoryHandler::getInstance()->getCategory($categoryID);
 			if ($category === null) throw new UserInputException('categoryIDs');
-			
+
 			$category = new NewsCategory($category);
 			if (! $category->isAccessible() || ! $category->getPermission('canAddNews')) throw new UserInputException('categoryIDs');
 		}
-		
+
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->validate();
 	}
 
@@ -127,15 +134,16 @@ class NewsAddForm extends MessageForm {
 		if ($this->languageID === null) {
 			$this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
 		}
+		if ($this->time != '') $dateTime = \DateTime::createFromFormat("Y-m-d H:i", $this->time, WCF::getUser()->getTimeZone());
 		$data = array(
 			'languageID' => $this->languageID,
 			'subject' => $this->subject,
-			'time' => $this->time,
+			'time' => ($this->time != '') ? $dateTime->getTimestamp(): TIME_NOW,
 			'teaser' => $this->teaser,
 			'message' => $this->text,
 			'userID' => WCF::getUser()->userID,
 			'username' => WCF::getUser()->username,
-			'isDisabled' => ($this->time > TIME_NOW) ? 1 : 0,
+			'isDisabled' => ($this->time != '' && $dateTime->getTimestamp() > TIME_NOW) ? 1 : 0,
 			'enableBBCodes' => $this->enableBBCodes,
 			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
@@ -150,10 +158,10 @@ class NewsAddForm extends MessageForm {
 			'categoryIDs' => $this->categoryIDs
 		);
 		$newsData['tags'] = $this->tags;
-		
+
 		$action = new NewsAction(array(), 'create', $newsData);
 		$resultValues = $action->executeAction();
-		
+
 		// save polls
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) {
 			$pollID = PollManager::getInstance()->save($resultValues['returnValues']->newsID);
@@ -162,12 +170,12 @@ class NewsAddForm extends MessageForm {
 				$editor->update(array(
 					'pollID' => $pollID
 				));
-			
+
 			}
 		}
-		
+
 		$this->saved();
-		
+
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $resultValues['returnValues']
@@ -177,16 +185,16 @@ class NewsAddForm extends MessageForm {
 
 	public function assignVariables() {
 		parent::assignVariables();
-		
+
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->assignVariables();
-		
+
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,
 			'image' => $this->image,
 			'teaser' => $this->teaser,
 			'imageID' => isset($this->image->imageID) ? $this->image->imageID : 0,
-			'time' => gmdate("Y-m-d H:i", $this->time),
+			'time' => gmdate("Y-m-d H:i", @strtotime($this->time)),
 			'action' => $this->action,
 			'tags' => $this->tags,
 			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.cms.news.allowedAttachmentExtensions')))
