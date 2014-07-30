@@ -86,7 +86,7 @@ class NewsAddForm extends MessageForm {
 		$this->categoryList = $categoryTree->getIterator();
 		$this->categoryList->setMaxDepth(0);
 
-		if(empty($_POST)) {
+		if (empty($_POST)) {
 			$dateTime = DateUtil::getDateTimeByTimestamp(TIME_NOW);
 			$dateTime->setTimezone(WCF::getUser()->getTimeZone());
 			$this->time = $dateTime->format('c');
