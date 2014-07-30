@@ -91,6 +91,11 @@ class NewsAddForm extends MessageForm {
 			$dateTime->setTimezone(WCF::getUser()->getTimeZone());
 			$this->time = $dateTime->format('c');
 		}
+		else {
+			$dateTime = DateUtil::getDateTimeByTimestamp(@strtotime($this->time));
+			$dateTime->setTimezone(WCF::getUser()->getTimeZone());
+			$this->time = $dateTime->format('c');
+		}
 
 		// default values
 		if (! count($_POST)) {
@@ -194,7 +199,7 @@ class NewsAddForm extends MessageForm {
 			'image' => $this->image,
 			'teaser' => $this->teaser,
 			'imageID' => isset($this->image->imageID) ? $this->image->imageID : 0,
-			'time' => gmdate("Y-m-d H:i", @strtotime($this->time)),
+			'time' => $this->time,
 			'action' => $this->action,
 			'tags' => $this->tags,
 			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.cms.news.allowedAttachmentExtensions')))
