@@ -98,17 +98,17 @@ class NewsAddForm extends MessageForm {
 		}
 
 		// default values
-		if (! count($_POST)) {
+		if (empty($_POST)) {
 			$this->username = WCF::getSession()->getVar('username');
 
 			// multilingualism
-			if (! empty($this->availableContentLanguages)) {
-				if (! $this->languageID) {
+			if (!empty($this->availableContentLanguages)) {
+				if ($this->languageID) {
 					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
 
-				if (! isset($this->availableContentLanguages[$this->languageID])) {
+				if (!isset($this->availableContentLanguages[$this->languageID])) {
 					$languageIDs = array_keys($this->availableContentLanguages);
 					$this->languageID = array_shift($languageIDs);
 				}
@@ -136,9 +136,6 @@ class NewsAddForm extends MessageForm {
 
 	public function save() {
 		parent::save();
-		if ($this->languageID === null) {
-			$this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
-		}
 		if ($this->time != '') $dateTime = \DateTime::createFromFormat("Y-m-d H:i", $this->time, WCF::getUser()->getTimeZone());
 		$data = array(
 			'languageID' => $this->languageID,
