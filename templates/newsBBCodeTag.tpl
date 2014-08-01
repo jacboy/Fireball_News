@@ -27,12 +27,12 @@
 				<img src="{@$_news->getImage()->getURL()}" alt="{$_news->getImage()->title}" style="width: 128px;" />
 			</div>
 			<div class="newsTeaser">
-				{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}{@$_news->getExcerpt()}{/if}
+				{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}<p>{@$_news->getExcerpt()}</p>{/if}
 			</div>
 		</div>
 	{else}
 		<div class="newsTeaser">
-			{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}{@$_news->getExcerpt()}{/if}
+			{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}<p>{@$_news->getExcerpt()}</p>{/if}
 		</div>
 	{/if}
 </div>

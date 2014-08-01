@@ -100,7 +100,7 @@ CMS.News.Image.Upload = WCF.Upload.extend({
 			//show img
 			$li.prepend('<div class="framed"><img src="'+ data.returnValues.url +'" alt="" style="width: 32px; max-height: 32px" /></div>');
 
-			$('<div class="framed"><img src="'+ data.returnValues.url +'" alt="" style="width: 32px; max-height: 32px" /></div>').appendTo($('.newsImage ul').html(''));
+			$('<div class="framed"><img src="'+ data.returnValues.url +'" alt="" style="width: 32px; max-height: 32px" /></div>').appendTo($('.newsImageSelect ul').html(''));
 			// save upload id
 			$('#imageID').val(data.returnValues.imageID);
 
