@@ -4,9 +4,7 @@ namespace cms\system\bbcode;
 use cms\data\news\ViewableNews;
 use wcf\system\bbcode\AbstractBBCode;
 use wcf\system\bbcode\BBCodeParser;
-use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
-use wcf\util\StringUtil;
 
 /**
  * handles the news bbcode
@@ -24,7 +22,6 @@ class NewsBBCode extends AbstractBBCode {
 		if (isset($openingTag['attributes'][0])) {
 			$newsID = $openingTag['attributes'][0];
 		}
-
 		$news = ViewableNews::getNews($newsID);
 
 		if ($news === null) return '';
