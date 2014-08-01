@@ -100,7 +100,7 @@ class News extends CMSDatabaseObject implements IMessage, IRouteController, IBre
 		return null;
 	}
 
-	public function getExcerpt($maxLength = 500) {
+	public function getExcerpt($maxLength = CMS_NEWS_TRUNCATE_PREVIEW) {
 		$message = $this->getFormattedMessage();
 		return StringUtil::truncateHTML($message, $maxLength);
 	}
