@@ -22,17 +22,17 @@ class NewsImage extends CMSDatabaseObject implements IRouteController {
 	public function __construct($id, $row = null, $object = null) {
 		if ($id !== null) {
 			$sql = "SELECT *
-                    FROM " . static::getDatabaseTableName() . "
-                    WHERE (" . static::getDatabaseTableIndexName() . " = ?)";
+					FROM " . static::getDatabaseTableName() . "
+					WHERE (" . static::getDatabaseTableIndexName() . " = ?)";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute(array(
 				$id
 			));
 			$row = $statement->fetchArray();
-			
+
 			if ($row === false) $row = array();
 		}
-		
+
 		parent::__construct(null, $row, $object);
 	}
 
@@ -41,7 +41,7 @@ class NewsImage extends CMSDatabaseObject implements IRouteController {
 	}
 
 	public function getURL() {
-		$path = RELATIVE_CMS_DIR . 'images/news/' . $this->filename;
+		$path = WCF::getPath('cms') . 'images/news/' . $this->filename;
 		return $path;
 	}
 
