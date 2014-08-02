@@ -22,6 +22,7 @@
 
 	<optionalpackages>
 		<optionalpackage file="optionals/de.codequake.cms.news.rss.tar">de.codequake.cms.news.rss</optionalpackage>
+		<optionalpackage file="optionals/de.codequake.cms.news.wbb.tar">de.codequake.cms.wbb.rss</optionalpackage>
 	</optionalpackages>
 
 	<instructions type="install">
