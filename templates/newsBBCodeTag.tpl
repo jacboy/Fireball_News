@@ -1,5 +1,11 @@
 <div class="container containerPadding marginTop">
-	<div class="containerHeadline">
+	{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $_news->imageID != 0}
+	<div class="box96">
+		<div class="framed">
+			<img src="{@$_news->getImage()->getURL()}" alt="{$_news->getImage()->title}" style="width: 96px;" />
+		</div>
+	{/if}
+		<div class="containerHeadline">
 		<h3><a href="{$_news->getLink()}" data-news-id="{$_news->newsID}" class="newsLink cmsNewsLink" title="{$_news->getTitle()}">{$_news->getTitle()}</a></h3>
 		<p><small>
 			<span class="username">
@@ -21,18 +27,8 @@
 			</span>
 		</small></p>
 	</div>
+
 	{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $_news->imageID != 0}
-		<div class="newsBox128">
-			<div class="framed">
-				<img src="{@$_news->getImage()->getURL()}" alt="{$_news->getImage()->title}" style="width: 128px;" />
-			</div>
-			<div class="newsTeaser">
-				{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}<p>{@$_news->getExcerpt()}</p>{/if}
-			</div>
-		</div>
-	{else}
-		<div class="newsTeaser">
-			{if $_news->teaser != ""}<strong>{$_news->teaser}</strong>{else}<p>{@$_news->getExcerpt()}</p>{/if}
-		</div>
+	</div>
 	{/if}
 </div>

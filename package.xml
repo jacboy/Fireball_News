@@ -6,8 +6,8 @@
 		<packagename>Fireball CMS - Nachrichtensystem</packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
 		<plugin>de.codequake.cms</plugin>
-		<version>1.0.0 Beta 5</version>
-		<date>2014-08-01</date>
+		<version>1.0.0 Beta 6</version>
+		<date>2014-08-02</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -120,5 +120,9 @@
 		<!-- xml -->
 		<instruction type="bbcode">xml/bbcode.xml</instruction>
 		<instruction type="option">xml/option.xml</instruction>
+	</instructions>
+
+	<instructions type="update" fromversion="1.0.0 Beta 5">
+		<instruction type="template" application="cms">templates.tar</instruction>
 	</instructions>
 </package>
