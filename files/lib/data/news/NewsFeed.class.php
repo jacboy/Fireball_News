@@ -37,7 +37,7 @@ class NewsFeed extends ViewableNews implements IFeedEntry {
 		return $this->comments;
 	}
 
-	public function getExcerpt($maxLength = CMS_NEWS_PREVIEW_TRUNCATE) {
+	public function getExcerpt($maxLength = CMS_NEWS_TRUNCATE_PREVIEW) {
 		return $this->getDecoratedObject()->getExcerpt($maxLength);
 	}
 
@@ -66,7 +66,7 @@ class NewsFeed extends ViewableNews implements IFeedEntry {
 		foreach ($this->getDecoratedObject()->getCategories() as $category) {
 			$categoryNames[] = $category->getTitle();
 		}
-		
+
 		return $categoryNames;
 	}
 }
