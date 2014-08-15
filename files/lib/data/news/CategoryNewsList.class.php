@@ -35,15 +35,14 @@ class CategoryNewsList extends ViewableNewsList {
 
 	public function readObjectIDs() {
 		$this->objectIDs = array();
-		$sql = "SELECT	news_to_category.newsID AS objectID
+		$sql = "SELECT	DISTINCT(news_to_category.newsID) AS objectID
 				FROM	cms" . WCF_N . "_news_to_category news_to_category,
 						cms" . WCF_N . "_news news
 						" . $this->sqlConditionJoins . "
 						" . $this->getConditionBuilder() . "
 						" . (! empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
 		$statement = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
-		$statement->execute($this->getConditionBuilder()
-			->getParameters());
+		$statement->execute($this->getConditionBuilder()->getParameters());
 		while ($row = $statement->fetchArray()) {
 			$this->objectIDs[] = $row['objectID'];
 		}
@@ -56,8 +55,7 @@ class CategoryNewsList extends ViewableNewsList {
 			" . $this->sqlConditionJoins . "
 			" . $this->getConditionBuilder();
 		$statement = WCF::getDB()->prepareStatement($sql);
-		$statement->execute($this->getConditionBuilder()
-			->getParameters());
+		$statement->execute($this->getConditionBuilder()->getParameters());
 		$row = $statement->fetchArray();
 		return $row['count'];
 	}
