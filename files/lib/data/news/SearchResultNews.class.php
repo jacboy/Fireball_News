@@ -14,8 +14,7 @@ use wcf\system\search\SearchResultTextParser;
 class SearchResultNews extends ViewableNews implements ISearchResultObject {
 
 	public function getFormattedMessage() {
-		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()
-			->getSimplifiedFormattedMessage());
+		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()->getSimplifiedFormattedMessage());
 	}
 
 	public function getSubject() {
