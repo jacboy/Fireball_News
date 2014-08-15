@@ -2,6 +2,8 @@
 namespace cms\data\news;
 
 use wcf\data\search\ISearchResultObject;
+use wcf\data\user\User;
+use wcf\data\user\UserProfile;
 use wcf\system\request\LinkHandler;
 use wcf\system\search\SearchResultTextParser;
 
@@ -13,8 +15,10 @@ use wcf\system\search\SearchResultTextParser;
  */
 class SearchResultNews extends ViewableNews implements ISearchResultObject {
 
+	public $userProfile = null;
+
 	public function getFormattedMessage() {
-		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()->getSimplifiedFormattedMessage());
+		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()->getExcerpt());
 	}
 
 	public function getSubject() {
@@ -49,6 +53,10 @@ class SearchResultNews extends ViewableNews implements ISearchResultObject {
 	}
 
 	public function getUserProfile() {
-		return $this->getDecoratedObject()->getUserProfile();
+		if ($this->userProfile === null) {
+			$this->userProfile = new UserProfile(new User($this->userID));
+		}
+
+		return $this->userProfile;
 	}
 }
