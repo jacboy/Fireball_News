@@ -114,8 +114,8 @@
 		<item name="wcf.acp.group.option.user.cms.news.canVotePoll"><![CDATA[Kann an Umfragen teilnehmen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canUploadAttachment"><![CDATA[Kann Dateien anhängen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.attachmentMaxSize"><![CDATA[Maximale Dateianhangsgröße]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Erlaubte Dateiendungen]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Erlaubte Dateiendungen]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Erlaubte Dateiendungen (Dateianhänge)]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Erlaubte Dateiendungen (Nachrichtenbilder)]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Kann Dateianhänge herunterladen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximale Anzahl an Dateianhängen pro Nachricht]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Kann Nachrichten sehen, die noch nicht veröffentlicht wurden]]></item>

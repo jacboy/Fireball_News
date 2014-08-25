@@ -109,20 +109,6 @@
 				<options>module_attachment</options>
 				<minvalue>10000</minvalue>
 			</option>
-			<option name="user.cms.news.image.allowedExtensions">
-				<categoryname>user.cms.news</categoryname>
-				<optiontype>textarea</optiontype>
-				<defaultvalue>
-		<![CDATA[gif
-jpg
-jpeg
-JPG
-JPEG
-png
-bmp]]>
-				</defaultvalue>
-				<wildcard><![CDATA[*]]></wildcard>
-			</option>
 			<option name="user.cms.news.allowedAttachmentExtensions">
 				<categoryname>user.cms.news</categoryname>
 				<optiontype>textarea</optiontype>
@@ -149,6 +135,21 @@ pdf]]>
 				<categoryname>user.cms.news</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>5</defaultvalue>
+			</option>
+
+			<option name="user.cms.news.image.allowedExtensions">
+				<categoryname>user.cms.news</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue>
+		<![CDATA[gif
+jpg
+jpeg
+JPG
+JPEG
+png
+bmp]]>
+				</defaultvalue>
+				<wildcard><![CDATA[*]]></wildcard>
 			</option>
 			<!--mod -->
 			<option name="mod.cms.news.canModerateNews">

@@ -112,8 +112,8 @@
 		<item name="wcf.acp.group.option.user.cms.news.canViewCategory"><![CDATA[Can view categories]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canUploadAttachment"><![CDATA[Can attach files]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.attachmentMaxSize"><![CDATA[Maximum filesize]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Allowed file extensions]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Allowed file extensions]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Allowed file extensions (news images)]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Allowed file extensions (attachments)]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Can download attachments]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximum number of attachments per news]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Can see unpublished news]]></item>
