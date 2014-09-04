@@ -96,7 +96,7 @@ class NewsEditForm extends NewsAddForm {
 			'imageID' => $this->image->imageID,
 			'enableSmilies' => $this->enableSmilies,
 			'lastChangeTime' => TIME_NOW,
-			'isDisabled' => ($this->time > TIME_NOW) ? 1 : 0,
+			'isDisabled' => ($this->time != '' && $dateTime->getTimestamp() > TIME_NOW) ? 1 : 0,
 			'lastEditor' => WCF::getUser()->username,
 			'lastEditorID' => WCF::getUser()->userID
 		);
