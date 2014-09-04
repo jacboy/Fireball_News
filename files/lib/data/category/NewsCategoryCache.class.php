@@ -9,7 +9,7 @@ use wcf\system\WCF;
 
 /**
  * Manages the news category cache.
- * 
+ *
  * @author	Jens Krumsieck
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
@@ -17,19 +17,20 @@ use wcf\system\WCF;
  */
 class NewsCategoryCache extends SingletonFactory {
 
-	protected $unreadNews = array();
+	protected $unreadNews = null;
 
-	public $sql;
+	protected $news = null;
 
 	protected function initUnreadNews() {
 		$this->unreadNews = array();
-		
+
 		if (WCF::getUser()->userID) {
 			$conditionBuilder = new PreparedStatementConditionBuilder();
 			$conditionBuilder->add("news.lastChangeTime > ?", array(
 				VisitTracker::getInstance()->getVisitTime('de.codequake.cms.news')
 			));
-			$conditionBuilder->add("news.isDeleted = 0 AND news.isDisabled = 0");
+			$conditionBuilder->add("news.isDeleted = 0");
+			$conditionBuilder->add("news.isDisabled = 0");
 			$conditionBuilder->add("tracked_visit.visitTime IS NULL");
 			// apply language filter
 			if (LanguageFactory::getInstance()->multilingualismEnabled() && count(WCF::getUser()->getLanguageIDs())) {
@@ -37,16 +38,15 @@ class NewsCategoryCache extends SingletonFactory {
 					WCF::getUser()->getLanguageIDs()
 				));
 			}
-			
+
 			$sql = "SELECT		COUNT(*) AS count, news_to_category.categoryID
 				FROM		cms" . WCF_N . "_news news
 				LEFT JOIN	wcf" . WCF_N . "_tracked_visit tracked_visit
 				ON		(tracked_visit.objectTypeID = " . VisitTracker::getInstance()->getObjectTypeID('de.codequake.cms.news') . " AND tracked_visit.objectID = news.newsID AND tracked_visit.userID = " . WCF::getUser()->userID . ")
-                LEFT JOIN	cms" . WCF_N . "_news_to_category news_to_category
+				LEFT JOIN	cms" . WCF_N . "_news_to_category news_to_category
 				ON		(news_to_category.newsID = news.newsID)
 				" . $conditionBuilder . "
 				GROUP BY	news_to_category.categoryID";
-			$this->sql = $sql;
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute($conditionBuilder->getParameters());
 			while ($row = $statement->fetchArray()) {
@@ -56,8 +56,43 @@ class NewsCategoryCache extends SingletonFactory {
 	}
 
 	public function getUnreadNews($categoryID) {
-		$this->initUnreadNews();
+		if ($this->news === null) {
+			$this->initUnreadNews();
+		}
 		if (isset($this->unreadNews[$categoryID])) return $this->unreadNews[$categoryID];
+		return 0;
+	}
+
+	protected function initNews() {
+		$this->news = array();
+		$conditionBuilder = new PreparedStatementConditionBuilder();
+		$conditionBuilder->add("news.isDeleted = 0");
+		$conditionBuilder->add("news.isDisabled = 0");
+		// apply language filter
+		if (LanguageFactory::getInstance()->multilingualismEnabled() && count(WCF::getUser()->getLanguageIDs())) {
+			$conditionBuilder->add('(news.languageID IN (?) OR news.languageID IS NULL)', array(
+				WCF::getUser()->getLanguageIDs()
+			));
+		}
+		$sql = "SELECT		COUNT(*) AS count, news_to_category.categoryID
+				FROM		cms" . WCF_N . "_news news
+				LEFT JOIN	cms" . WCF_N . "_news_to_category news_to_category
+				ON		(news_to_category.newsID = news.newsID)
+				" . $conditionBuilder . "
+				GROUP BY	news_to_category.categoryID";
+		$statement = WCF::getDB()->prepareStatement($sql);
+		$statement->execute($conditionBuilder->getParameters());
+		while ($row = $statement->fetchArray()) {
+			$this->news[$row['categoryID']] = $row['count'];
+		}
+	}
+
+	public function getNews($categoryID) {
+		if ($this->news === null) {
+			$this->initNews();
+		}
+
+		if (isset($this->news[$categoryID])) return $this->news[$categoryID];
 		return 0;
 	}
 }

@@ -1,7 +1,7 @@
 {include file='documentHeader'}
 <head>
 	<title>{$category->getTitle()|language} - {PAGE_TITLE|language}</title>
-	
+
 	{include file='headInclude' application='wcf'}
 	<script data-relocate="true">
 		//<![CDATA[
@@ -22,48 +22,14 @@
 	</li>
 	<li class="jsOnly">
 		<a title="{lang}cms.news.markAllAsRead{/lang}" class="markAllAsReadButton jsTooltip">
-			<span class="icon icon16 icon-ok"></span> 
+			<span class="icon icon16 icon-ok"></span>
 			<span class="invisible">{lang}cms.news.markAllAsRead{/lang}</span>
 		</a>
 	</li>
 {/capture}
 
 {capture assign='sidebar'}
-	{hascontent}
-	{if CMS_NEWS_SIDEBAR_CATEGORIES}
-		<fieldset>
-			<legend>{lang}cms.news.category.categories{/lang}</legend>
-			
-			<ol class="sidebarNestedCategoryList">
-				{content}
-					{foreach from=$categoryList item=categoryItem}
-						{if $categoryItem->isAccessible()}
-						<li{if $category && $category->categoryID == $categoryItem->categoryID} class="active"{/if}>
-							<a href="{link application='cms' controller='NewsList' object=$categoryItem->getDecoratedObject()}{/link}">{$categoryItem->getTitle()}</a>
-							{if $categoryItem->getUnreadNews() != 0}<span class="badge">{#$categoryItem->getUnreadNews()}</span>{/if}
-
-							{if $category && ($category->categoryID == $categoryItem->categoryID || $category->parentCategoryID == $categoryItem->categoryID) && $categoryItem->hasChildren() && !CMS_NEWS_SIDEBAR_CATEGORIES_MAIN}
-								<ol>
-									{foreach from=$categoryItem item=subCategoryItem}
-										{if $subCategoryItem->isAccessible()}
-										<li{if $category && $category->categoryID == $subCategoryItem->categoryID} class="active"{/if}>
-											<a href="{link application='cms' controller='NewsList' object=$subCategoryItem->getDecoratedObject()}{/link}">{$subCategoryItem->getTitle()}</a>
-											{if $categoryItem->getUnreadNews() != 0}<span class="badge">{#$categoryItem->getUnreadNews()}</span>{/if}
-										</li>
-										{/if}
-									{/foreach}
-								</ol>
-							{/if}
-						</li>
-						{/if}
-					{/foreach}
-				{/content}
-			</ol>
-		</fieldset>
-		{/if}
-	{/hascontent}
-
-    
+	{include file='newsSidebarCategories' application='cms'}
 	{event name='boxes'}
 
 	{@$__boxSidebar}
@@ -81,20 +47,20 @@
 {include file='userNotice'}
 
 <div class="contentNavigation">
-  {pages print=true assign=pagesLinks controller="NewsList" application="cms" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
-  {if $category->getPermission('canAddNews')}
-  <nav>
-    <ul>
-      <li>
-        <a href="{link application='cms' controller='NewsAdd' id=$categoryID}{/link}" title="{lang}cms.news.add{/lang}" class="button">
-          <span class="icon icon16 icon-asterisk"></span>
-          <span>{lang}cms.news.add{/lang}</span>
-        </a>
-      </li>
-      {event name='contentNavigationButtonsTop'}
-    </ul>
-  </nav>
-  {/if}
+{pages print=true assign=pagesLinks controller="NewsList" application="cms" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+{if $category->getPermission('canAddNews')}
+<nav>
+	<ul>
+	<li>
+		<a href="{link application='cms' controller='NewsAdd' id=$categoryID}{/link}" title="{lang}cms.news.add{/lang}" class="button">
+		<span class="icon icon16 icon-asterisk"></span>
+		<span>{lang}cms.news.add{/lang}</span>
+		</a>
+	</li>
+	{event name='contentNavigationButtonsTop'}
+	</ul>
+</nav>
+{/if}
 </div>
 
 
@@ -102,20 +68,20 @@
 
 {if $objects|count}
 <div class="contentNavigation">
-  {pages print=true assign=pagesLinks controller="NewsList" application="cms" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
-  {if $category->getPermission('canAddNews')}
-  <nav>
-    <ul>
-      <li>
-        <a href="{link application='cms' controller='NewsAdd' id=$categoryID}{/link}" title="{lang}cms.news.add{/lang}" class="button">
-          <span class="icon icon16 icon-asterisk"></span>
-          <span>{lang}cms.news.add{/lang}</span>
-        </a>
-      </li>
-      {event name='contentNavigationButtonsTop'}
-    </ul>
-  </nav>
-  {/if}
+{pages print=true assign=pagesLinks controller="NewsList" application="cms" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+{if $category->getPermission('canAddNews')}
+<nav>
+	<ul>
+	<li>
+		<a href="{link application='cms' controller='NewsAdd' id=$categoryID}{/link}" title="{lang}cms.news.add{/lang}" class="button">
+		<span class="icon icon16 icon-asterisk"></span>
+		<span>{lang}cms.news.add{/lang}</span>
+		</a>
+	</li>
+	{event name='contentNavigationButtonsTop'}
+	</ul>
+</nav>
+{/if}
 </div>
 {/if}
 
