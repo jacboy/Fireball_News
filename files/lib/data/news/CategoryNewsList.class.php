@@ -12,7 +12,7 @@ use wcf\system\WCF;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
-class CategoryNewsList extends ViewableNewsList {
+class CategoryNewsList extends AccessibleNewsList {
 
 	public function __construct(array $categoryIDs) {
 		parent::__construct();
@@ -29,8 +29,6 @@ class CategoryNewsList extends ViewableNewsList {
 				0
 			));
 		}
-		if (! WCF::getSession()->getPermission('mod.cms.news.canModerateNews')) $this->getConditionBuilder()->add('news.isDisabled = 0');
-		if (! WCF::getSession()->getPermission('mod.cms.news.canModerateNews')) $this->getConditionBuilder()->add('news.isDeleted = 0');
 	}
 
 	public function readObjectIDs() {

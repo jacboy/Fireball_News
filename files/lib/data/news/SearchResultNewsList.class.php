@@ -7,7 +7,7 @@ namespace cms\data\news;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
-class SearchResultNewsList extends ViewableNewsList {
+class SearchResultNewsList extends AccessibleNewsList {
 
 	public $decoratorClassName = 'cms\data\news\SearchResultNews';
 }

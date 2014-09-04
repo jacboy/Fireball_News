@@ -11,7 +11,7 @@ use wcf\system\WCF;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
-class TaggedNewsList extends ViewableNewsList {
+class TaggedNewsList extends AccessibleNewsList {
 
 	public function __construct(Tag $tag) {
 		parent::__construct();
@@ -25,10 +25,10 @@ class TaggedNewsList extends ViewableNewsList {
 
 	public function countObjects() {
 		$sql = "SELECT	COUNT(*) AS count
-            FROM	wcf" . WCF_N . "_tag_to_object tag_to_object,
-                cms" . WCF_N . "_news news
-            " . $this->sqlConditionJoins . "
-            " . $this->getConditionBuilder();
+			FROM	wcf" . WCF_N . "_tag_to_object tag_to_object,
+				cms" . WCF_N . "_news news
+			" . $this->sqlConditionJoins . "
+			" . $this->getConditionBuilder();
 		$statement = WCF::getDB()->prepareStatement($sql);
 		$statement->execute($this->getConditionBuilder()
 			->getParameters());
@@ -39,11 +39,11 @@ class TaggedNewsList extends ViewableNewsList {
 	public function readObjectIDs() {
 		$this->objectIDs = array();
 		$sql = "SELECT	tag_to_object.objectID
-            FROM	wcf" . WCF_N . "_tag_to_object tag_to_object,
-                cms" . WCF_N . "_news news
-                " . $this->sqlConditionJoins . "
-                " . $this->getConditionBuilder() . "
-                " . (! empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
+			FROM	wcf" . WCF_N . "_tag_to_object tag_to_object,
+				cms" . WCF_N . "_news news
+				" . $this->sqlConditionJoins . "
+				" . $this->getConditionBuilder() . "
+				" . (! empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
 		$statement = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
 		$statement->execute($this->getConditionBuilder()
 			->getParameters());
