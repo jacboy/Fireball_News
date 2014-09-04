@@ -6,6 +6,7 @@ use cms\data\category\NewsCategoryNodeTree;
 use cms\data\news\CategoryNewsList;
 use wcf\page\SortablePage;
 use wcf\system\dashboard\DashboardHandler;
+use wcf\system\exception\NamedUserException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\menu\page\PageMenu;
 use wcf\system\request\LinkHandler;
@@ -27,6 +28,8 @@ class NewsCategoryListPage extends SortablePage {
 
 	public $itemsPerPage = CMS_NEWS_PER_PAGE;
 
+	public $objectListClassName = 'cms\data\news\AccessibleNewsList';
+
 	public $limit = 10;
 
 	public $categoryList = null;
@@ -46,15 +49,8 @@ class NewsCategoryListPage extends SortablePage {
 			MetaTagHandler::getInstance()->addTag('og:type', 'og:type', 'website', true);
 			MetaTagHandler::getInstance()->addTag('og:title', 'og:title', WCF::getLanguage()->get(PAGE_TITLE), true);
 			MetaTagHandler::getInstance()->addTag('og:description', 'og:description', WCF::getLanguage()->get(PAGE_DESCRIPTION), true);
+			MetaTagHandler::getInstance()->addTag('generator', 'generator', 'Fireball CMS');
 		}
-	}
-
-	protected function initObjectList() {
-		$categoryIDs = NewsCategory::getAccessibleCategoryIDs();
-		if ($categoryIDs) {
-			$this->objectList = new CategoryNewsList($categoryIDs);
-		} else
-			throw new PermissionDeniedException();
 	}
 
 	public function assignVariables() {

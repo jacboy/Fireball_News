@@ -8,7 +8,8 @@
 		$(function () {
 
 			WCF.Language.addObject({
-				'cms.news.image.select': '{lang}cms.news.image.select{/lang}'
+				'cms.news.image.select': '{lang}cms.news.image.select{/lang}',
+				'wcf.global.button.upload': {lang}wcf.global.button.upload{/lang}
 			});
 
 			new CMS.News.Image.Form($('#imageSelect'), $('#imageID'));
