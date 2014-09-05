@@ -19,7 +19,7 @@ class AccessibleNewsList extends ViewableNewsList {
 	 */
 	public $sqlOrderBy = 'news.time DESC';
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct();
 
 		// accessible news categories
