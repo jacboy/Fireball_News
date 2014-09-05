@@ -64,6 +64,9 @@
 
 		<!-- xml -->
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+
+		<!--others -->
+		<instruction type="sql">update_beta8.sql</instruction>
 	</instructions>
 
 	<instructions type="update" fromversion="1.0.0 Beta 7">
@@ -75,6 +78,9 @@
 		<instruction type="template" application="cms">templates.tar</instruction>
 
 		<!-- xml -->
-		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction><
+
+		<!--others -->
+		<instruction type="sql">update_beta8.sql</instruction>
 	</instructions>
 </package>
