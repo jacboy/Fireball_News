@@ -6,8 +6,8 @@
 		<packagename>Fireball CMS - Nachrichtensystem</packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
 		<plugin>de.codequake.cms</plugin>
-		<version>1.0.0 Beta 7</version>
-		<date>2014-08-06</date>
+		<version>1.0.0 Beta 8</version>
+		<date>2014-09-05</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -54,81 +54,27 @@
 		<instruction type="sql">install.sql</instruction>
 	</instructions>
 
-	<instructions type="update" fromversion="1.0.0 Alpha 1">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-
-		<!--tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="acpTemplate" application="cms">acptemplates.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="bbcode">xml/bbcode.xml</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 1">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-
-		<!--tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="acpTemplate" application="cms">acptemplates.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="bbcode">xml/bbcode.xml</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 2">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-
-		<!--tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="file" application="wcf">files_wcf.tar</instruction>
-		<instruction type="acpTemplate" application="cms">acptemplates.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="bbcode">xml/bbcode.xml</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 3">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-		<!--tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="bbcode">xml/bbcode.xml</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 4">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-		<!--tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="bbcode">xml/bbcode.xml</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 5">
-		<instruction type="template" application="cms">templates.tar</instruction>
-		<instruction type="file" application="cms">files.tar</instruction>
-	</instructions>
-
 	<instructions type="update" fromversion="1.0.0 Beta 6">
+		<!--lang -->
+		<instruction type="language">language/*.xml</instruction>
+
+		<!-- tar -->
 		<instruction type="file" application="cms">files.tar</instruction>
+		<instruction type="template" application="cms">templates.tar</instruction>
+
+		<!-- xml -->
+		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+	</instructions>
+
+	<instructions type="update" fromversion="1.0.0 Beta 7">
+		<!--lang -->
+		<instruction type="language">language/*.xml</instruction>
+
+		<!-- tar -->
+		<instruction type="file" application="cms">files.tar</instruction>
+		<instruction type="template" application="cms">templates.tar</instruction>
+
+		<!-- xml -->
+		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 	</instructions>
 </package>
