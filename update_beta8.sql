@@ -7,10 +7,7 @@ CREATE TABLE cms1_news_update (
 	message VARCHAR(255) NOT NULL,
 	userID INT(10),
 	username VARCHAR(255),
-	time INT(20) NOT NULL DEFAULT 0,
-	enableSmilies TINYINT(1) NOT NULL DEFAULT 1,
-	enableHtml TINYINT(1) NOT NULL DEFAULT 0,
-	enableBBCodes TINYINT(1) NOT NULL DEFAULT 1,
+	time INT(20) NOT NULL DEFAULT 0
 );
 
 ALTER TABLE cms1_news_update ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
