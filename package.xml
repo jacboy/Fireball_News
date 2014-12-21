@@ -5,7 +5,6 @@
 	<packageinformation>
 		<packagename>Fireball CMS - Nachrichtensystem</packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
-		<plugin>de.codequake.cms</plugin>
 		<version>1.0.0 Beta 8</version>
 		<date>2014-09-05</date>
 	</packageinformation>
