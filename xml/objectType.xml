@@ -202,6 +202,11 @@
 			<definitionname>com.woltlab.wcf.importer</definitionname>
 			<classname><![CDATA[cms\system\importer\NewsCommentResponseImporter]]></classname>
 		</type>
+		<type>
+			<name>de.codequake.cms.news.like</name>
+			<definitionname>com.woltlab.wcf.importer</definitionname>
+			<classname><![CDATA[cms\system\importer\NewsLikeImporter]]></classname>
+		</type>
 		<!-- /importer -->
 		<!-- export -->
 		<type>
