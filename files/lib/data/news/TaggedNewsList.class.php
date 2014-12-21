@@ -30,8 +30,7 @@ class TaggedNewsList extends AccessibleNewsList {
 			" . $this->sqlConditionJoins . "
 			" . $this->getConditionBuilder();
 		$statement = WCF::getDB()->prepareStatement($sql);
-		$statement->execute($this->getConditionBuilder()
-			->getParameters());
+		$statement->execute($this->getConditionBuilder()->getParameters());
 		$row = $statement->fetchArray();
 		return $row['count'];
 	}
@@ -45,8 +44,7 @@ class TaggedNewsList extends AccessibleNewsList {
 				" . $this->getConditionBuilder() . "
 				" . (! empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
 		$statement = WCF::getDB()->prepareStatement($sql, $this->sqlLimit, $this->sqlOffset);
-		$statement->execute($this->getConditionBuilder()
-			->getParameters());
+		$statement->execute($this->getConditionBuilder()->getParameters());
 		while ($row = $statement->fetchArray()) {
 			$this->objectIDs[] = $row['objectID'];
 		}

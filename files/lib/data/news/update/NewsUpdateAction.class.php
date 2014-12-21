@@ -1,8 +1,9 @@
 <?php
 namespace cms\data\news\update;
+
 use cms\data\news\News;
-use wcf\data\AbstractDatabaseObjectAction;
 use cms\data\news\NewsEditor;
+use wcf\data\AbstractDatabaseObjectAction;
 
 /**
  *
