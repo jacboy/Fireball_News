@@ -3,6 +3,8 @@ namespace cms\system\importer;
 use cms\data\news\News;
 use cms\data\news\NewsEditor;
 use wcf\data\object\type\ObjectTypeCache;
+use wcf\system\importer\AbstractAttachmentImporter;
+use wcf\system\importer\ImportHandler;
 
 /**
  * @author	Florian Gail
@@ -29,7 +31,8 @@ class NewsAttachmentImporter extends AbstractAttachmentImporter {
 	 */
 	public function import($oldID, array $data, array $additionalData = array()) {
 		$data['objectID'] = ImportHandler::getInstance()->getNewID('de.codequake.cms.news', $data['objectID']);
-		if (!$data['objectID']) return 0;
+		if (!$data['objectID'])
+			return 0;
 		
 		$attachmentID = parent::import($oldID, $data, $additionalData);
 		if ($attachmentID && $attachmentID != $oldID) {
