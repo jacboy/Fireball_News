@@ -112,7 +112,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		
 		if ($row !== false) {
 			// check cms version
-			if(substr($row['packageVersion'], 0, 1) != 1) {
+			if (substr($row['packageVersion'], 0, 1) != 1) {
 				throw new DatabaseException('Cannot find Fireball CMS 1.x installation', $this->database);
 			}
 		} else {
@@ -131,7 +131,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		if (in_array('de.codequake.cms.category.news', $this->selectedData)) {
 			$queue[] = 'de.codequake.cms.category.news';
 			
-			if(in_array('de.codequake.cms.category.news.acl', $this->selectedData)) {
+			if (in_array('de.codequake.cms.category.news.acl', $this->selectedData)) {
 				$queue[] = 'de.codequake.cms.category.news.acl';
 			}
 		}
@@ -140,16 +140,16 @@ class Fireball1NewsExporter extends AbstractExporter {
 		if (in_array('de.codequake.cms.news', $this->selectedData)) {
 			$queue[] = 'de.codequake.cms.news';
 
-			if(in_array('de.codequake.cms.news.comment', $this->selectedData)) {
+			if (in_array('de.codequake.cms.news.comment', $this->selectedData)) {
 				$queue[] = 'de.codequake.cms.news.comment';
 				$queue[] = 'de.codequake.cms.news.comment.response';
 			}
 			
-			if(in_array('de.codequake.cms.news.like', $this->selectedData)) {
+			if (in_array('de.codequake.cms.news.like', $this->selectedData)) {
 				$queue[] = 'de.codequake.cms.news.like';
 			}
 			
-			if(in_array('de.codequake.cms.news.attachment', $this->selectedData)) {
+			if (in_array('de.codequake.cms.news.attachment', $this->selectedData)) {
 				$queue[] = 'de.codequake.cms.news.attachment';
 			}
 		}
@@ -204,7 +204,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	 * Exports the categories of the given parent recursively.
 	 */
 	protected function exportCategoriesRecursively($parentID = 0) {
-		if(!isset($this->categoryCache[$parentID]))
+		if (!isset($this->categoryCache[$parentID]))
 			return;
 		
 		foreach ($this->categoryCache[$parentID] as $category) {
@@ -285,16 +285,16 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement->execute(array($objectTypeID, $objectTypeID));
 		
 		$acls = array();
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			$data = array(
 				'objectID' => $row['objectID'],
 				'optionName' => $row['optionName'],
 				'optionValue' => $row['optionValue']
 			);
 			
-			if($row['userID'])
+			if ($row['userID'])
 				$data['userID'] = $row['userID'];
-			if($row['groupID'])
+			if ($row['groupID'])
 				$data['groupID'] = $row['groupID'];
 			
 			$acls[] = $data;
@@ -345,7 +345,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 			ORDER BY	newsID";
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute();
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			$newsIDs[] = $row['newsID'];
 		}
 			
@@ -358,7 +358,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 			ON		(language.languageID = news.languageID)";
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute();
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			$additionalData = array();
 			
 			$sql = "SELECT	*
@@ -366,7 +366,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 				WHERE 	newsID = ?";
 			$statement2 = $this->database->prepareStatement($sql);
 			$statement2->execute(array($row['newsID']));
-			while($assignment = $statement2->fetchArray()) {
+			while ($assignment = $statement2->fetchArray()) {
 				// categories
 				$additionalData['categories'][] = $assignment['categoryID'];
 			}
@@ -387,10 +387,10 @@ class Fireball1NewsExporter extends AbstractExporter {
 				'cumulativeLikes' => $row['cumulativeLikes'],
 			), $additionalData);
 			
-			if($row['languageCode'])
+			if ($row['languageCode'])
 				$additionalData['languageCode'] = $row['languageCode'];
 			
-			if(isset($tags[$row['newsID']]))
+			if (isset($tags[$row['newsID']]))
 				$additionalData['tags'] = $tags[$row['newsID']];
 			
 		}
@@ -425,7 +425,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute(array($objectTypeID));
 		
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			$id = ImportHandler::getInstance()->getImporter('de.codequake.cms.news.comment')->import($row['commentID'], array(
 				'objectID' => $row['objectID'],
 				'userID' => $row['userID'],
@@ -476,7 +476,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute(array($objectTypeID));
 		
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			ImportHandler::getInstance()->getImporter('de.codequake.cms.news.comment.response')->import($row['responseID'], array(
 				'commentID' => $row['commentID'],
 				'time' => $row['time'],
@@ -562,7 +562,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute(array($objectTypeID));
 		
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			ImportHandler::getInstance()->getImporter('de.codequake.cms.news.like')->import(0, array(
 				'objectID' => $row['objectID'],
 				'objectUserID' => $row['objectUserID'],
@@ -616,7 +616,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement->execute(array($languageItem));
 		
 		$values = array();
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			$values[$row['languageCode']] = ($row['languageUseCustomValue'] ? $row['languageCustomItemValue'] : $row['languageItemValue']);
 		}
 		
@@ -648,7 +648,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$importableValues = array();
 		foreach($languageItemValues as $languageCode => $value) {
 			$language = LanguageFactory::getInstance()->getLanguageByCode($languageCode);
-			if($language === null)
+			if ($language === null)
 				continue;
 			
 			$importableValues[$language->languageID] = $value;
@@ -708,12 +708,12 @@ class Fireball1NewsExporter extends AbstractExporter {
 		
 		// update category
 		$updateData = array();
-		if(!empty($title))
+		if (!empty($title))
 			$updateData['title'] = $title;
-		if(!empty($description))
+		if (!empty($description))
 			$updateData['description'] = $description;
 		
-		if(count($updateData)) {
+		if (count($updateData)) {
 			$importedCategory = new Category(null, array('categoryID' => $categoryID));
 			$editor = new CategoryEditor($importedCategory);
 			$editor->update($updateData);
@@ -744,7 +744,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$statement = $this->database->prepareStatement($sql);
 		$statement->execute($conditionBuilder->getParameters());
 		
-		while($row = $statement->fetchArray()) {
+		while ($row = $statement->fetchArray()) {
 			if (!isset($tags[$row['objectID']]))
 				$tags[$row['objectID']] = array();
 			
