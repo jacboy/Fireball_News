@@ -33,7 +33,7 @@ CREATE TABLE cms1_news (
 DROP TABLE IF EXISTS cms1_news_update;
 CREATE TABLE cms1_news_update (
 	updateID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	newsID INT(10) NOT NULL,
+	newsID INT(10),
 	title VARCHAR(255) NOT NULL,
 	message VARCHAR(255) NOT NULL,
 	userID INT(10),
