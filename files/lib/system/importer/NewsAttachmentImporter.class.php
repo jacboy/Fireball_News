@@ -1,5 +1,6 @@
 <?php
 namespace cms\system\importer;
+
 use cms\data\news\News;
 use cms\data\news\NewsEditor;
 use wcf\data\object\type\ObjectTypeCache;
