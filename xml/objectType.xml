@@ -193,6 +193,11 @@
 			<classname><![CDATA[cms\system\importer\NewsImporter]]></classname>
 		</type>
 		<type>
+			<name>de.codequake.cms.news.attachment</name>
+			<definitionname>com.woltlab.wcf.importer</definitionname>
+			<classname><![CDATA[cms\system\importer\NewsAttachmentImporter]]></classname>
+		</type>
+		<type>
 			<name>de.codequake.cms.news.comment</name>
 			<definitionname>com.woltlab.wcf.importer</definitionname>
 			<classname><![CDATA[cms\system\importer\NewsCommentImporter]]></classname>

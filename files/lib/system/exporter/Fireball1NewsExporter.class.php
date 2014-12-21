@@ -37,6 +37,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		'de.codequake.cms.news.comment' => 'NewsComments',
 		'de.codequake.cms.news.comment.response' => 'NewsCommentResponses',
 		'de.codequake.cms.news.like' => 'NewsLikes',
+		'de.codequake.cms.news.attachment' => 'NewsAttachments'
 	);
 	
 	/**
@@ -45,7 +46,8 @@ class Fireball1NewsExporter extends AbstractExporter {
 	protected $limits = array(
 		'de.codequake.cms.category.news' => 300,
 		'de.codequake.cms.category.news.acl' => 50,
-		'de.codequake.cms.news' => 200
+		'de.codequake.cms.news' => 200,
+		'de.codequake.cms.attachment' => 100
 	);
 	
 	/**
@@ -90,6 +92,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 			'de.codequake.cms.news' => array(
 				'de.codequake.cms.news.comment',
 				'de.codequake.cms.news.like',
+				'de.codequake.cms.news.attachment'
 			)
 		);
 	}
@@ -144,6 +147,10 @@ class Fireball1NewsExporter extends AbstractExporter {
 			
 			if(in_array('de.codequake.cms.news.like', $this->selectedData)) {
 				$queue[] = 'de.codequake.cms.news.like';
+			}
+			
+			if(in_array('de.codequake.cms.news.attachment', $this->selectedData)) {
+				$queue[] = 'de.codequake.cms.news.attachment';
 			}
 		}
 		
@@ -480,10 +487,55 @@ class Fireball1NewsExporter extends AbstractExporter {
 		}
 	}
 	
+	public function countAttachments() {
+		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.attachment.objectType', 'de.codequake.cms.news');
+		
+		$sql = "SELECT	COUNT(*) AS count
+			FROM	wcf".$this->dbNo."_attachment
+			WHERE	objectTypeID = ?
+				AND objectID IS NOT NULL";
+		$statement = $this->database->prepareStatement($sql);
+		$statement->execute(array($objectTypeID));
+		$row = $statement->fetchArray();
+		
+		return $row['count'];
+	}
+	
+	public function exportAttachments($offset, $limit) {
+		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.attachment.objectType', 'de.codequake.cms.news');
+		
+		$sql = "SELECT	*
+			FROM	wcf".$this->dbNo."_attachment
+			WHERE	objectTypeID = ?
+				AND objectID IS NOT NULL
+			ORDER BY	attachmentID";
+		$statement = $this->database->prepareStatement($sql, $limit, $offset);
+		$statement->execute(array($objectTypeID));
+		while ($row = $statement->fetchArray()) {
+			$fileLocation = $this->fileSystemPath . 'attachments/' . substr($row['fileHash'], 0, 2) . '/' . $row['attachmentID'] . '-' . $row['fileHash'];
+			
+			ImportHandler::getInstance()->getImporter('de.codequake.cms.news.comment.attachment')->import($row['attachmentID'], array(
+				'objectID' => $row['objectID'],
+				'userID' => ($row['userID'] ?: null),
+				'filename' => $row['filename'],
+				'filesize' => $row['filesize'],
+				'fileType' => $row['fileType'],
+				'fileHash' => $row['fileHash'],
+				'isImage' => $row['isImage'],
+				'width' => $row['width'],
+				'height' => $row['height'],
+				'downloads' => $row['downloads'],
+				'lastDownloadTime' => $row['lastDownloadTime'],
+				'uploadTime' => $row['uploadTime'],
+				'showOrder' => $row['showOrder']
+			), array('fileLocation' => $fileLocation));
+		}
+	}
+	
 	/**
 	 * Counts likes.
 	 */
-	protected function countNewsLikes() {
+	public function countNewsLikes() {
 		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.like.likeableObject', 'de.codequake.cms.likeableNews');
 		
 		$sql = "SELECT	COUNT(*) AS count
@@ -499,7 +551,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	/**
 	 * Exports likes.
 	 */
-	protected function exportNewsLikes($offset, $limit) {
+	public function exportNewsLikes($offset, $limit) {
 		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.like.likeableObject', 'de.codequake.cms.likeableNews');
 		
 		$sql = "SELECT	*
@@ -552,7 +604,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	 * @param	integer		$packageID
 	 * @return	array
 	 */
-	protected function getLanguageItemValues($languageItem) {
+	private function getLanguageItemValues($languageItem) {
 		$sql = "SELECT		language_item.languageItemValue, language_item.languageCustomItemValue,
 					language_item.languageUseCustomValue, language.languageCode
 			FROM		wcf".$this->dbNo."_language_item language_item
@@ -579,7 +631,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	 * @param	integer		$packageID
 	 * @return	array
 	 */
-	protected function importLanguageVariable($languageCategory, $languageItem, array $languageItemValues) {
+	private function importLanguageVariable($languageCategory, $languageItem, array $languageItemValues) {
 		$packageID = PackageCache::getInstance()->getPackageID('de.codequake.cms');
 		
 		// get language category id
@@ -636,7 +688,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	 * @param	integer		$categoryID
 	 * @param	array		$category
 	 */
-	protected function updateCategoryI18nData($categoryID, array $category) {
+	private function updateCategoryI18nData($categoryID, array $category) {
 		// get title
 		if (preg_match('~wcf.category.category.title.category\d+~', $category['title'])) {
 			$titleValues = $this->getLanguageItemValues($category['title']);
@@ -673,7 +725,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	 * @param	array		$newsIDs
 	 * @return	array
 	 */
-	protected function getTags(array $newsIDs) {
+	private function getTags(array $newsIDs) {
 		$tags = array();
 		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.tagging.taggableObject', 'de.codequake.cms.news');
 		
