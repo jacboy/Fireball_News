@@ -511,6 +511,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 			ORDER BY	attachmentID";
 		$statement = $this->database->prepareStatement($sql, $limit, $offset);
 		$statement->execute(array($objectTypeID));
+		
 		while ($row = $statement->fetchArray()) {
 			$fileLocation = $this->fileSystemPath . 'attachments/' . substr($row['fileHash'], 0, 2) . '/' . $row['attachmentID'] . '-' . $row['fileHash'];
 			
