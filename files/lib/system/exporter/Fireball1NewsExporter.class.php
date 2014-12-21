@@ -1,5 +1,5 @@
 <?php
-namespace cms\system\exporter;
+namespace cms\system\importer;
 
 use wcf\data\category\Category;
 use wcf\data\category\CategoryEditor;
@@ -309,7 +309,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 	public function exportNewsCategoryACLs($offset, $limit) {
 		$acls = $this->getCategoryACLs($offset, $limit);
 		
-		foreach($acls as $data) {
+		foreach ($acls as $data) {
 			$optionName = $data['optionName'];
 			unset($data['optionName']);
 			
@@ -646,7 +646,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		$languageCategoryID = $row['languageCategoryID'];
 		
 		$importableValues = array();
-		foreach($languageItemValues as $languageCode => $value) {
+		foreach ($languageItemValues as $languageCode => $value) {
 			$language = LanguageFactory::getInstance()->getLanguageByCode($languageCode);
 			if ($language === null)
 				continue;
@@ -664,7 +664,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 				VALUES		(?, ?, ?, ?, ?, ?)";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			
-			foreach($importableValues as $languageID => $value) {
+			foreach ($importableValues as $languageID => $value) {
 				$statement->execute(array(
 					$languageID,
 					$languageItem,

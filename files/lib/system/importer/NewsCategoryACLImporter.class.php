@@ -1,5 +1,6 @@
 <?php
 namespace cms\system\importer;
+
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\system\importer\AbstractACLImporter;
 
