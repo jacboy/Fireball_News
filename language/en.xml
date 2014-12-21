@@ -203,6 +203,7 @@
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.category.news.acl"><![CDATA[Category rights]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.comment"><![CDATA[News comments]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.like"><![CDATA[Likes]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.attachment"><![CDATA[Attachments]]></item>
 	</category>
 
 	<category name="wcf.clipboard">

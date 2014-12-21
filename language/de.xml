@@ -206,6 +206,7 @@
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.category.news.acl"><![CDATA[Kategorie-Zugriffsrechte]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.comment"><![CDATA[Nachrichtenkommentare]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.like"><![CDATA[Likes]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.attachment"><![CDATA[Dateianhänge]]></item>
 	</category>
 	<category name="wcf.clipboard">
 		<item name="wcf.clipboard.item.de.codequake.cms.news.delete"><![CDATA[Nachrichten löschen ({#$count})]]></item>
