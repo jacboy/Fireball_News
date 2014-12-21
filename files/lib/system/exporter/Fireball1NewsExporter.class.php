@@ -487,7 +487,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		}
 	}
 	
-	public function countAttachments() {
+	public function countNewsAttachments() {
 		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.attachment.objectType', 'de.codequake.cms.news');
 		
 		$sql = "SELECT	COUNT(*) AS count
@@ -501,7 +501,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		return $row['count'];
 	}
 	
-	public function exportAttachments($offset, $limit) {
+	public function exportNewsAttachments($offset, $limit) {
 		$objectTypeID = $this->getObjectTypeID('com.woltlab.wcf.attachment.objectType', 'de.codequake.cms.news');
 		
 		$sql = "SELECT	*
