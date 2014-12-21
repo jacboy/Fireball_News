@@ -514,7 +514,7 @@ class Fireball1NewsExporter extends AbstractExporter {
 		while ($row = $statement->fetchArray()) {
 			$fileLocation = $this->fileSystemPath . 'attachments/' . substr($row['fileHash'], 0, 2) . '/' . $row['attachmentID'] . '-' . $row['fileHash'];
 			
-			ImportHandler::getInstance()->getImporter('de.codequake.cms.news.comment.attachment')->import($row['attachmentID'], array(
+			ImportHandler::getInstance()->getImporter('de.codequake.cms.news.attachment')->import($row['attachmentID'], array(
 				'objectID' => $row['objectID'],
 				'userID' => ($row['userID'] ?: null),
 				'filename' => $row['filename'],
