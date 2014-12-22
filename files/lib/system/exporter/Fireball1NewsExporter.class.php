@@ -1,5 +1,5 @@
 <?php
-namespace cms\system\importer;
+namespace cms\system\exporter;
 
 use wcf\data\category\Category;
 use wcf\data\category\CategoryEditor;
