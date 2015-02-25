@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="de.codequake.cms.news" xmlns="http://www.woltlab.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
-	<packageinformation>
-		<packagename>Fireball CMS - Nachrichtensystem</packagename>
+<package name="de.codequake.cms.news" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
+ 	<packageinformation>
+		<packagename><![CDATA[Fireball CMS - Nachrichtensystem]]></packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
-		<plugin>de.codequake.cms</plugin>
-		<version>1.0.0 Beta 8</version>
-		<date>2014-09-05</date>
+		<version><![CDATA[1.0.0 Beta 8]]></version>
+		<date><![CDATA[2014-09-05]]></date>
 	</packageinformation>
 
 	<authorinformation>
@@ -78,7 +75,7 @@
 		<instruction type="template" application="cms">templates.tar</instruction>
 
 		<!-- xml -->
-		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction><
+		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 
 		<!--others -->
 		<instruction type="sql">update_beta8.sql</instruction>

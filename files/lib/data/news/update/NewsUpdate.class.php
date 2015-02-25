@@ -5,6 +5,7 @@ use cms\data\CMSDatabaseObject;
 use wcf\system\bbcode\MessageParser;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
+
 /**
  * Represents a news update
  *
