@@ -55,7 +55,7 @@ class NewsImporter extends AbstractImporter {
 			'categoryIDs' => $categoryIDs
 		));
 		$returnValues = $action->executeAction();
-		$newID = $returnValues['returnValues']->entryID;
+		$newID = $returnValues['returnValues']->newsID;
 		
 		$news = new News($newID);
 		

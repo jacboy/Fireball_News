@@ -200,7 +200,10 @@
 	<category name="wcf.acp.dataImport">
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news"><![CDATA[News]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.category.news"><![CDATA[News categories]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.category.news.acl"><![CDATA[Category rights]]></item>
 		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.comment"><![CDATA[News comments]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.like"><![CDATA[Likes]]></item>
+		<item name="wcf.acp.dataImport.data.de.codequake.cms.news.attachment"><![CDATA[Attachments]]></item>
 	</category>
 
 	<category name="wcf.clipboard">
@@ -209,9 +212,8 @@
 		<item name="wcf.clipboard.label.de.codequake.cms.news.marked"><![CDATA[{if $count == 1}1 News{else}{#$count} News{/if} marked]]></item>
 	</category>
 	<category name="wcf.acp.dataImport">
-		<item
-			name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
-		<item
-			name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
+		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
+		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
+		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.fireball1toNews"><![CDATA[Fireball CMS 1.x]]></item>
 	</category>
 </language>
