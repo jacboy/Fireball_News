@@ -53,8 +53,7 @@
 		<!--others -->
 		<instruction type="sql">install.sql</instruction>
 	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 6">
+	<instructions type="update" fromversion="1.0.0 Beta 7">
 		<!--lang -->
 		<instruction type="language">language/*.xml</instruction>
 
@@ -66,21 +65,5 @@
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 
 		<!--others -->
-		<instruction type="sql">update_beta8.sql</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 Beta 7">
-		<!--lang -->
-		<instruction type="language">language/*.xml</instruction>
-
-		<!-- tar -->
-		<instruction type="file" application="cms">files.tar</instruction>
-		<instruction type="template" application="cms">templates.tar</instruction>
-
-		<!-- xml -->
-		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction><
-
-		<!--others -->
-		<instruction type="sql">update_beta8.sql</instruction>
 	</instructions>
 </package>

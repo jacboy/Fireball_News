@@ -29,18 +29,6 @@ CREATE TABLE cms1_news (
 	cumulativeLikes INT(10) NOT NULL DEFAULT 0
 );
 
---news updates
-DROP TABLE IF EXISTS cms1_news_update;
-CREATE TABLE cms1_news_update (
-	updateID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	newsID INT(10) NOT NULL,
-	title VARCHAR(255) NOT NULL,
-	message VARCHAR(255) NOT NULL,
-	userID INT(10),
-	username VARCHAR(255),
-	time INT(20) NOT NULL DEFAULT 0
-);
-
 --news images
 DROP TABLE IF EXISTS cms1_news_image;
 CREATE TABLE cms1_news_image (
@@ -62,9 +50,6 @@ CREATE TABLE cms1_news_to_category (
 ALTER TABLE cms1_news ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
 ALTER TABLE cms1_news ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE cms1_news ADD FOREIGN KEY (pollID) REFERENCES wcf1_poll (pollID) ON DELETE SET NULL;
-
-ALTER TABLE cms1_news_update ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
-ALTER TABLE cms1_news_update ADD FOREIGN KEY (newsID) REFERENCES cms1_news (newsID) ON DELETE SET NULL;
 
 ALTER TABLE cms1_news_to_category ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE CASCADE;
 ALTER TABLE cms1_news_to_category ADD FOREIGN KEY (newsID) REFERENCES cms1_news (newsID) ON DELETE CASCADE;
