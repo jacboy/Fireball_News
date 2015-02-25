@@ -37,10 +37,9 @@ class NewsContentType extends AbstractContentType {
 	}
 
 	public function getOutput(Content $content) {
-		$data = $content->handleContentData();
-		$type = isset($data['type']) ? $data['type'] : 'standard';
-		$list = new CategoryNewsList($data['categoryIDs']);
-		$list->sqlLimit = $data['limit'];
+		$type = ($content->type != '') ? $content->type : 'standard';
+		$list = new CategoryNewsList($content->categoryIDs);
+		$list->sqlLimit = $content->limit;
 		$list->readObjects();
 		$list = $list->getObjects();
 		WCF::getTPL()->assign(array(
