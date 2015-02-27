@@ -44,7 +44,7 @@
 			<div class="userDetails">
 				<div class="containerHeadline">
 					{if $news->userID != 0}
-						<h3><a class="userLink" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{$news->getUserProfile()->username}</a></h3>
+						<h3><a class="userLink" rel="author" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{$news->getUserProfile()->username}</a></h3>
 					{else}
 						{$news->username}
 					{/if}

@@ -97,12 +97,6 @@
 		<item name="wcf.acp.group.option.category.admin.cms.news"><![CDATA[Nachrichten]]></item>
 		<item name="wcf.acp.group.option.admin.cms.news.canManageCategory"><![CDATA[Kann Kategorien verwalten]]></item>
 		<item name="wcf.acp.group.option.mod.cms.news.canModerateComment"><![CDATA[Moderationsrecht für Kommentare]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canEnterPage"><![CDATA[Kann Seiten betreten]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canViewPage"><![CDATA[Kann Seiten sehen]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canViewInvisiblePage"><![CDATA[Kann unsichtbare Seiten sehen]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canAddComment"><![CDATA[Kann Kommentare hinzufügen]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canDeleteComment"><![CDATA[Kann eigene Kommentare löschen]]></item>
-		<item name="wcf.acp.group.option.user.cms.page.canEditComment"><![CDATA[Kann eigene Kommentare bearbeiten]]></item>
 		<item name="wcf.acp.group.option.category.user.cms.news"><![CDATA[Nachrichten]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewNews"><![CDATA[Kann Nachrichten sehen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canAddNews"><![CDATA[Kann Nachrichten hinzufügen]]></item>
@@ -164,17 +158,13 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Kommentar (Nachricht)]]></item>
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Antwort (Nachricht)]]></item>
+		<item	name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Kommentar (Nachricht)]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Antwort (Nachricht)]]></item>
 	</category>
 
 	<category name="wcf.user.activityPoint">
-		<item
-			name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[Nachrichten]]></item>
+		<item name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[Nachrichten]]></item>
 	</category>
 
 	<category name="wcf.tagging">
@@ -192,12 +182,9 @@
 	</category>
 
 	<category name="wcf.user.notification">
-		<item
-			name="wcf.user.notification.de.codequake.cms.news.comment.notification.comment"><![CDATA[Neuer Kommentar zu einer Ihrer Nachrichten]]></item>
-		<item
-			name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Kommentar von Ihnen zu einer Nachricht]]></item>
-		<item
-			name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort auf einen Kommentar zu einer Ihrer Nachrichten]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.notification.comment"><![CDATA[Neuer Kommentar zu einer Ihrer Nachrichten]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Kommentar von Ihnen zu einer Nachricht]]></item>
+		<item name="wcf.user.notification.de.codequake.cms.news.comment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort auf einen Kommentar zu einer Ihrer Nachrichten]]></item>
 	</category>
 
 	<category name="wcf.acp.dataImport">
