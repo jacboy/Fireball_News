@@ -141,8 +141,10 @@
 		<item name="wcf.acp.option.cms_news_signatures"><![CDATA[Signaturen anzeigen]]></item>
 		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Autoren können ihre Signaturen in Nachrichten anzeigen lassen.]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Nachrichtenbilder in Nachricht anzeigen]]></item>
-		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Sollen die Nachrichtenbilder sofern vorhanden in voller Größe über der eigentlichen Nachricht angezeigt werden?]]></item>
-	</category>
+		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Sollen die Nachrichtenbilder sofern vorhanden über der eigentlichen Nachricht angezeigt werden?]]></item>
+    <item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Große Nachrichtenbilder]]></item>
+    <item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Zeigt Nachrichtenbilder über die volle Breite der Nachricht an. <strong>Achtung: </strong><em>Achten Sie darauf, dass Ihre Bilder eine ausreichende Größe aufweisen, bevor Sie diese Option aktivieren!</em>]]></item>
+  </category>
 
 	<category name="wcf.dashboard">
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Nachrichtenauflistung]]></item>

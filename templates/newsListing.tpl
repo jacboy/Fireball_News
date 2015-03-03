@@ -7,6 +7,44 @@
 				<div>
 					<section class="messageContent">
 						<div>
+							{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+							<div class="fullScreenPicture" style="background-image: url({$news->getImage()->getURL()});">
+								<header class="messageHeader">
+									<div class="messageHeadline">
+										<h1>
+											<a href="{link controller='News' object=$news application='cms'}{/link}">{$news->getTitle()}</a>
+										</h1>
+										{if $news->languageID != 0 && CMS_NEWS_LANGUAGEICON}
+										<p class="newMessageBadge" style="margin-top: 30px">
+											{@$news->getLanguageIcon()}
+										</p>
+										{/if}
+										{if $news->isNew()}
+										<p class="newMessageBadge">{lang}wcf.message.new{/lang}</p>
+										{/if}
+										<p>
+											<span class="username">
+												{if $news->userID != 0}
+												<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
+													{$news->username}
+												</a>
+												{else}
+													{$news->username}
+												{/if}
+											</span>
+											<a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
+												{@$news->time|time}
+											</a>
+											-
+											<span>
+												{implode from=$news->getCategories() item=category}<a href="{link controller='NewsList' application='cms' object=$category}{/link}">{$category->getTitle()|language}</a>{/implode}
+											</span>
+											{if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $news->likes || $news->dislikes}<span class="likesBadge badge jsTooltip {if $news->cumulativeLikes > 0}green{elseif $news->cumulativeLikes < 0}red{/if}" title="{lang likes=$news->likes dislikes=$news->dislikes}wcf.like.tooltip{/lang}">{if $news->cumulativeLikes > 0}+{elseif $news->cumulativeLikes == 0}&plusmn;{/if}{#$news->cumulativeLikes}</span>{/if}
+										</p>
+									</div>
+							</header>
+							</div>
+							{else}
 							<header class="messageHeader">
 								<div class="messageHeadline">
 										<h1>
@@ -41,8 +79,9 @@
 										</p>
 									</div>
 							</header>
+							{/if}
 							<div class="messageBody">
-								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0}
+								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
 								<div class="newsBox128">
 									<div class="framed">
 										<img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->title}" style="width: 128px;" />

@@ -24,14 +24,21 @@
 				<optiontype>boolean</optiontype>
 				<categoryname>cms.news</categoryname>
 				<defaultvalue>1</defaultvalue>
-
 			</option>
+      
 			<option name="cms_news_news_images_attached">
 				<optiontype>boolean</optiontype>
 				<categoryname>cms.news.images</categoryname>
-				<defaultvalue>1</defaultvalue>
-
+				<defaultvalue>1</defaultvalue>      
+        <enableoptions>cms_news_news_images_fullscreen</enableoptions>
 			</option>
+      
+      <option name="cms_news_news_images_fullscreen">
+        <optiontype>boolean</optiontype>
+        <categoryname>cms.news.images</categoryname>
+        <defaultvalue>0</defaultvalue>
+      </option>
+      
 			<option name="cms_news_sidebar_categories">
 				<optiontype>boolean</optiontype>
 				<categoryname>cms.news.categories</categoryname>

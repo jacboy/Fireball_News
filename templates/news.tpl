@@ -101,6 +101,10 @@
 					{assign var='objectID' value=$news->newsID}
 					<section class="messageContent">
 						<div>
+							{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+							<div class="fullScreenPicture" style="background-image: url({@$news->getImage()->getURL()});">
+							</div>
+							{/if}
 							<header class="messageHeader">
 								<div class="messageHeadline">
 										<h1>
@@ -123,10 +127,10 @@
 								</div>
 							</header>
 							<div class="messageBody">
-								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0}
-								<div class="newsBox256">
+								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+								<div class="newsBox128">
 									<div class="framed">
-										<img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->title}" style="width: 250px;" />
+										<img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->title}" style="width: 128px;" />
 									</div>
 									<div class="newsText">
 										{@$news->getFormattedMessage()}

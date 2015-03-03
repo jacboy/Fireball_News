@@ -8,8 +8,41 @@
 	color: @wcfContainerBackgroundColor;
 }
 
-.newsBox256, .newsBox128{
+.newsBox128{
 	> :first-child { float: left; margin-right: @wcfGapLarge; margin-bottom: @wcfGapLarge;}
 	> .newsText {text-align: justify;}
 	> .newsTeaser {text-align: justify;}
+}
+
+article.message > div > section.messageContent > div > div.fullScreenPicture {
+     background-size: cover; 
+     background-position: center center;
+     height: 300px;
+     text-align: center;
+     position: relative;
+     > header.messageHeader{
+         position: absolute;
+         bottom: 0;
+         right:0;
+         left: 0;
+         padding-bottom: 20px;
+         background: rgba(0,0,0,0.3);
+         border-top: 1px solid rgba(255,255,255,0.1);
+          > div.messageHeadline{
+              > p {
+                  color: #fff;
+                  font-size: 1rem;
+                  > a , > span > a{
+                      color: #fff;
+                  }
+              }
+              > h1 { 
+                  font-size: 2rem;
+                  font-weight: 400;
+                  > a{
+                      color: #fff;
+                  }
+              }
+          }
+    }
 }

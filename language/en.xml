@@ -144,7 +144,9 @@
 		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Authors are able to show they're signatures]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Show news images above message]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Shows news images if available above the text message]]></item>
-	</category>
+    <item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Huge news images]]></item>
+    <item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Shows news image in full width. <strong>Be Careful: </strong><em>Please check if your picture's widths are high enough before enabling this option!</em>]]></item>
+  </category>
 
 	<category name="wcf.dashboard">
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Newslist]]></item>
