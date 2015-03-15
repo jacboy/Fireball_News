@@ -81,6 +81,10 @@
 		<item name="cms.news.image.select"><![CDATA[Select an image]]></item>
 	</category>
 
+	<category name="cms.page">
+		<item name="cms.page.news"><![CDATA[News]]></item>
+		<item name="cms.page.news.archive"><![CDATA[Archive]]></item>
+	</category>
 
 	<category name="cms.user">
 		<item name="cms.user.usersOnline.location.newsPage"><![CDATA[<a href="{link controller='News' application='cms' object=$news}{/link}">News: {$news->getTitle()|language}</a>]]></item>
@@ -144,8 +148,8 @@
 		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Authors are able to show they're signatures]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Show news images above message]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Shows news images if available above the text message]]></item>
-    <item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Huge news images]]></item>
-    <item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Shows news image in full width. <strong>Be Careful: </strong><em>Please check if your picture's widths are high enough before enabling this option!</em>]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Huge news images]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Shows news image in full width. <strong>Be Careful: </strong><em>Please check if your picture's widths are high enough before enabling this option!</em>]]></item>
   </category>
 
 	<category name="wcf.dashboard">
@@ -162,17 +166,13 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[News]]></item>
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Comment (News)]]></item>
-		<item
-			name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Response (News)]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[News]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Comment (News)]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Response (News)]]></item>
 	</category>
 
 	<category name="wcf.user.activityPoint">
-		<item
-			name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[News]]></item>
+		<item name="wcf.user.activityPoint.objectType.de.codequake.cms.activityPointEvent.news"><![CDATA[News]]></item>
 	</category>
 
 	<category name="wcf.tagging">

@@ -82,6 +82,11 @@
 		<item name="cms.news.image.select"><![CDATA[Nachrichtenbild auswählen]]></item>
 	</category>
 
+	<category name="cms.page">
+		<item name="cms.page.news"><![CDATA[Nachrichten]]></item>
+		<item name="cms.page.news.archive"><![CDATA[Archiv]]></item>
+	</category>
+		
 	<category name="cms.user">
 		<item name="cms.user.usersOnline.location.newsPage"><![CDATA[<a href="{link controller='News' application='cms' object=$news}{/link}">Nachricht: {$news->getTitle()|language}</a>]]></item>
 		<item name="cms.user.usersOnline.location.newsAddForm"><![CDATA[Neue Nachricht verfassen]]></item>
@@ -121,8 +126,7 @@
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewNews"><![CDATA[Kann Nachrichten sehen]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canAddNews"><![CDATA[Kann Nachrichten hinzufügen]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Nachrichten Moderationsrecht]]></item>
-		<item
-			name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Kann Nachrichten sehen, die noch nicht veröffentlicht wurden]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Kann Nachrichten sehen, die noch nicht veröffentlicht wurden]]></item>
 	</category>
 
 	<category name="wcf.acp.option">
@@ -142,8 +146,8 @@
 		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Autoren können ihre Signaturen in Nachrichten anzeigen lassen.]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Nachrichtenbilder in Nachricht anzeigen]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Sollen die Nachrichtenbilder sofern vorhanden über der eigentlichen Nachricht angezeigt werden?]]></item>
-    <item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Große Nachrichtenbilder]]></item>
-    <item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Zeigt Nachrichtenbilder über die volle Breite der Nachricht an. <strong>Achtung: </strong><em>Achten Sie darauf, dass Ihre Bilder eine ausreichende Größe aufweisen, bevor Sie diese Option aktivieren!</em>]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Große Nachrichtenbilder]]></item>
+		<item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Zeigt Nachrichtenbilder über die volle Breite der Nachricht an. <strong>Achtung: </strong><em>Achten Sie darauf, dass Ihre Bilder eine ausreichende Größe aufweisen, bevor Sie diese Option aktivieren!</em>]]></item>
   </category>
 
 	<category name="wcf.dashboard">
