@@ -62,19 +62,42 @@
 		<item name="cms.news.ipAddress.otherUsers"><![CDATA[Other users with this ip-address]]></item>
 		<item name="cms.news.delete.sure"><![CDATA[Are you sure you want to delete this news?]]></item>
 		<item name="cms.news.comment.notification.title"><![CDATA[New comment (news)]]></item>
+		<item name="cms.news.comment.notification.title.stacked">
+			<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} commented on „{$news->getTitle()}“.]]>
+		</item>
 		<item name="cms.news.comment.notification.message"><![CDATA[Commented on your news “{$news->subject}”.]]></item>
+		<item name="cms.news.comment.notification.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a Gast{else}Gäste{/if}{/if}{/if} commented on „{$news->getTitle()}“.]]></item>
 		<item name="cms.news.comment.notification.mail"><![CDATA[{@$author->username} commented on your news "{@$news->subject}":
 {link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
+		<item name="cms.news.comment.notification.mail.stacked">
+		<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}Gäste{/if}{/if}{/if} commented on „{$news->getTitle()}“:
+{link application='cms' controller='News' id=$news->newsID isEmail=true}{/link}#comments]]></item>
 		<item name="cms.news.commentResponse.notification.title"><![CDATA[New reply (news)]]></item>
+		<item name="cms.news.commentResponse.notification.title.stacked">
+			<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} responded to your comment on „{$news->getTitle()}“.]]>
+		</item>
 		<item name="cms.news.commentResponse.notification.message"><![CDATA[Replied to your comment on the news “{$news->subject}”.]]></item>
+		<item name="cms.news.commentResponse.notification.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} responded to your comment on „{$news->getTitle()}“.]]></item>
 		<item name="cms.news.commentResponse.notification.mail"><![CDATA[{@$author->username} replied to your comment on the news "{@$news->subject}":
 {link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
+		<item name="cms.news.commentResponse.notification.mail.stacked">
+			<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} responded to your comment on „{$news->getTitle()}“:
+{link application='cms' controller='News' id=$news->newsID isEmail=true}{/link}#comments]]>
+		</item>
 		<item name="cms.news.commentResponseOwner.notification.title"><![CDATA[New reply (news)]]></item>
+		<item name="cms.news.commentResponseOwner.notification.title.stacked">
+			<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} responded to „{$commentAuthor->username}s“ comment on „{$news->getTitle()}“.]]>
+		</item>
 		<item name="cms.news.commentResponseOwner.notification.message"><![CDATA[Replied to a comment by “{$commentAuthor->username}” on the news “{$news->subject}”.]]></item>
+		<item name="cms.news.commentResponse.notification.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} commented on „{$commentAuthor->username}s“ comment „{$news->getTitle()}“.]]></item>
 		<item name="cms.news.commentResponseOwner.notification.mail"><![CDATA[{@$author->username} replied to a comment by "{@$commentAuthor->username}" on the news "{@$news->subject}":
 {link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
+		</item>
+		<item name="cms.news.commentResponseOwner.notification.mail.stacked">
+			<![CDATA[{if $count < 4}{@$authors[0]->username}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->username}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->username}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->username}{if $guestTimesTriggered},{else} and{/if} {#$others} others {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} responded to „{$commentAuthor->username}s“ comment on „{$news->getTitle()}“:
+{link application='cms' controller='News' id=$news->newsID isEmail=true}{/link}#comments]]>
 		</item>
 		<item name="cms.news.comments.noEntries"><![CDATA[No Comments available]]></item>
 		<item name="cms.news.image"><![CDATA[News image]]></item>
