@@ -75,7 +75,7 @@ class NewsAddForm extends MessageForm {
 	public function readData() {
 		parent::readData();
 
-		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsCategoryList', array(
+		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsOverview', array(
 			'application' => 'cms'
 		))));
 

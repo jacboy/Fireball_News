@@ -90,7 +90,7 @@
 	<category name="cms.user">
 		<item name="cms.user.usersOnline.location.newsPage"><![CDATA[<a href="{link controller='News' application='cms' object=$news}{/link}">Nachricht: {$news->getTitle()|language}</a>]]></item>
 		<item name="cms.user.usersOnline.location.newsAddForm"><![CDATA[Neue Nachricht verfassen]]></item>
-		<item name="cms.user.usersOnline.location.newsCategoryListPage"><![CDATA[Nachrichten]]></item>
+		<item name="cms.user.usersOnline.location.newsOverviewPage"><![CDATA[Nachrichten]]></item>
 		<item name="cms.user.usersOnline.location.newsListPage"><![CDATA[Nachrichtenrubrik: <a href="{link controller='NewsList' application='cms' object=$category}{/link}">„{$category->title|language}“</a>]]></item>
 	</category>
 

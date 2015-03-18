@@ -44,10 +44,10 @@
 			<languagevariable>cms.user.usersOnline.location.newsAddForm</languagevariable>
 		</type>
 		<type>
-			<name>de.codequake.cms.newsCategoryList</name>
+			<name>de.codequake.cms.newsOverview</name>
 			<definitionname>com.woltlab.wcf.user.online.location</definitionname>
-			<controller>cms\page\NewsCategoryListPage</controller>
-			<languagevariable>cms.user.usersOnline.location.newsCategoryListPage</languagevariable>
+			<controller>cms\page\NewsOverviewPage</controller>
+			<languagevariable>cms.user.usersOnline.location.newsOverviewPage</languagevariable>
 		</type>
 		<type>
 			<name>de.codequake.cms.newsList</name>

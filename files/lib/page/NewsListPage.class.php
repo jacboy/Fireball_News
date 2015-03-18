@@ -73,7 +73,7 @@ class NewsListPage extends SortablePage {
 	public function readData() {
 		parent::readData();
 		VisitCountHandler::getInstance()->count();
-		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsCategoryList', array(
+		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('cms.page.news'), LinkHandler::getInstance()->getLink('NewsOverview', array(
 			'application' => 'cms'
 		))));
 		

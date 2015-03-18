@@ -57,7 +57,7 @@
 				{if $news->getCategories()|count}
 					<ul class="dataList">
 						{foreach from=$news->getCategories() item=category}
-							<li><a href="{link application='cms' controller='NewsCategoryList' object=$category}{/link}" class="jsTooltip" title="{lang}cms.news.categorizedNews{/lang}">{$category->getTitle()}</a></li>
+							<li><a href="{link application='cms' controller='NewsOverview' object=$category}{/link}" class="jsTooltip" title="{lang}cms.news.categorizedNews{/lang}">{$category->getTitle()}</a></li>
 						{/foreach}
 					</ul>
 				{/if}
