@@ -1,7 +1,7 @@
 <?php
 namespace cms\data\news\image;
 
-use cms\data\CMSDatabaseObject;
+use wcf\data\DatabaseObject;
 use wcf\system\request\IRouteController;
 use wcf\system\WCF;
 
@@ -13,7 +13,7 @@ use wcf\system\WCF;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
-class NewsImage extends CMSDatabaseObject implements IRouteController {
+class NewsImage extends DatabaseObject implements IRouteController {
 
 	protected static $databaseTableName = 'news_image';
 
