@@ -157,6 +157,12 @@
 		<item name="wcf.dashboard.box.de.codequake.cms.mostReadNews"><![CDATA[Meistgelesene Nachrichten]]></item>
 	</category>
 
+	<category name="wcf.page">
+		<item name="wcf.page.de.codequake.cms.news"><![CDATA[Nachricht]]></item>
+		<item name="wcf.page.de.codequake.cms.newsList"><![CDATA[Nachrichtenkategorie]]></item>
+		<item name="wcf.page.de.codequake.cms.newsOverview"><![CDATA[Nachrichtenübersicht]]></item>
+	</category>
+
 	<category name="wcf.user.profile">
 		<item name="wcf.user.profile.recentActivity.news"><![CDATA[hat die Nachricht &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>&laquo; verfasst.]]></item>
 		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[hat die Nachricht &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>&laquo; kommentiert.]]></item>

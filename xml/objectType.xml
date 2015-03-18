@@ -21,6 +21,27 @@
 		</type>
 		<!-- /attachments -->
 
+		<!-- page -->
+		<type>
+			<name>de.codequake.cms.newsOverview</name>
+			<definitionname>com.woltlab.wcf.page</definitionname>
+			<classname><![CDATA[cms\page\NewsOverviewPage]]></classname>
+			<categoryname>de.codequake.cms</categoryname>
+		</type>
+		<type>
+			<name>de.codequake.cms.newsList</name>
+			<definitionname>com.woltlab.wcf.page</definitionname>
+			<classname><![CDATA[cms\page\NewsListPage]]></classname>
+			<categoryname>de.codequake.cms</categoryname>
+		</type>
+		<type>
+			<name>de.codequake.cms.news</name>
+			<definitionname>com.woltlab.wcf.page</definitionname>
+			<classname><![CDATA[cms\page\NewsPage]]></classname>
+			<categoryname>de.codequake.cms</categoryname>
+		</type>
+		<!-- /page -->
+
 		<!-- Poll -->
 		<type>
 			<name>de.codequake.cms.news</name>
