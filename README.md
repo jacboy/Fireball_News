@@ -4,7 +4,7 @@ Fireball Newssystem
 This is the Fireball CMS Newssystem. A Newssystem-Plugin for Fireball CMS.
 It was a part of Fireball's Core, but now it's a separate Module.
 
-[![Build Status](https://travis-ci.org/codeQuake/Fireball_News.svg?branch=master)](https://travis-ci.org/codeQuake/Fireball_News)
+[![Build Status](https://travis-ci.org/codeQuake/Fireball_News.svg?branch=wcf2.1)](https://travis-ci.org/codeQuake/Fireball_News)
 
 Contributions
 ----------------
