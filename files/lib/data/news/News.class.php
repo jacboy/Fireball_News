@@ -3,9 +3,9 @@ namespace cms\data\news;
 
 use cms\data\category\NewsCategory;
 use cms\data\news\image\NewsImage;
-use cms\data\CMSDatabaseObject;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
+use wcf\data\DatabaseObject;
 use wcf\data\poll\Poll;
 use wcf\data\IMessage;
 use wcf\data\IPollObject;
@@ -24,14 +24,14 @@ use wcf\util\StringUtil;
 use wcf\util\UserUtil;
 
 /**
- * Represents a news.
+ * Represents a news entry.
  *
  * @author	Jens Krumsieck
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
-class News extends CMSDatabaseObject implements IMessage, IRouteController, IBreadcrumbProvider, IPollObject {
+class News extends DatabaseObject implements IMessage, IRouteController, IBreadcrumbProvider, IPollObject {
 
 	protected static $databaseTableName = 'news';
 
