@@ -19,7 +19,7 @@
 	</script>
 </head>
 
-<body id="tpl{$templateName|ucfirst}">
+<body id="tpl_{$templateNameApplication}_{$templateName}" data-template="{$templateName}" data-application="{$templateNameApplication}">
 {capture assign='headerNavigation'}
 	<li>
 		<a rel="alternate" href="{if $__wcf->getUser()->userID}{link application='cms' controller='NewsFeed' appendSession=false}at={@$__wcf->getUser()->userID}-{@$__wcf->getUser()->accessToken}{/link}{else}{link application='cms' controller='NewsFeed' appendSession=false}{/link}{/if}" title="{lang}wcf.global.button.rss{/lang}" class="jsTooltip">
