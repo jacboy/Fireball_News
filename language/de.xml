@@ -146,7 +146,7 @@
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Sollen die Nachrichtenbilder sofern vorhanden über der eigentlichen Nachricht angezeigt werden?]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Große Nachrichtenbilder]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Zeigt Nachrichtenbilder über die volle Breite der Nachricht an. <strong>Achtung: </strong><em>Achten Sie darauf, dass Ihre Bilder eine ausreichende Größe aufweisen, bevor Sie diese Option aktivieren!</em>]]></item>
-  </category>
+	</category>
 
 	<category name="wcf.dashboard">
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Nachrichtenauflistung]]></item>
@@ -162,7 +162,7 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item	name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Kommentar (Nachricht)]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Antwort (Nachricht)]]></item>
 	</category>
@@ -209,5 +209,9 @@
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x zu Nachrichten]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.fireball1toNews"><![CDATA[Fireball CMS 1.x]]></item>
+	</category>
+
+	<category name="wcf.like">
+		<item name="wcf.like.objectType.de.codequake.cms.likeableNews"><![CDATA[News]]></item>
 	</category>
 </language>

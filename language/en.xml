@@ -116,7 +116,6 @@
 		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Can download attachments]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximum number of attachments per news]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Can see unpublished news]]></item>
-
 	</category>
 
 	<category name="wcf.acl.option">
@@ -125,8 +124,7 @@
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canAddNews"><![CDATA[Can add news]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can moderate news]]></item>
 		<item name="wcf.acl.option.de.codequake.cms.category.news.canModerateNews"><![CDATA[Can see unpublished news]]></item>
-		<item
-			name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Can view delayed news]]></item>
+		<item name="wcf.acl.option.de.codequake.cms.category.news.canViewDelayedNews"><![CDATA[Can view delayed news]]></item>
 	</category>
 
 	<category name="wcf.acp.option">
@@ -148,7 +146,7 @@
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Shows news images if available above the text message]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Huge news images]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen.description"><![CDATA[Shows news image in full width. <strong>Be Careful: </strong><em>Please check if your picture's widths are high enough before enabling this option!</em>]]></item>
-  </category>
+	</category>
 
 	<category name="wcf.dashboard">
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Newslist]]></item>
@@ -207,9 +205,14 @@
 		<item name="wcf.clipboard.item.de.codequake.cms.news.delete.confirmMessage"><![CDATA[Are you sure you want to delete {if $count == 1}this news{else} this {#$count} news{/if}?]]></item>
 		<item name="wcf.clipboard.label.de.codequake.cms.news.marked"><![CDATA[{if $count == 1}1 News{else}{#$count} News{/if} marked]]></item>
 	</category>
+
 	<category name="wcf.acp.dataImport">
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x to News]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.fireball1toNews"><![CDATA[Fireball CMS 1.x]]></item>
+	</category>
+
+	<category name="wcf.like">
+		<item name="wcf.like.objectType.de.codequake.cms.likeableNews"><![CDATA[News]]></item>
 	</category>
 </language>
