@@ -16,18 +16,6 @@
 		<item name="cms.acp.menu.link.cms.news"><![CDATA[Nachrichtensystem]]></item>
 		<item name="cms.acp.menu.link.cms.news.category.add"><![CDATA[Kategorie hinzufügen]]></item>
 		<item name="cms.acp.menu.link.cms.news.category.list"><![CDATA[Kategorien auflisten]]></item>
-		<item name="cms.acp.menu.link.cms.news.image.list"><![CDATA[Nachrichtenbilder auflisten]]></item>
-		<item name="cms.acp.menu.link.cms.news.image.add"><![CDATA[Nachrichtenbilder hinzufügen]]></item>
-	</category>
-
-	<category name="cms.acp.news">
-		<item name="cms.acp.news.image.data"><![CDATA[Daten]]></item>
-		<item name="cms.acp.news.image.title"><![CDATA[Titel]]></item>
-		<item name="cms.acp.news.image"><![CDATA[Nachrichtenbild]]></item>
-		<item name="cms.acp.news.image.add"><![CDATA[Nachrichtenbild hinzufügen]]></item>
-		<item name="cms.acp.news.image.list"><![CDATA[Nachrichtenbilder]]></item>
-		<item name="cms.acp.news.image.title"><![CDATA[Titel]]></item>
-		<item name="cms.acp.news.image"><![CDATA[Vorschaubild]]></item>
 	</category>
 
 	<category name="cms.news">
@@ -79,7 +67,12 @@
 {link application='cms' controller='News' object=$news encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
 		<item name="cms.news.image"><![CDATA[Nachrichtenbild]]></item>
+		<item name="cms.news.image.categoryIDs"><![CDATA[Kategorien]]></item>
+		<item name="cms.news.image.upload"><![CDATA[Nachrichtenbild hochladen]]>
+		</item>
 		<item name="cms.news.image.select"><![CDATA[Nachrichtenbild auswählen]]></item>
+		<item name="cms.news.image.fileType"><![CDATA[Dateityp]]></item>
+		<item name="cms.news.image.downloads"><![CDATA[Downloads]]></item>
 	</category>
 
 	<category name="cms.page">
@@ -115,7 +108,8 @@
 		<item name="wcf.acp.group.option.user.cms.news.canUploadAttachment"><![CDATA[Kann Dateien anhängen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.attachmentMaxSize"><![CDATA[Maximale Dateianhangsgröße]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Erlaubte Dateiendungen (Dateianhänge)]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Erlaubte Dateiendungen (Nachrichtenbilder)]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.canUpload"><![CDATA[Kann Nachrichtenbilder hochladen]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.canUpload.description"><![CDATA[Nachrichtenbilder werden in die <em>globale Dateiverwaltung</em> des CMS hochgeladen.]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Kann Dateianhänge herunterladen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximale Anzahl an Dateianhängen pro Nachricht]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Kann Nachrichten sehen, die noch nicht veröffentlicht wurden]]></item>

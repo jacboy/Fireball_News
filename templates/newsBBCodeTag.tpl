@@ -2,7 +2,7 @@
 	{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $_news->imageID != 0}
 	<div class="box96">
 		<div class="framed">
-			<img src="{@$_news->getImage()->getURL()}" alt="{$_news->getImage()->title}" style="width: 96px;" />
+			<img src="{@$_news->getImage()->getLink()}" alt="{$_news->getImage()->getTitle()}" style="width: 96px;" />
 		</div>
 	{/if}
 		<div class="containerHeadline">

@@ -2,7 +2,7 @@
 namespace cms\data\news;
 
 use cms\data\category\NewsCategory;
-use cms\data\news\image\NewsImage;
+use cms\data\file\FileCache;
 use cms\data\CMSDatabaseObject;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
@@ -212,7 +212,7 @@ class News extends CMSDatabaseObject implements IMessage, IRouteController, IBre
 	}
 
 	public function getImage() {
-		if ($this->imageID != 0) return new NewsImage($this->imageID);
+		if ($this->imageID != 0) return FileCache::getInstance()->getFile($this->imageID);
 		return null;
 	}
 

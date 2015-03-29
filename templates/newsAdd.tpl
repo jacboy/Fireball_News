@@ -3,18 +3,24 @@
 	<title>{lang}cms.news.{$action}{/lang} - {lang}cms.page.news{/lang} - {PAGE_TITLE|language}</title>
 	{include file='headInclude' application='wcf'}
 	<script data-relocate="true" src="{@$__wcf->getPath('cms')}js/CMS.News.js?v={@$__wcfVersion}"></script>
+	<script data-relocate="true" src="{@$__wcf->getPath('cms')}acp/js/CMS.ACP.js?v={@$__wcfVersion}"></script>
 	<script data-relocate="true">
 		//<![CDATA[
 		$(function () {
 
 			WCF.Language.addObject({
-				'cms.news.image.select': '{lang}cms.news.image.select{/lang}',
+				//'cms.news.image.select': '{lang}cms.news.image.select{/lang}',
 				'wcf.global.button.upload': '{lang}wcf.global.button.upload{/lang}'
 			});
 
-			new CMS.News.Image.Form($('#imageSelect'), $('#imageID'));
+			//new CMS.News.Image.Form($('#imageSelect'), $('#imageID'));
 			new WCF.Category.NestedList();
 			new WCF.Message.FormGuard();
+
+			//use acp file picker
+			new CMS.ACP.File.Picker($('#filePicker'), 'imageID', [{if $imageID|isset}{@$imageID}{/if}], { fileType: 'image' });
+			new CMS.ACP.File.Preview();
+		
 			WCF.Message.Submit.registerButton('text', $('#messageContainer > .formSubmit > input[type=submit]'));
 		});
 		//]]>
@@ -23,7 +29,7 @@
 
 <body id="tpl{$templateName|ucfirst}">
 {include file='header'}
-	<header class="boxHeadline">
+<header class="boxHeadline">
 	<h1>{lang}cms.news.{@$action}{/lang}</h1>
 </header>
 
@@ -120,36 +126,9 @@
 				<dl class="newsImageSelect">
 					<dt><label for="image">{lang}cms.news.image{/lang}</label></dt>
 					<dd>
-						<ul>
-							{if $image}
-								<li class="box32">
-									<div class="framed">
-										<img src="{$image->getURL()}" alt="{$image->title}" class="newsImage" style="max-width: 32px; max-height: 32px;" />
-									</div>
-									<div>
-										<p>{$image->title}</p>
-									</div>
-								</li>
-							{else}
-								<li class="box32">
-									<div class="framed">
-										<img src="{@$__wcf->getPath()}images/avatars/avatar-default.svg" alt="" class="newsImage" style="width: 32px; height: 32px;" />
-									</div>
-								</li>
-							{/if}
-						</ul>
-
-						<div id="imageSelect" class="marginTop">
-							<span class="button small">{lang}cms.news.image.select{/lang}</span>
+						<div id="filePicker">
+							<span class="button small">{lang}cms.acp.file.picker{/lang}</span>
 						</div>
-
-						{if $errorField == 'imageID'}
-							<small class="innerError">
-								{if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}
-							</small>
-						{/if}
-
-						<input type="hidden" name="imageID" value="{$imageID}" id="imageID" />
 					</dd>
 				</dl>
 			{event name='informationFields'}

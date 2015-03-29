@@ -8,7 +8,7 @@
 					<section class="messageContent">
 						<div>
 							{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
-							<div class="fullScreenPicture" style="background-image: url({$news->getImage()->getURL()});">
+							<div class="fullScreenPicture" style="background-image: url({$news->getImage()->getLink()});">
 								<header class="messageHeader">
 									<div class="messageHeadline">
 										<h1>
@@ -84,7 +84,7 @@
 								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
 								<div class="newsBox128">
 									<div class="framed">
-										<img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->title}" style="width: 128px;" />
+										<img src="{@$news->getImage()->getLink()}" alt="{$news->getImage()->getTitle()}" style="width: 128px;" />
 									</div>
 									<div class="newsTeaser">
 										{if $news->teaser != ""}<strong>{$news->teaser}</strong>{else}{@$news->getExcerpt()}{/if}

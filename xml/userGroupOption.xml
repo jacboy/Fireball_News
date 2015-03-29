@@ -95,6 +95,12 @@
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
+			<option name="user.cms.news.image.canUpload">
+				<categoryname>user.cms.news</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+				<admindefaultvalue>0</admindefaultvalue>
+			</option>
 			<option name="user.cms.news.canUploadAttachment">
 				<categoryname>user.cms.news</categoryname>
 				<optiontype>boolean</optiontype>
@@ -135,21 +141,6 @@ pdf]]>
 				<categoryname>user.cms.news</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>5</defaultvalue>
-			</option>
-
-			<option name="user.cms.news.image.allowedExtensions">
-				<categoryname>user.cms.news</categoryname>
-				<optiontype>textarea</optiontype>
-				<defaultvalue>
-		<![CDATA[gif
-jpg
-jpeg
-JPG
-JPEG
-png
-bmp]]>
-				</defaultvalue>
-				<wildcard><![CDATA[*]]></wildcard>
 			</option>
 			<!--mod -->
 			<option name="mod.cms.news.canModerateNews">
