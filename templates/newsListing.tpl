@@ -104,8 +104,7 @@
 											{lang}cms.news.comments.count{/lang}
 										</a>
 									</p>
-								</div>
-								<footer class="messageOptions">
+									<footer class="messageOptions">
 									<nav class="buttonGroupNavigation jsMobileNavigation">
 										<ul class="smallButtons buttonGroup">
 											{event name='messageOptions'}
@@ -113,6 +112,7 @@
 										</ul>
 									</nav>
 								</footer>
+								</div>								
 							</div>
 						</div>
 					</section>
