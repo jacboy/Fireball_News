@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd"
-	languagecode="de">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="de">
 	<category name="cms.acp.content">
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news"><![CDATA[Nachrichten]]></item>
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.limit"><![CDATA[Anzahl Nachrichten]]></item>
@@ -158,7 +156,7 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item	name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Kommentar (Nachricht)]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Antwort (Nachricht)]]></item>
 	</category>
@@ -205,5 +203,9 @@
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x zu Nachrichten]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.fireball1toNews"><![CDATA[Fireball CMS 1.x]]></item>
+	</category>
+
+	<category name="wcf.like">
+		<item name="wcf.like.objectType.de.codequake.cms.likeableNews"><![CDATA[News]]></item>
 	</category>
 </language>
