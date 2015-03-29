@@ -97,7 +97,10 @@
 								{/if}
 								<div class="messageFooter">
 									<p class="messageFooterNote">
-										<a href="{link controller='News' object=$news application='cms'}{/link}">
+										{lang}cms.news.clicks.count{/lang}
+									</p>
+									<p class="messageFooterNote">
+										<a href="{link controller='News' object=$news application='cms'}#comments{/link}">
 											{lang}cms.news.comments.count{/lang}
 										</a>
 									</p>
