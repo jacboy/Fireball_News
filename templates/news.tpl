@@ -132,6 +132,11 @@
 									<div class="framed">
 										<img src="{@$news->getImage()->getLink()}" alt="{$news->getImage()->getTitle()}" style="width: 128px;" />
 									</div>
+									{if $news->teaser!= ''}
+									<div class="newsTeaser">
+										{$news->teaser}
+									</div>
+									{/if}
 									<div class="newsText">
 										{@$news->getFormattedMessage()}
 									</div>
@@ -148,6 +153,11 @@
 										{include file='poll' poll=$news->getPoll()}
 									</div>
 									{/if}
+										{if $news->teaser!= ''}
+										<div class="newsTeaser">
+											{$news->teaser}
+										</div>
+										{/if}
 										<div class="newsText">
 											{@$news->getFormattedMessage()}
 										</div>

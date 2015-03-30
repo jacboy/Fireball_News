@@ -61,7 +61,7 @@ class NewsEditForm extends NewsAddForm {
 		$this->enableBBCodes = $this->news->enableBBCodes;
 		$this->enableHtml = $this->news->enableHtml;
 		$this->enableSmilies = $this->news->enableSmilies;
-		$this->imageID = $this->news->getImage()->imageID;
+		$this->imageID = $this->news->imageID;
 		WCF::getBreadcrumbs()->add(new Breadcrumb($this->news->subject, LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $this->news
