@@ -127,6 +127,11 @@
 								</div>
 							</header>
 							<div class="messageBody">
+								{if $news->teaser!= '' && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+								<div class="newsTeaser">
+											{$news->teaser}
+								</div>
+								{/if}
 								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
 								<div class="newsBox128">
 									<div class="framed">
@@ -137,7 +142,7 @@
 										{$news->teaser}
 									</div>
 									{/if}
-									<div class="newsText">
+									<div class="newsText marginTop">
 										{@$news->getFormattedMessage()}
 									</div>
 								</div>
@@ -153,14 +158,18 @@
 										{include file='poll' poll=$news->getPoll()}
 									</div>
 									{/if}
-										{if $news->teaser!= ''}
+										{if $news->teaser!= '' && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
 										<div class="newsTeaser">
 											{$news->teaser}
 										</div>
-										{/if}
+										<div class="newsText marginTop">
+											{@$news->getFormattedMessage()}
+										</div>
+										{else}
 										<div class="newsText">
 											{@$news->getFormattedMessage()}
 										</div>
+										{/if}
 								</div>
 								{/if}
 								{include file='attachments'}
