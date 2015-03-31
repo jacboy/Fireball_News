@@ -1,5 +1,5 @@
-<header id="comments" class="boxHeadline boxSubHeadline">
-	<h2>{lang}cms.news.comments{/lang} <span class="badge">{@$commentList->countObjects()}</span></h2>
+<header class="boxHeadline boxSubHeadline">
+	<h2 id="comments">{lang}cms.news.comments{/lang} <span class="badge">{@$commentList->countObjects()}</span></h2>
 </header>
 <div class="container containerList marginTop">
   {include file='__commentJavaScript' commentContainerID='newsCommentList'}

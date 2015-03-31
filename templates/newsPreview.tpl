@@ -2,7 +2,7 @@
     <div class="box48">  
 	{if $news->getImage() != null}
 		<a class="framed" href="{link controller='News' object=$news application='cms'}{/link}">
-           {@$news->getImage()->getImageTag('48')}
+           <img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->getTitle()}" style="width: 48px;" />
 	{else}
 		<a class="framed" href="{link controller='User' object=$news->getUserProfile()}{/link}">
 			{@$news->getUserProfile()->getAvatar()->getImageTag(48)}

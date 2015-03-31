@@ -102,7 +102,7 @@
 					<section class="messageContent">
 						<div>
 							{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
-							<div class="fullScreenPicture" style="background-image: url({@$news->getImage()->getURL()});">
+							<div class="fullScreenPicture" style="background-image: url({@$news->getImage()->getLink()});">
 							</div>
 							{/if}
 							<header class="messageHeader">
@@ -127,12 +127,22 @@
 								</div>
 							</header>
 							<div class="messageBody">
+								{if $news->teaser!= '' && CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+								<div class="newsTeaser">
+											{$news->teaser}
+								</div>
+								{/if}
 								{if CMS_NEWS_NEWS_IMAGES_ATTACHED && $news->imageID != 0 && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
 								<div class="newsBox128">
 									<div class="framed">
-										<img src="{@$news->getImage()->getURL()}" alt="{$news->getImage()->title}" style="width: 128px;" />
+										<img src="{@$news->getImage()->getLink()}" alt="{$news->getImage()->getTitle()}" style="width: 128px;" />
 									</div>
-									<div class="newsText">
+									{if $news->teaser!= ''}
+									<div class="newsTeaser">
+										{$news->teaser}
+									</div>
+									{/if}
+									<div class="newsText marginTop">
 										{@$news->getFormattedMessage()}
 									</div>
 								</div>
@@ -148,9 +158,18 @@
 										{include file='poll' poll=$news->getPoll()}
 									</div>
 									{/if}
+										{if $news->teaser!= '' && !CMS_NEWS_NEWS_IMAGES_FULLSCREEN}
+										<div class="newsTeaser">
+											{$news->teaser}
+										</div>
+										<div class="newsText marginTop">
+											{@$news->getFormattedMessage()}
+										</div>
+										{else}
 										<div class="newsText">
 											{@$news->getFormattedMessage()}
 										</div>
+										{/if}
 								</div>
 								{/if}
 								{include file='attachments'}
@@ -160,18 +179,20 @@
 									</div>
 								{/if}
 							<div class="messageFooter"></div>
+								<p class="messageFooterNote">
+									{lang}cms.news.clicks.count{/lang}
+								</p>
 								<footer class="messageOptions">
-									<nav class="buttonGroupNavigation jsMobileNavigation">
-										<ul class="smallButtons buttonGroup">
-											{if $news->canModerate()}<li><a href="{link controller='NewsEdit' application='cms' object=$news}{/link}" class="button jsMessageEditButton" title="{lang}wcf.global.button.edit{/lang}"><span class="icon icon16 icon-pencil"></span> <span>{lang}wcf.global.button.edit{/lang}</span></a></li>{/if}
-											{if LOG_IP_ADDRESS && $news->ipAddress && $__wcf->session->getPermission('admin.user.canViewIpAddress')}<li class="jsIpAddress jsOnly" data-news-id="{@$news->newsID}"><a title="{lang}cms.news.ipAddress{/lang}" class="button jsTooltip"><span class="icon icon16 icon-globe"></span> <span class="invisible">{lang}cms.news.ipAddress{/lang}</span></a></li>{/if}											{if $news->canModerate()}<li class="jsOnly"><div class="button"><span class="icon icon16 icon-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$news->newsID}" data-confirm-message="{lang}cms.news.delete.sure{/lang}"></span></div></li>{/if}
-											{event name='messageOptions'}
-											<li class="toTopLink"><a href="{@$anchor}" title="{lang}wcf.global.scrollUp{/lang}" class="button jsTooltip"><span class="icon icon16 icon-arrow-up"></span> <span class="invisible">{lang}wcf.global.scrollUp{/lang}</span></a></li>
-
-										</ul>
-									</nav>
-								</footer>
-							</div>
+								<nav class="buttonGroupNavigation jsMobileNavigation">
+									<ul class="smallButtons buttonGroup">
+										{if $news->canModerate()}<li><a href="{link controller='NewsEdit' application='cms' object=$news}{/link}" class="button jsMessageEditButton" title="{lang}wcf.global.button.edit{/lang}"><span class="icon icon16 icon-pencil"></span> <span>{lang}wcf.global.button.edit{/lang}</span></a></li>{/if}
+										{if LOG_IP_ADDRESS && $news->ipAddress && $__wcf->session->getPermission('admin.user.canViewIpAddress')}<li class="jsIpAddress jsOnly" data-news-id="{@$news->newsID}"><a title="{lang}cms.news.ipAddress{/lang}" class="button jsTooltip"><span class="icon icon16 icon-globe"></span> <span class="invisible">{lang}cms.news.ipAddress{/lang}</span></a></li>{/if}											{if $news->canModerate()}<li class="jsOnly"><div class="button"><span class="icon icon16 icon-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$news->newsID}" data-confirm-message="{lang}cms.news.delete.sure{/lang}"></span></div></li>{/if}
+										{event name='messageOptions'}
+										<li class="toTopLink"><a href="{@$anchor}" title="{lang}wcf.global.scrollUp{/lang}" class="button jsTooltip"><span class="icon icon16 icon-arrow-up"></span> <span class="invisible">{lang}wcf.global.scrollUp{/lang}</span></a></li>
+									</ul>
+								</nav>
+							</footer>
+							</div>							
 						</div>
 					</section>
 				</div>

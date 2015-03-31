@@ -15,11 +15,17 @@
 }
 
 article.message > div > section.messageContent > div > div.fullScreenPicture {
-     background-size: cover; 
-     background-position: center center;
-     height: 300px;
-     text-align: center;
-     position: relative;
+    background-size: cover; 
+    background-position: center center;
+	height: 300px;
+    text-align: center;
+    position: relative;
+	-webkit-border-top-left-radius: @wcfContainerBorderRadius;
+	-webkit-border-top-right-radius: @wcfContainerBorderRadius;
+	-moz-border-radius-topleft: @wcfContainerBorderRadius;
+	-moz-border-radius-topright: @wcfContainerBorderRadius;
+	border-top-left-radius: @wcfContainerBorderRadius;
+	border-top-right-radius: @wcfContainerBorderRadius;
      > header.messageHeader{
          position: absolute;
          bottom: 0;

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd"
-	languagecode="de">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagecode="de">
 	<category name="cms.acp.content">
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news"><![CDATA[Nachrichten]]></item>
 		<item name="cms.acp.content.type.de.codequake.cms.content.type.news.limit"><![CDATA[Anzahl Nachrichten]]></item>
@@ -16,18 +14,6 @@
 		<item name="cms.acp.menu.link.cms.news"><![CDATA[Nachrichtensystem]]></item>
 		<item name="cms.acp.menu.link.cms.news.category.add"><![CDATA[Kategorie hinzufügen]]></item>
 		<item name="cms.acp.menu.link.cms.news.category.list"><![CDATA[Kategorien auflisten]]></item>
-		<item name="cms.acp.menu.link.cms.news.image.list"><![CDATA[Nachrichtenbilder auflisten]]></item>
-		<item name="cms.acp.menu.link.cms.news.image.add"><![CDATA[Nachrichtenbilder hinzufügen]]></item>
-	</category>
-
-	<category name="cms.acp.news">
-		<item name="cms.acp.news.image.data"><![CDATA[Daten]]></item>
-		<item name="cms.acp.news.image.title"><![CDATA[Titel]]></item>
-		<item name="cms.acp.news.image"><![CDATA[Nachrichtenbild]]></item>
-		<item name="cms.acp.news.image.add"><![CDATA[Nachrichtenbild hinzufügen]]></item>
-		<item name="cms.acp.news.image.list"><![CDATA[Nachrichtenbilder]]></item>
-		<item name="cms.acp.news.image.title"><![CDATA[Titel]]></item>
-		<item name="cms.acp.news.image"><![CDATA[Vorschaubild]]></item>
 	</category>
 
 	<category name="cms.news">
@@ -42,6 +28,7 @@
 		<item name="cms.news.teaser"><![CDATA[Teaser]]></item>
 		<item name="cms.news.teaser.description"><![CDATA[Ein Teaser ist eine kleine Einleitung der Nachricht. Bleibt dieses Feld leer, wird kein Teaser angezeigt.]]></item>
 		<item name="cms.news.clicks"><![CDATA[Aufrufe]]></item>
+		<item name="cms.news.clicks.count"><![CDATA[{#$news->clicks} mal gelesen]]></item>
 		<item name="cms.news.message"><![CDATA[Nachricht]]></item>
 		<item name="cms.news.author"><![CDATA[Verfasser]]></item>
 		<item name="cms.news.time.toPublish"><![CDATA[Datum der Veröffentlichung]]></item>
@@ -96,7 +83,12 @@
 {link application='cms' controller='News' id=$news->newsID isEmail=true}{/link}#comments]]>
 		</item>
 		<item name="cms.news.image"><![CDATA[Nachrichtenbild]]></item>
+		<item name="cms.news.image.categoryIDs"><![CDATA[Kategorien]]></item>
+		<item name="cms.news.image.upload"><![CDATA[Nachrichtenbild hochladen]]>
+		</item>
 		<item name="cms.news.image.select"><![CDATA[Nachrichtenbild auswählen]]></item>
+		<item name="cms.news.image.fileType"><![CDATA[Dateityp]]></item>
+		<item name="cms.news.image.downloads"><![CDATA[Downloads]]></item>
 	</category>
 
 	<category name="cms.page">
@@ -132,7 +124,8 @@
 		<item name="wcf.acp.group.option.user.cms.news.canUploadAttachment"><![CDATA[Kann Dateien anhängen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.attachmentMaxSize"><![CDATA[Maximale Dateianhangsgröße]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.allowedAttachmentExtensions"><![CDATA[Erlaubte Dateiendungen (Dateianhänge)]]></item>
-		<item name="wcf.acp.group.option.user.cms.news.image.allowedExtensions"><![CDATA[Erlaubte Dateiendungen (Nachrichtenbilder)]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.canUpload"><![CDATA[Kann Nachrichtenbilder hochladen]]></item>
+		<item name="wcf.acp.group.option.user.cms.news.image.canUpload.description"><![CDATA[Nachrichtenbilder werden in die <em>globale Dateiverwaltung</em> des CMS hochgeladen.]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canDownloadAttachments"><![CDATA[Kann Dateianhänge herunterladen]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.maxAttachmentCount"><![CDATA[Maximale Anzahl an Dateianhängen pro Nachricht]]></item>
 		<item name="wcf.acp.group.option.user.cms.news.canViewDelayedNews"><![CDATA[Kann Nachrichten sehen, die noch nicht veröffentlicht wurden]]></item>
@@ -187,7 +180,7 @@
 	</category>
 
 	<category name="wcf.user.recentActivity">
-		<item	name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
+		<item name="wcf.user.recentActivity.de.codequake.cms.news.recentActivityEvent"><![CDATA[Nachricht]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.recentActivityEvent"><![CDATA[Kommentar (Nachricht)]]></item>
 		<item name="wcf.user.recentActivity.de.codequake.cms.news.comment.response.recentActivityEvent"><![CDATA[Antwort (Nachricht)]]></item>
 	</category>
@@ -234,5 +227,9 @@
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.wordpress3xtoNews"><![CDATA[Wordpress 3.x zu Nachrichten]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.cnewstoNews"><![CDATA[CNews]]></item>
 		<item name="wcf.acp.dataImport.exporter.com.woltlab.wcf.exporter.fireball1toNews"><![CDATA[Fireball CMS 1.x]]></item>
+	</category>
+
+	<category name="wcf.like">
+		<item name="wcf.like.objectType.de.codequake.cms.likeableNews"><![CDATA[News]]></item>
 	</category>
 </language>

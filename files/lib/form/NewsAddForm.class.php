@@ -3,7 +3,6 @@ namespace cms\form;
 
 use cms\data\category\NewsCategory;
 use cms\data\category\NewsCategoryNodeTree;
-use cms\data\news\image\NewsImage;
 use cms\data\news\NewsAction;
 use cms\data\news\NewsEditor;
 use wcf\form\MessageForm;
@@ -47,7 +46,7 @@ class NewsAddForm extends MessageForm {
 
 	public $attachmentObjectType = 'de.codequake.cms.news';
 
-	public $image = null;
+	public $imageID = 0;
 
 	public $time = '';
 
@@ -59,7 +58,7 @@ class NewsAddForm extends MessageForm {
 		parent::readFormParameters();
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
 		if (isset($_POST['time'])) $this->time = $_POST['time'];
-		if (isset($_POST['imageID'])) $this->image = new NewsImage(intval($_POST['imageID']));
+		if (isset($_POST['imageID'])) $this->imageID = intval($_POST['imageID']);
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
 
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->readFormParameters();
@@ -150,7 +149,7 @@ class NewsAddForm extends MessageForm {
 			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
 			'enableSmilies' => $this->enableSmilies,
-			'imageID' => $this->image->imageID,
+			'imageID' => $this->imageID,
 			'lastChangeTime' => TIME_NOW
 		);
 		$newsData = array(
@@ -193,9 +192,8 @@ class NewsAddForm extends MessageForm {
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,
-			'image' => $this->image,
+			'imageID' => $this->imageID,
 			'teaser' => $this->teaser,
-			'imageID' => isset($this->image->imageID) ? $this->image->imageID : 0,
 			'time' => $this->time,
 			'action' => $this->action,
 			'tags' => $this->tags,
