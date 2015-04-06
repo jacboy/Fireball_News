@@ -173,4 +173,9 @@ pdf]]>
 			</option>
 		</options>
 	</import>
+	<delete>
+		<options>
+			<option name="user.cms.news.image.allowedExtensions" />
+		</options>
+	</delete>
 </data>
