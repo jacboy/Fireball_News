@@ -36,6 +36,8 @@ $categoryID = $returnValues['returnValues']->categoryID;
 $list = new NewsImageList();
 $list->readObjects();
 
+
+$oldIDs = array();
 foreach ($list->getObjects() as $image) {
 	//get file hash
 	$fileHash = sha1_file(CMS_DIR. 'images/news/' . $image->filename);
@@ -48,7 +50,6 @@ foreach ($list->getObjects() as $image) {
 	$mime = FileUtil::getMimeType(CMS_DIR. 'images/news/' . $image->filename);
 	
 	//create db entry
-	$oldIDs = array();
 	$action  = new FileAction(array(), 'create', array(
 		'data' => array(
 			'title' => $image->getTitle(),
