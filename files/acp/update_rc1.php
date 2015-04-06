@@ -36,7 +36,6 @@ $categoryID = $returnValues['returnValues']->categoryID;
 $list = new NewsImageList();
 $list->readObjects();
 
-
 $oldIDs = array();
 foreach ($list->getObjects() as $image) {
 	//get file hash
