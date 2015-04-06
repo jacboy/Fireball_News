@@ -7,6 +7,7 @@ use wcf\data\category\CategoryAction;
 use wcf\system\category\CategoryHandler;
 use wcf\system\WCF;
 use wcf\util\FileUtil;
+
 /**
  * @author	Jens Krumsieck
  * @copyright	2013 - 2015 codeQuake
