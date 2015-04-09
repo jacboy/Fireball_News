@@ -297,14 +297,9 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 	}
 
 	public function getNewsPreview() {
-		$list = new ViewableNewsList();
-		$list->getConditionBuilder()->add("news.newsID = ?", array(
-			$this->news->newsID
-		));
-		$list->readObjects();
-		$news = $list->getObjects();
+		//why did i use viewable list, when having a news object ???
 		WCF::getTPL()->assign(array(
-			'news' => reset($news)
+			'news' => new ViewableNews($this->news->getDecoratedObject())
 		));
 		return array(
 			'template' => WCF::getTPL()->fetch('newsPreview', 'cms')
@@ -313,7 +308,7 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public function validateGetNewsPreview() {
 		$this->news = $this->getSingleObject();
-		// check if board may be entered and thread can be read
+		
 		foreach ($this->news->getCategories() as $category) {
 			$category->getPermission('canViewNews');
 		}
