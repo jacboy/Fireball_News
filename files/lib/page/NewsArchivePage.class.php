@@ -1,8 +1,6 @@
 <?php
 namespace cms\page;
 
-use cms\data\category\NewsCategory;
-use cms\data\news\CategoryNewsList;
 use wcf\page\SortablePage;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\exception\PermissionDeniedException;
@@ -29,20 +27,14 @@ class NewsArchivePage extends SortablePage {
 	public $defaultSortField = 'time';
 
 	public $defaultSortOrder = 'DESC';
+	
+	public $objectListClassName = 'cms\data\news\AccessibleNewsList';
 
 	public $validSortFields = array(
 		'subject',
 		'time',
 		'clicks'
 	);
-
-	protected function initObjectList() {
-		$categoryIDs = NewsCategory::getAccessibleCategoryIDs();
-		if ($categoryIDs) {
-			$this->objectList = new CategoryNewsList($categoryIDs);
-		} else
-			throw new PermissionDeniedException();
-	}
 
 	public function assignVariables() {
 		parent::assignVariables();
