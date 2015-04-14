@@ -63,7 +63,7 @@
 		<instruction type="template" application="cms">templates.tar</instruction>
 
 		<!-- xml -->
-    <instruction type="option">xml/option.xml</instruction>
+		<instruction type="option">xml/option.xml</instruction>
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 
 		<!--others -->
