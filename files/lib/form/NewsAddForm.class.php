@@ -149,7 +149,7 @@ class NewsAddForm extends MessageForm {
 			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
 			'enableSmilies' => $this->enableSmilies,
-			'imageID' => $this->imageID,
+			'imageID' => $this->imageID ?: null,
 			'lastChangeTime' => TIME_NOW
 		);
 		$newsData = array(

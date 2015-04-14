@@ -92,7 +92,7 @@ class NewsEditForm extends NewsAddForm {
 			'enableBBCodes' => $this->enableBBCodes,
 			'showSignature' => $this->showSignature,
 			'enableHtml' => $this->enableHtml,
-			'imageID' => $this->imageID,
+			'imageID' => $this->imageID ?: null,
 			'enableSmilies' => $this->enableSmilies,
 			'lastChangeTime' => TIME_NOW,
 			'isDisabled' => ($this->time != '' && $dateTime->getTimestamp() > TIME_NOW) ? 1 : 0,
