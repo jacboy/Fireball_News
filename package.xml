@@ -4,7 +4,7 @@
 		<packagename><![CDATA[Fireball CMS - Nachrichtensystem]]></packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
 		<version><![CDATA[1.1.0 RC 1]]></version>
-		<date><![CDATA[2015-03-15]]></date>
+		<date><![CDATA[2015-04-17]]></date>
 	</packageinformation>
 
 	<authorinformation>
@@ -65,7 +65,6 @@
 		<!-- xml -->
 		<instruction type="option">xml/option.xml</instruction>
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
-
-		<!--others -->
+		<instruction type="pageMenu">xml/pagemenu.xml</instruction>
 	</instructions>
 </package>
