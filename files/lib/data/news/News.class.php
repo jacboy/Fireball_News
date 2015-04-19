@@ -117,10 +117,11 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 		return $this->time;
 	}
 
-	public function getLink() {
+	public function getLink($appendSession = true) {
 		return LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $this,
+			'appendSession' => $appendSession,
 			'forceFrontend' => true
 		));
 	}

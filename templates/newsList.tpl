@@ -1,7 +1,7 @@
 {include file='documentHeader'}
 <head>
 	<title>{$category->getTitle()|language} - {PAGE_TITLE|language}</title>
-
+	<link rel="canonical" href="{link controller='NewsList' application='cms' object=$category}{/link}" />
 	{include file='headInclude' application='wcf'}
 	<script data-relocate="true">
 		//<![CDATA[

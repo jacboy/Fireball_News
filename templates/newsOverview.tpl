@@ -2,7 +2,8 @@
 
 <head>
 	<title>{if $__wcf->getPageMenu()->getLandingPage()->menuItem != 'cms.page.news'}{lang}cms.page.news{/lang} - {/if}{PAGE_TITLE|language}</title>
-
+	
+	<link rel="canonical" href="{link controller='NewsOverview' application='cms'}{/link}" />
 	{include file='headInclude' application='wcf'}
 	<script data-relocate="true">
 		//<![CDATA[
