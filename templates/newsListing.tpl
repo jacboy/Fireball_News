@@ -1,8 +1,12 @@
+<script data-relocate="true">
+	new WCF.Action.Delete('cms\\data\\news\\NewsAction', '.jsNews');
+</script>
+
 {if $objects|count && $__wcf->session->getPermission('user.cms.news.canViewNews')}
 <ul class="messageList">
 	{foreach from=$objects item=news}
 	{assign var="attachments" value=$news->getAttachments()}
-		<li>
+		<li class="jsNews">
 			<article class="message messageReduced marginTop" data-user-id="{$news->userID}" data-object-id="{$news->newsID}" data-is-deleted="{$news->isDeleted}" data-is-disabled="{$news->isDisabled}">
 				<div>
 					<section class="messageContent">
@@ -104,17 +108,19 @@
 											{lang}cms.news.comments.count{/lang}
 										</a>
 									</p>
+								</div>
 									<footer class="messageOptions">
 									<nav class="buttonGroupNavigation jsMobileNavigation">
 										<ul class="smallButtons buttonGroup">
-											{event name='messageOptions'}
 											<li class="continue"><a href="{link controller='News' object=$news application='cms'}{/link}" class="button jsTooltip"><span class="icon icon16 icon-chevron-right"></span> <span>{lang}cms.news.read{/lang}</span></a></li>
+											{if $news->canModerate()}<li class="jsOnly"><a class="button jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}"  data-object-id="{@$news->newsID}" data-confirm-message="{lang}cms.news.delete.sure{/lang}"><span class="icon icon16 icon-remove"></span> <span>{lang}wcf.global.button.delete{/lang}</span></a></li>{/if}
+											{event name='messageOptions'}
+											<li class="toTopLink"><a href="{@$__wcf->getAnchor('top')}" title="{lang}wcf.global.scrollUp{/lang}" class="button jsTooltip"><span class="icon icon16 icon-arrow-up"></span> <span class="invisible">{lang}wcf.global.scrollUp{/lang}</span></a></li>
 										</ul>
 									</nav>
 								</footer>
 								</div>								
 							</div>
-						</div>
 					</section>
 				</div>
 			</article>
