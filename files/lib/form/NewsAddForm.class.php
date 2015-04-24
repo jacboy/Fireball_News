@@ -193,7 +193,6 @@ class NewsAddForm extends MessageForm {
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->assignVariables();
 		if ($this->imageID && $this->imageID != 0) $this->image = FileCache::getInstance()->getFile($this->imageID);
 		
-		
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,
