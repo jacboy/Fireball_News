@@ -179,16 +179,16 @@
 									</div>
 								{/if}
 								<div class="messageFooter">
-									<p class="messageFooterNote">
-										{lang}cms.news.clicks.count{/lang}
-									</p>
+								<p class="messageFooterNote">
+									{lang}cms.news.clicks.count{/lang}
+								</p>
 								</div>
 								<footer class="messageOptions">
 								<nav class="buttonGroupNavigation jsMobileNavigation">
 									<ul class="smallButtons buttonGroup">
 										{if $news->canModerate()}<li><a href="{link controller='NewsEdit' application='cms' object=$news}{/link}" class="button jsMessageEditButton" title="{lang}wcf.global.button.edit{/lang}"><span class="icon icon16 icon-pencil"></span> <span>{lang}wcf.global.button.edit{/lang}</span></a></li>{/if}
 										{if LOG_IP_ADDRESS && $news->ipAddress && $__wcf->session->getPermission('admin.user.canViewIpAddress')}<li class="jsIpAddress jsOnly" data-news-id="{@$news->newsID}"><a title="{lang}cms.news.ipAddress{/lang}" class="button jsTooltip"><span class="icon icon16 icon-globe"></span> <span class="invisible">{lang}cms.news.ipAddress{/lang}</span></a></li>{/if}											
-										{if $news->canModerate()}<li class="jsOnly"><a class="button jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}"  data-object-id="{@$news->newsID}" data-confirm-message="{lang}cms.news.delete.sure{/lang}"><span class="icon icon16 icon-remove"></span> <span>{lang}wcf.global.button.delete{/lang}</span></a></li>{/if}
+										{if $news->canModerate()}<li class="jsOnly"><a class="button jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}"  data-object-id="{@$news->newsID}" data-confirm-message="{lang}cms.news.delete.sure{/lang}"><span class="icon icon16 icon-remove"></span> <span class="invisible">{lang}wcf.global.button.delete{/lang}</span></a></li>{/if}
 										{event name='messageOptions'}
 										<li class="toTopLink"><a href="{@$anchor}" title="{lang}wcf.global.scrollUp{/lang}" class="button jsTooltip"><span class="icon icon16 icon-arrow-up"></span> <span class="invisible">{lang}wcf.global.scrollUp{/lang}</span></a></li>
 									</ul>
