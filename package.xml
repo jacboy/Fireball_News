@@ -67,4 +67,18 @@
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 		<instruction type="pageMenu">xml/pagemenu.xml</instruction>
 	</instructions>
+
+	<instructions type="update" fromversion="1.0.0">
+		<!--lang -->
+		<instruction type="language">language/*.xml</instruction>
+
+		<!-- tar -->
+		<instruction type="file" application="cms">files.tar</instruction>
+		<instruction type="template" application="cms">templates.tar</instruction>
+
+		<!-- xml -->
+		<instruction type="option">xml/option.xml</instruction>
+		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+		<instruction type="pageMenu">xml/pagemenu.xml</instruction>
+	</instructions>
 </package>
