@@ -3,6 +3,7 @@ namespace cms\form;
 
 use cms\data\category\NewsCategory;
 use cms\data\category\NewsCategoryNodeTree;
+use cms\data\file\FileCache;
 use cms\data\news\NewsAction;
 use cms\data\news\NewsEditor;
 use wcf\form\MessageForm;
@@ -47,6 +48,8 @@ class NewsAddForm extends MessageForm {
 	public $attachmentObjectType = 'de.codequake.cms.news';
 
 	public $imageID = 0;
+	
+	public $image = null;
 
 	public $time = '';
 
@@ -188,11 +191,14 @@ class NewsAddForm extends MessageForm {
 		parent::assignVariables();
 
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->assignVariables();
-
+		if ($this->imageID && $this->imageID != 0) $this->image = FileCache::getInstance()->getFile($this->imageID);
+		
+		
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,
 			'imageID' => $this->imageID,
+			'image' => $this->image,
 			'teaser' => $this->teaser,
 			'time' => $this->time,
 			'action' => $this->action,

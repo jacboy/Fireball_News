@@ -18,7 +18,15 @@
 			new WCF.Message.FormGuard();
 
 			//use acp file picker
-			new CMS.ACP.File.Picker($('#filePicker'), 'imageID', [{if $imageID|isset}{@$imageID}{/if}], { fileType: 'image' });
+			new CMS.ACP.File.Picker($('#filePicker > .button'), 'imageID', {
+			{if $image|isset}
+				{@$image->fileID}: {
+					fileID: {@$image->fileID},
+					title: '{$image->getTitle()}',
+					formattedFilesize: '{@$image->filesize|filesize}'
+				}
+			{/if}
+		}, { fileType: 'image' });
 			new CMS.ACP.File.Preview();
 		
 			WCF.Message.Submit.registerButton('text', $('#messageContainer > .formSubmit > input[type=submit]'));
@@ -126,7 +134,8 @@
 				<dl class="newsImageSelect">
 					<dt><label for="image">{lang}cms.news.image{/lang}</label></dt>
 					<dd>
-						<div id="filePicker">
+						<div id="filePicker">							
+							<ul class="formAttachmentList clearfix"></ul>
 							<span class="button small">{lang}cms.acp.file.picker{/lang}</span>
 						</div>
 					</dd>
