@@ -10,5 +10,10 @@
 			<classname><![CDATA[cms\system\dashboard\box\MostReadNewsDashboardBox]]></classname>
 			<boxtype>sidebar</boxtype>
 		</dashboardbox>
+		
+		<dashboardbox name="de.codequake.cms.latestNews.content">
+			<classname><![CDATA[cms\system\dashboard\box\LatestNewsContentDashboardBox]]></classname>
+			<boxtype>sidebar</boxtype>
+		</dashboardbox>
 	</import>
 </data>

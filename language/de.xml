@@ -164,6 +164,7 @@
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.newsList"><![CDATA[CMS: Nachrichtenauflistung]]></item>
 		<item name="wcf.dashboard.objectType.de.codequake.cms.news.news"><![CDATA[CMS: Nachrichten]]></item>
 		<item name="wcf.dashboard.box.de.codequake.cms.latestNews"><![CDATA[Neuste Nachrichten]]></item>
+		<item name="wcf.dashboard.box.de.codequake.cms.latestNews.content"><![CDATA[Neuste Nachrichten]]></item>
 		<item name="wcf.dashboard.box.de.codequake.cms.mostReadNews"><![CDATA[Meistgelesene Nachrichten]]></item>
 	</category>
 
