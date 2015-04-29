@@ -3,7 +3,7 @@
  	<packageinformation>
 		<packagename><![CDATA[Fireball CMS - Nachrichtensystem]]></packagename>
 		<packagedescription><![CDATA[Nachrichtensystem für das Fireball CMS]]></packagedescription>
-		<version><![CDATA[1.0.0]]></version>
+		<version><![CDATA[1.0.1]]></version>
 		<date><![CDATA[2015-04-19]]></date>
 	</packageinformation>
 
@@ -75,6 +75,11 @@
 	<instructions type="update" fromversion="1.0.0 RC 1">
 		<instruction type="file" application="cms">files.tar</instruction>
 		<instruction type="acpTemplate" application="cms">acptemplates.tar</instruction>
+		<instruction type="template" application="cms">templates.tar</instruction>
+	</instructions>
+
+	<instructions type="update" fromversion="1.0.0">
+		<instruction type="file" application="cms">files.tar</instruction>
 		<instruction type="template" application="cms">templates.tar</instruction>
 	</instructions>
 </package>
