@@ -82,6 +82,16 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 		return MessageParser::getInstance()->parse($this->getMessage(), $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
 	}
 
+	/**
+	 * Returns a simplified version of the formatted message.
+	 *
+	 * @return	string
+	 */
+	public function getSimplifiedFormattedMessage() {
+		MessageParser::getInstance()->setOutputType('text/simplified-html');
+		return MessageParser::getInstance()->parse($this->getMessage(), $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
+	}
+
 	public function getAttachments() {
 		if (MODULE_ATTACHMENT == 1 && $this->attachments) {
 			$attachmentList = new GroupedAttachmentList('de.codequake.cms.news');
@@ -101,8 +111,7 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 	}
 
 	public function getExcerpt($maxLength = CMS_NEWS_TRUNCATE_PREVIEW) {
-		$message = $this->getFormattedMessage();
-		return StringUtil::truncateHTML($message, $maxLength);
+		return StringUtil::truncateHTML($this->getSimplifiedFormattedMessage(), $maxLength);
 	}
 
 	public function getUserID() {
