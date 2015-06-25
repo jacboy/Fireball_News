@@ -20,6 +20,7 @@
 		<item name="cms.news.news"><![CDATA[Nachrichten]]></item>
 		<item name="cms.news.categorizedNews"><![CDATA[Nachrichten aus der Kategorie „{$category->getTitle()|language}“]]></item>
 		<item name="cms.news.image.no"><![CDATA[Kein spezifisches Bild für diese Nachricht verwenden]]></item>
+		<item name="cms.news.image.error.uploadFailed"><![CDATA[Fehler beim Upload]]></item>
 		<item name="cms.news.searchNews"><![CDATA[Nachrichten durchsuchen]]></item>
 		<item name="cms.news.markAllAsRead"><![CDATA[Alle Nachrichten als gelesen markieren]]></item>
 		<item name="cms.news.category.categories"><![CDATA[Kategorien]]></item>
@@ -34,7 +35,7 @@
 		<item name="cms.news.time.toPublish"><![CDATA[Datum der Veröffentlichung]]></item>
 		<item name="cms.news.publication.delayed"><![CDATA[Diese Nachricht wurde noch nicht veröffentlicht!]]></item>
 		<item name="cms.news.add"><![CDATA[Nachricht hinzufügen]]></item>
-		<item name="cms.news.edit"><![CDATA[Nachricht &raquo;{$news->getTitle()|language}&laquo; bearbeiten]]></item>
+		<item name="cms.news.edit"><![CDATA[Nachricht „{$news->getTitle()|language}“ bearbeiten]]></item>
 		<item name="cms.news.comments"><![CDATA[Kommentare]]></item>
 		<item name="cms.news.comments.count"><![CDATA[{#$news->comments} {if $news->comments == 1}Kommentar{else}Kommentare{/if}]]></item>
 		<item name="cms.news.read"><![CDATA[Weiterlesen]]></item>
@@ -175,9 +176,9 @@
 	</category>
 
 	<category name="wcf.user.profile">
-		<item name="wcf.user.profile.recentActivity.news"><![CDATA[hat die Nachricht &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>&laquo; verfasst.]]></item>
-		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[hat die Nachricht &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>&laquo; kommentiert.]]></item>
-		<item name="wcf.user.profile.recentActivity.newsCommentResponse"><![CDATA[hat auf den Kommentar von <a class="userLink" data-user-id="{$author->userID}" href="{link controller=User object=$author}{/link}">{$author->username}</a> zur Nachricht &raquo;<a class="cmsNewsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}#comments{/link}">{$news->getTitle()}</a>&laquo; geantwortet.]]></item>
+		<item name="wcf.user.profile.recentActivity.news"><![CDATA[hat die Nachricht „<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>“ verfasst.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[hat die Nachricht „<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>“ kommentiert.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsCommentResponse"><![CDATA[hat auf den Kommentar von <a class="userLink" data-user-id="{$author->userID}" href="{link controller=User object=$author}{/link}">{$author->username}</a> zur Nachricht „<a class="cmsNewsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}#comments{/link}">{$news->getTitle()}</a>“ geantwortet.]]></item>
 	</category>
 
 	<category name="wcf.user.recentActivity">
