@@ -36,7 +36,7 @@
 		<item name="cms.news.time.toPublish"><![CDATA[Date of publication]]></item>
 		<item name="cms.news.publication.delayed"><![CDATA[This news has not been published, yet!]]></item>
 		<item name="cms.news.add"><![CDATA[Add news]]></item>
-		<item name="cms.news.edit"><![CDATA[Edit news &raquo;{$news->getTitle()|language}&laquo;]]></item>
+		<item name="cms.news.edit"><![CDATA[Edit news “{$news->getTitle()|language}”]]></item>
 		<item name="cms.news.comments"><![CDATA[Comments]]></item>
 		<item name="cms.news.commentResponse"><![CDATA[Response (Newscomment)]]></item>
 		<item name="cms.news.comment"><![CDATA[Newscomment]]></item>
@@ -150,9 +150,9 @@
 	</category>
 
 	<category name="wcf.user.profile">
-		<item name="wcf.user.profile.recentActivity.news"><![CDATA[added the news &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>&laquo;.]]></item>
-		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[commented on &raquo;<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>&laquo;.]]></item>
-		<item name="wcf.user.profile.recentActivity.newsCommentResponse"><![CDATA[answered the comment by <a class="userLink" data-user-id="{$author->userID}" href="{link controller=User object=$author}{/link}">{$author->username}</a> on &raquo;<a class="cmsNewsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}#comments{/link}">{$news->getTitle()}</a>&laquo;.]]></item>
+		<item name="wcf.user.profile.recentActivity.news"><![CDATA[added the news “<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()|language}</a>”.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsComment"><![CDATA[commented on “<a class="newsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}{/link}">{$news->getTitle()}</a>”.]]></item>
+		<item name="wcf.user.profile.recentActivity.newsCommentResponse"><![CDATA[answered the comment by <a class="userLink" data-user-id="{$author->userID}" href="{link controller=User object=$author}{/link}">{$author->username}</a> on “<a class="cmsNewsLink" data-news-id="{$news->newsID}" href="{link controller=News application='cms' object=$news}#comments{/link}">{$news->getTitle()}</a>”.]]></item>
 	</category>
 
 	<category name="wcf.user.recentActivity">
