@@ -103,11 +103,13 @@
 									<p class="messageFooterNote">
 										{lang}cms.news.clicks.count{/lang}
 									</p>
-									<p class="messageFooterNote">
-										<a href="{link controller='News' object=$news application='cms'}#comments{/link}">
-											{lang}cms.news.comments.count{/lang}
-										</a>
-									</p>
+									{if CMS_NEWS_COMMENTS}
+										<p class="messageFooterNote">
+											<a href="{link controller='News' object=$news application='cms'}#comments{/link}">
+												{lang}cms.news.comments.count{/lang}
+											</a>
+										</p>
+									{/if}
 								</div>
 									<footer class="messageOptions">
 									<nav class="buttonGroupNavigation jsMobileNavigation">
