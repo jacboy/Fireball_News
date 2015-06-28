@@ -57,8 +57,11 @@
 		<dl class="plain inlineDataList">
 			<dt>{lang}cms.news.clicks{/lang}</dt>
 			<dd>{$news->clicks}</dd>
-			<dt>{lang}cms.news.comments{/lang}</dt>
-			<dd>{@$commentList->countObjects()}</dd>
+
+			{if CMS_NEWS_COMMENTS}
+				<dt>{lang}cms.news.comments{/lang}</dt>
+				<dd>{@$commentList->countObjects()}</dd>
+			{/if}
 		</dl>
 	</fieldset>
 	{if $news->getCategories()|count}
