@@ -8,7 +8,7 @@
 	<script data-relocate="true" src="{@$__wcf->getPath('cms')}js/CMS.js?v={@$__wcfVersion}"></script>
 	<script data-relocate="true">
 		//<![CDATA[
-		$(function () {
+		$(function() {
 			WCF.Language.addObject({
 				'wcf.message.share': '{lang}wcf.message.share{/lang}',
 				'wcf.message.share.facebook': '{lang}wcf.message.share.facebook{/lang}',
@@ -35,23 +35,24 @@
 <body id="tpl_{$templateNameApplication}_{$templateName}" data-template="{$templateName}" data-application="{$templateNameApplication}">
 
 {capture assign='sidebar'}
-	<fieldset>
-		<legend>{lang}cms.news.author{/lang}</legend>
-		<div class="box32">
-			<div class="userAvatar">
-				<a class="framed userLink" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{@$news->getUserProfile()->getAvatar()->getImageTag(24)}</a>
-			</div>
-			<div class="userDetails">
-				<div class="containerHeadline">
-					{if $news->userID != 0}
-						<h3><a class="userLink" rel="author" data-user-id="{$news->getUserProfile()->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">{$news->getUserProfile()->username}</a></h3>
-					{else}
-						{$news->username}
-					{/if}
-				</div>
-			</div>
-		</div>
-	</fieldset>
+	{if $news->getAuthors()|count}
+		<fieldset>
+			<legend>{lang}cms.news.authors{/lang}</legend>
+
+			<ul class="sidebarBoxList">
+				{foreach from=$news->getAuthors() item=author}
+					<li class="box24">
+						<a class="framed" href="{link controller='User' object=$author}{/link}">{@$author->getAvatar()->getImageTag(24)}</a>
+
+						<div class="sidebarBoxHeadline">
+							<h3><a href="{link controller='User' object=$author}{/link}" class="userLink" data-user-id="{@$author->userID}">{$author->username}</a></h3>
+						</div>
+					</li>
+				{/foreach}
+			</ul>
+		</fieldset>
+	{/if}
+
 	<fieldset>
 		<legend>{lang}cms.news.general{/lang}</legend>
 		<dl class="plain inlineDataList">
@@ -64,6 +65,7 @@
 			{/if}
 		</dl>
 	</fieldset>
+
 	{if $news->getCategories()|count}
 		<fieldset>
 			<legend>{lang}cms.news.category.categories{/lang}</legend>
@@ -75,6 +77,7 @@
 			</ul>
 		</fieldset>
 	{/if}
+
 	{if $tags|count}
 		<fieldset>
 			<legend>{lang}wcf.tagging.tags{/lang}</legend>
@@ -84,9 +87,12 @@
 			{/foreach}
 		</fieldset>
 	{/if}
+
 	{event name='boxes'}
+
 	{@$__boxSidebar}
 {/capture}
+
 {if !$anchor|isset}{assign var=anchor value=$__wcf->getAnchor('top')}{/if}
 
 {include file='header' sidebarOrientation='right'}
@@ -99,7 +105,7 @@
 {if ($news->isDisabled && $news->canSeeDelayed()) || !$news->isDisabled}
 <ul class="messageList">
 	<li>
-			<article class="message messageReduced marginTop jsNews jsMessage" data-user-id="{$news->userID}" data-object-id="{$news->newsID}" data-news-id="{$news->newsID}" data-is-deleted="{$news->isDeleted}" data-is-disabled="{$news->isDisabled}" data-object-type="de.codequake.cms.likeableNews" data-like-liked="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->liked}{/if}" data-like-likes="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->likes}{else}0{/if}" data-like-dislikes="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->dislikes}{else}0{/if}" data-like-users='{if $newsLikeData[$news->newsID]|isset}{ {implode from=$newsLikeData[$news->newsID]->getUsers() item=likeUser}"{@$likeUser->userID}": { "username": "{$likeUser->username|encodeJSON}" }{/implode} }{else}{ }{/if}'>
+			<article class="message messageReduced marginTop jsNews jsMessage" data-object-id="{$news->newsID}" data-news-id="{$news->newsID}" data-is-deleted="{$news->isDeleted}" data-is-disabled="{$news->isDisabled}" data-object-type="de.codequake.cms.likeableNews" data-like-liked="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->liked}{/if}" data-like-likes="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->likes}{else}0{/if}" data-like-dislikes="{if $newsLikeData[$news->newsID]|isset}{@$newsLikeData[$news->newsID]->dislikes}{else}0{/if}" data-like-users='{if $newsLikeData[$news->newsID]|isset}{ {implode from=$newsLikeData[$news->newsID]->getUsers() item=likeUser}"{@$likeUser->userID}": { "username": "{$likeUser->username|encodeJSON}" }{/implode} }{else}{ }{/if}'>
 				<div>
 					{assign var='objectID' value=$news->newsID}
 					<section class="messageContent">
@@ -114,15 +120,6 @@
 											<a href="{link controller='News' object=$news application='cms'}{/link}">{$news->getTitle()}</a>
 										</h1>
 										<p>
-											<span class="username">
-												{if $news->userID != 0}
-													<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
-													{$news->username}
-													</a>
-												{else}
-													{$news->username}
-												{/if}
-											</span>
 											<a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
 												{@$news->time|time}
 											</a>
@@ -175,12 +172,9 @@
 										{/if}
 								</div>
 								{/if}
+
 								{include file='attachments'}
-								{if $news->showSignature && $news->getUserProfile()->showSignature() && CMS_NEWS_SIGNATURES}
-									<div class="messageSignature">
-										<div>{@$news->getUserProfile()->getSignature()}</div>
-									</div>
-								{/if}
+
 								<div class="messageFooter">
 								<p class="messageFooterNote">
 									{lang}cms.news.clicks.count{/lang}

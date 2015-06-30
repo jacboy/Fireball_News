@@ -32,7 +32,8 @@
 		<item name="cms.news.clicks"><![CDATA[Clicks]]></item>
 		<item name="cms.news.clicks.count"><![CDATA[{#$news->clicks} times read]]></item>
 		<item name="cms.news.message"><![CDATA[News]]></item>
-		<item name="cms.news.author"><![CDATA[Author]]></item>
+		<item name="cms.news.authors"><![CDATA[Authors]]></item>
+		<item name="cms.news.authors.description"><![CDATA[Multiple authors should be separated with a comma.]]></item>
 		<item name="cms.news.time.toPublish"><![CDATA[Date of publication]]></item>
 		<item name="cms.news.publication.delayed"><![CDATA[This news has not been published, yet!]]></item>
 		<item name="cms.news.add"><![CDATA[Add news]]></item>
@@ -157,8 +158,6 @@
 		<item name="wcf.acp.option.cms_news_latest_limit.description"><![CDATA[Amount of latest news in dashboard box]]></item>
 		<item name="wcf.acp.option.cms_news_sidebar_categories"><![CDATA[Show categories in sidebar]]></item>
 		<item name="wcf.acp.option.cms_news_sidebar_categories_main"><![CDATA[Show only main categories]]></item>
-		<item name="wcf.acp.option.cms_news_signatures"><![CDATA[Show signatures]]></item>
-		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Authors are able to show they're signatures]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Show news images above message]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Shows news images if available above the text message]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Huge news images]]></item>

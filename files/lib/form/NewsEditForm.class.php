@@ -62,6 +62,13 @@ class NewsEditForm extends NewsAddForm {
 		$this->enableHtml = $this->news->enableHtml;
 		$this->enableSmilies = $this->news->enableSmilies;
 		$this->imageID = $this->news->imageID;
+
+		$usernames = array();
+		foreach ($this->news->getAuthors() as $author) {
+			$usernames[] = $author->username;
+		}
+		$this->authors = implode(', ', $usernames);
+
 		WCF::getBreadcrumbs()->add(new Breadcrumb($this->news->subject, LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $this->news
@@ -82,6 +89,7 @@ class NewsEditForm extends NewsAddForm {
 
 	public function save() {
 		MessageForm::save();
+
 		if ($this->time != '') $dateTime = \DateTime::createFromFormat("Y-m-d H:i", $this->time, WCF::getUser()->getTimeZone());
 
 		$data = array(
@@ -99,11 +107,13 @@ class NewsEditForm extends NewsAddForm {
 			'lastEditor' => WCF::getUser()->username,
 			'lastEditorID' => WCF::getUser()->userID
 		);
+
 		$newsData = array(
-			'data' => $data,
+			'attachmentHandler' => $this->attachmentHandler,
+			'authorIDs' => $this->authorIDs,
 			'categoryIDs' => $this->categoryIDs,
+			'data' => $data,
 			'tags' => $this->tags,
-			'attachmentHandler' => $this->attachmentHandler
 		);
 
 		$action = new NewsAction(array(
@@ -135,8 +145,7 @@ class NewsEditForm extends NewsAddForm {
 			'application' => 'cms',
 			'object' => $this->news
 		)));
-
-		exit();
+		exit;
 	}
 
 	public function assignVariables() {

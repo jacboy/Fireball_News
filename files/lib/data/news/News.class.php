@@ -6,6 +6,7 @@ use cms\data\file\FileCache;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
 use wcf\data\poll\Poll;
+use wcf\data\user\UserProfile;
 use wcf\data\DatabaseObject;
 use wcf\data\IMessage;
 use wcf\data\IPollObject;
@@ -26,7 +27,7 @@ use wcf\util\UserUtil;
 /**
  * Represents a news entry.
  *
- * @author	Jens Krumsieck
+ * @author	Jens Krumsieck, Florian Frantzen
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
@@ -36,6 +37,13 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 	protected static $databaseTableName = 'news';
 
 	protected static $databaseTableIndexName = 'newsID';
+
+	/**
+	 * Authors of this news.
+	 * 
+	 * @var array<\wcf\data\user\UserProfile>
+	 */
+	protected $authors;
 
 	protected $categories = null;
 
@@ -58,6 +66,31 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 		}
 
 		parent::__construct(null, $row, $object);
+	}
+
+	/**
+	 * Returns the authors of this news.
+	 * 
+	 * @return array<\wcf\data\user\User>
+	 */
+	public function getAuthors() {
+		// cache list of authors for one request
+		if ($this->authors === null) {
+			$sql = 'SELECT	userID
+				FROM	cms'.WCF_N.'_news_author
+				WHERE	newsID = ?';
+			$statement = WCF::getDB()->prepareStatement($sql);
+			$statement->execute(array($this->newsID));
+
+			$userIDs = array();
+			while ($row = $statement->fetchArray()) {
+				$userIDs[] = $row['userID'];
+			}
+
+			$this->authors = UserProfile::getUserProfiles($userIDs);
+		}
+
+		return $this->authors;
 	}
 
 	public function getTitle() {

@@ -44,8 +44,7 @@
 				</aside>
 
 				<small>
-					{if $news->userID}<a href="{link controller='User' object=$news->getUserProfile()->getDecoratedObject()}{/link}" class="userLink" data-user-id="{@$news->userID}">{$news->username}</a>{else}{$news->username}{/if}
-					- {@$news->time|time}
+					{@$news->time|time}
 				</small>
 
 				{event name='newsData'}

@@ -6,6 +6,7 @@ use cms\data\category\NewsCategoryNodeTree;
 use cms\data\file\FileCache;
 use cms\data\news\NewsAction;
 use cms\data\news\NewsEditor;
+use wcf\data\user\UserList;
 use wcf\form\MessageForm;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\category\CategoryHandler;
@@ -22,7 +23,7 @@ use wcf\util\StringUtil;
 /**
  * Shows the news add form.
  *
- * @author	Jens Krumsieck
+ * @author	Jens Krumsieck, Florian Frantzen
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
@@ -30,6 +31,20 @@ use wcf\util\StringUtil;
 class NewsAddForm extends MessageForm {
 
 	public $action = 'add';
+
+	/**
+	 * Comma seperated list of news authors.
+	 * 
+	 * @var	string
+	 */
+	public $authors = '';
+
+	/**
+	 * List of all author ids based on the given usernames.
+	 * 
+	 * @var int[]
+	 */
+	public $authorIDs;
 
 	public $categoryIDs = array();
 
@@ -57,21 +72,24 @@ class NewsAddForm extends MessageForm {
 
 	public $tags = array();
 
+	public function readParameters() {
+		parent::readParameters();
+
+		// polls
+		if (MODULE_POLL & WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->setObject('de.codequake.cms.news', 0);
+		if (isset($_REQUEST['categoryIDs']) && is_array($_REQUEST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_REQUEST['categoryIDs']);
+	}
+
 	public function readFormParameters() {
 		parent::readFormParameters();
+
+		if (isset($_POST['authors'])) $this->authors = StringUtil::trim($_POST['authors']);
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
 		if (isset($_POST['time'])) $this->time = $_POST['time'];
 		if (isset($_POST['imageID'])) $this->imageID = intval($_POST['imageID']);
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
 
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->readFormParameters();
-	}
-
-	public function readParameters() {
-		parent::readParameters();
-		// polls
-		if (MODULE_POLL & WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->setObject('de.codequake.cms.news', 0);
-		if (isset($_REQUEST['categoryIDs']) && is_array($_REQUEST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_REQUEST['categoryIDs']);
 	}
 
 	public function readData() {
@@ -101,7 +119,7 @@ class NewsAddForm extends MessageForm {
 
 		// default values
 		if (empty($_POST)) {
-			$this->username = WCF::getSession()->getVar('username');
+			$this->authors = WCF::getUser()->username;
 
 			// multilingualism
 			if (!empty($this->availableContentLanguages)) {
@@ -120,6 +138,7 @@ class NewsAddForm extends MessageForm {
 
 	public function validate() {
 		parent::validate();
+
 		// categories
 		if (empty($this->categoryIDs)) {
 			throw new UserInputException('categoryIDs');
@@ -133,20 +152,50 @@ class NewsAddForm extends MessageForm {
 			if (! $category->isAccessible() || ! $category->getPermission('canAddNews')) throw new UserInputException('categoryIDs');
 		}
 
+		$this->validateAuthors();
+
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->validate();
+	}
+
+	/**
+	 * Validates the list of authors.
+	 * 
+	 * @throws	\wcf\system\exception\UserInputException
+	 */
+	public function validateAuthors() {
+		if (empty($this->authors)) {
+			throw new UserInputException('authors');
+		}
+
+		$usernames = ArrayUtil::trim(explode(',', $this->authors));
+
+		// silently ignore duplicate usernames
+		$usernames = array_unique($usernames);
+
+		$userList = new UserList();
+		$userList->getConditionBuilder()->add('user_table.username IN (?)', array($usernames));
+		$userList->readObjects();
+
+		if (count($usernames) !== count($userList->getObjects())) {
+			throw new UserInputException('authors', 'notFound');
+		}
+
+		foreach ($userList as $user) {
+			$this->authorIDs[] = $user->userID;
+		}
 	}
 
 	public function save() {
 		parent::save();
+
 		if ($this->time != '') $dateTime = \DateTime::createFromFormat("Y-m-d H:i", $this->time, WCF::getUser()->getTimeZone());
-		$data = array(
+
+		$data = array_merge($this->additionalFields, array(
 			'languageID' => $this->languageID,
 			'subject' => $this->subject,
 			'time' => ($this->time != '') ? $dateTime->getTimestamp(): TIME_NOW,
 			'teaser' => $this->teaser,
 			'message' => $this->text,
-			'userID' => WCF::getUser()->userID,
-			'username' => WCF::getUser()->username,
 			'isDisabled' => ($this->time != '' && $dateTime->getTimestamp() > TIME_NOW) ? 1 : 0,
 			'enableBBCodes' => $this->enableBBCodes,
 			'showSignature' => $this->showSignature,
@@ -154,14 +203,15 @@ class NewsAddForm extends MessageForm {
 			'enableSmilies' => $this->enableSmilies,
 			'imageID' => $this->imageID ?: null,
 			'lastChangeTime' => TIME_NOW
-		);
+		));
+
 		$newsData = array(
-			'data' => $data,
-			'tags' => array(),
 			'attachmentHandler' => $this->attachmentHandler,
-			'categoryIDs' => $this->categoryIDs
+			'authorIDs' => $this->authorIDs,
+			'categoryIDs' => $this->categoryIDs,
+			'data' => $data,
+			'tags' => $this->tags
 		);
-		$newsData['tags'] = $this->tags;
 
 		$action = new NewsAction(array(), 'create', $newsData);
 		$resultValues = $action->executeAction();
@@ -184,7 +234,7 @@ class NewsAddForm extends MessageForm {
 			'application' => 'cms',
 			'object' => $resultValues['returnValues']
 		)));
-		exit();
+		exit;
 	}
 
 	public function assignVariables() {
@@ -192,8 +242,9 @@ class NewsAddForm extends MessageForm {
 
 		if (WCF::getSession()->getPermission('user.cms.news.canStartPoll') && MODULE_POLL) PollManager::getInstance()->assignVariables();
 		if ($this->imageID && $this->imageID != 0) $this->image = FileCache::getInstance()->getFile($this->imageID);
-		
+
 		WCF::getTPL()->assign(array(
+			'authors' => $this->authors,
 			'categoryList' => $this->categoryList,
 			'categoryIDs' => $this->categoryIDs,
 			'imageID' => $this->imageID,

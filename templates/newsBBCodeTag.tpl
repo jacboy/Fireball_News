@@ -8,16 +8,6 @@
 		<div class="containerHeadline">
 		<h3><a href="{$_news->getLink()}" data-news-id="{$_news->newsID}" class="newsLink cmsNewsLink" title="{$_news->getTitle()}">{$_news->getTitle()}</a></h3>
 		<p><small>
-			<span class="username">
-				{if $_news->userID != 0}
-				<a class="userLink" data-user-id="{$_news->userID}" href="{link controller='User' object=$_news->getUserProfile()}{/link}">
-					{$_news->username}
-				</a>
-				{else}
-					{$_news->username}
-				{/if}
-			</span>
-			-
 			<a class="permalink" href="{link controller='News' object=$_news application='cms'}{/link}">
 				{@$_news->time|time}
 			</a>

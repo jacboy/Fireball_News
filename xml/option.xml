@@ -77,12 +77,6 @@
 				<defaultvalue>10</defaultvalue>
 
 			</option>
-			<option name="cms_news_signatures">
-				<optiontype>boolean</optiontype>
-				<categoryname>cms.news</categoryname>
-				<defaultvalue>1</defaultvalue>
-
-			</option>
 			<!-- /cms.news -->
 		</options>
 	</import>

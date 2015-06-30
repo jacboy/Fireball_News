@@ -6,7 +6,8 @@
 	<script data-relocate="true" src="{@$__wcf->getPath('cms')}acp/js/CMS.ACP.js?v={@$__wcfVersion}"></script>
 	<script data-relocate="true">
 		//<![CDATA[
-		$(function () {
+		$(function() {
+			new WCF.Search.User('#authors', null, false, [ ], true);
 
 			WCF.Language.addObject({
 				//'cms.news.image.select': '{lang}cms.news.image.select{/lang}',
@@ -140,7 +141,25 @@
 						</div>
 					</dd>
 				</dl>
-			{event name='informationFields'}
+
+				<dl{if $errorField == 'authors'} class="formError"{/if}>
+					<dt><label for="authors">{lang}cms.news.authors{/lang}</label></dt>
+					<dd>
+						<textarea id="authors" name="authors" class="long" cols="40" rows="2">{$authors}</textarea>
+						{if $errorField == 'authors'}
+							<small class="innerError">
+								{if $errorType == 'empty'}
+									{lang}wcf.global.form.error.empty{/lang}
+								{else}
+									{lang}cms.news.authors.error.{@$errorType}{/lang}
+								{/if}
+							</small>
+						{/if}
+						<small>{lang}cms.news.authors.description{/lang}</small>
+					</dd>
+				</dl>
+
+				{event name='informationFields'}
 			</fieldset>
 
 			<fieldset class="jsOnly">

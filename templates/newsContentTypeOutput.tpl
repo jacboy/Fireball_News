@@ -10,12 +10,6 @@
 	<div class="containerHeadline">
 		<h3><a class="newsLink" data-news-id="{$news->newsID}" href="{link controller='News' object=$news application='cms'}{/link}">{$news->getTitle()}</a></h3>
 		<small>
-            <span class="username">
-                <a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
-                    {$news->username}
-                </a>
-            </span>
-            -
             <a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
                 {@$news->time|time}
             </a>

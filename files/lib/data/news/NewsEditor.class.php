@@ -17,6 +17,35 @@ class NewsEditor extends DatabaseObjectEditor {
 
 	protected static $baseClass = 'cms\data\news\News';
 
+	/**
+	 * Updates the authors of this news to the given list of authors.
+	 * 
+	 * @param	int[]		$authorIDs
+	 */
+	public function updateAuthorIDs(array $authorIDs = array()) {
+		// remove old authors
+		$sql = 'DELETE FROM	cms'.WCF_N.'_news_author
+			WHERE		newsID = ?';
+		$statement = WCF::getDB()->prepareStatement($sql);
+		$statement->execute(array($this->newsID));
+
+		// new authors
+		if (!empty($authorIDs)) {
+			WCF::getDB()->beginTransaction();
+
+			$sql = 'INSERT INTO	cms'.WCF_N.'_news_author
+						(newsID, userID)
+				VALUES		(?, ?)';
+			$statement = WCF::getDB()->prepareStatement($sql);
+
+			foreach ($authorIDs as $authorID) {
+				$statement->execute(array($this->newsID, $authorID));
+			}
+
+			WCF::getDB()->commitTransaction();
+		}
+	}
+
 	public function updateCategoryIDs(array $categoryIDs = array()) {
 		// remove old assigns
 		$sql = "DELETE FROM	cms" . WCF_N . "_news_to_category

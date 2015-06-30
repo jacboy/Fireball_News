@@ -3,8 +3,6 @@
 DROP TABLE IF EXISTS cms1_news;
 CREATE TABLE cms1_news (
 	newsID INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	userID INT(10),
-	username VARCHAR(255),
 	subject VARCHAR(255),
 	teaser MEDIUMTEXT,
 	message MEDIUMTEXT,
@@ -29,6 +27,14 @@ CREATE TABLE cms1_news (
 	cumulativeLikes INT(10) NOT NULL DEFAULT 0
 );
 
+DROP TABLE IF EXISTS cms1_news_author;
+CREATE TABLE cms1_news_author (
+	newsID INT(10) NOT NULL,
+	userID INT(10) NOT NULL,
+
+	PRIMARY KEY (newsID, userID)
+);
+
 --news to category
 DROP TABLE IF EXISTS cms1_news_to_category;
 CREATE TABLE cms1_news_to_category (
@@ -39,10 +45,12 @@ CREATE TABLE cms1_news_to_category (
 );
 
 --foreign keys
-ALTER TABLE cms1_news ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
 ALTER TABLE cms1_news ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE cms1_news ADD FOREIGN KEY (imageID) REFERENCES cms1_file (fileID) ON DELETE SET NULL;
 ALTER TABLE cms1_news ADD FOREIGN KEY (pollID) REFERENCES wcf1_poll (pollID) ON DELETE SET NULL;
+
+ALTER TABLE cms1_news_author ADD FOREIGN KEY (newsID) REFERENCES cms1_news (newsID) ON DELETE CASCADE;
+ALTER TABLE cms1_news_author ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
 
 ALTER TABLE cms1_news_to_category ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE CASCADE;
 ALTER TABLE cms1_news_to_category ADD FOREIGN KEY (newsID) REFERENCES cms1_news (newsID) ON DELETE CASCADE;

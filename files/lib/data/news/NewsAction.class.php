@@ -17,7 +17,7 @@ use wcf\util\UserUtil;
 /**
  * Executes news-related actions.
  *
- * @author	Jens Krumsieck
+ * @author	Jens Krumsieck, Florian Frantzen
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
@@ -39,10 +39,12 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public function create() {
 		$data = $this->parameters['data'];
+
 		// count attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
 			$data['attachments'] = count($this->parameters['attachmentHandler']);
 		}
+
 		if (LOG_IP_ADDRESS) {
 			// add ip address
 			if (! isset($data['ipAddress'])) {
@@ -61,10 +63,16 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		), $data);
 		$newsEditor = new NewsEditor($news);
 
+		// news authors
+		if (isset($this->parameters['authorIDs'])) {
+			$newsEditor->updateAuthorIDs($this->parameters['authorIDs']);
+		}
+
 		// update attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
 			$this->parameters['attachmentHandler']->updateObjectID($news->newsID);
 		}
+
 		// handle categories
 		$newsEditor->updateCategoryIDs($this->parameters['categoryIDs']);
 		$newsEditor->setCategoryIDs($this->parameters['categoryIDs']);
@@ -85,7 +93,8 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			}
 
 			// update search index
-			SearchIndexManager::getInstance()->add('de.codequake.cms.news', $news->newsID, $news->message, $news->subject, $news->time, $news->userID, $news->username, $languageID);
+			// TODO
+			SearchIndexManager::getInstance()->add('de.codequake.cms.news', $news->newsID, $news->message, $news->subject, $news->time, WCF::getUser()->userID, WCF::getUser()->username, $languageID);
 
 			// reset storage
 			UserStorageHandler::getInstance()->resetAll('cmsUnreadNews');
@@ -120,11 +129,15 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		foreach ($this->objects as $news) {
 			$objectIDs[] = $news->newsID;
 		}
-		if (! empty($objectIDs)) {
+		if (!empty($objectIDs)) {
 			SearchIndexManager::getInstance()->delete('de.codequake.cms.news', $objectIDs);
 		}
 
 		foreach ($this->objects as $news) {
+			if (isset($this->parameters['authorIDs'])) {
+				$news->updateAuthorIDs($this->parameters['authorIDs']);
+			}
+
 			if (isset($this->parameters['categoryIDs'])) {
 				$news->updateCategoryIDs($this->parameters['categoryIDs']);
 			}
@@ -140,8 +153,10 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				$languageID = (! isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
 				TagEngine::getInstance()->addObjectTags('de.codequake.cms.news', $news->newsID, $tags, $languageID);
 			}
+
 			// update search index
-			SearchIndexManager::getInstance()->add('de.codequake.cms.news', $news->newsID, $news->message, $news->subject, $news->time, $news->userID, $news->username, $news->languageID);
+			// TODO
+			SearchIndexManager::getInstance()->add('de.codequake.cms.news', $news->newsID, $news->message, $news->subject, $news->time, WCF::getUser()->userID, WCF::getUser()->username, $news->languageID);
 		}
 	}
 

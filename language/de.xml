@@ -31,7 +31,8 @@
 		<item name="cms.news.clicks"><![CDATA[Aufrufe]]></item>
 		<item name="cms.news.clicks.count"><![CDATA[{#$news->clicks} mal gelesen]]></item>
 		<item name="cms.news.message"><![CDATA[Nachricht]]></item>
-		<item name="cms.news.author"><![CDATA[Verfasser]]></item>
+		<item name="cms.news.authors"><![CDATA[Verfasser]]></item>
+		<item name="cms.news.authors.description"><![CDATA[Mehrere Verfasser können mit Komma getrennt angegeben werden.]]></item>
 		<item name="cms.news.time.toPublish"><![CDATA[Datum der Veröffentlichung]]></item>
 		<item name="cms.news.publication.delayed"><![CDATA[Diese Nachricht wurde noch nicht veröffentlicht!]]></item>
 		<item name="cms.news.add"><![CDATA[Nachricht hinzufügen]]></item>
@@ -153,8 +154,6 @@
 		<item name="wcf.acp.option.cms_news_latest_limit.description"><![CDATA[Anzahl neuster Nachrichten in der Dashboard Box]]></item>
 		<item name="wcf.acp.option.cms_news_sidebar_categories"><![CDATA[Kategorien in der Sidebar anzeigen]]></item>
 		<item name="wcf.acp.option.cms_news_sidebar_categories_main"><![CDATA[Nur Hauptkategorien anzeigen]]></item>
-		<item name="wcf.acp.option.cms_news_signatures"><![CDATA[Signaturen anzeigen]]></item>
-		<item name="wcf.acp.option.cms_news_signatures.description"><![CDATA[Autoren können ihre Signaturen in Nachrichten anzeigen lassen.]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached"><![CDATA[Nachrichtenbilder in Nachricht anzeigen]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_attached.description"><![CDATA[Sollen die Nachrichtenbilder sofern vorhanden über der eigentlichen Nachricht angezeigt werden?]]></item>
 		<item name="wcf.acp.option.cms_news_news_images_fullscreen"><![CDATA[Große Nachrichtenbilder]]></item>

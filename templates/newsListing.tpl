@@ -27,15 +27,6 @@
 										<p class="newMessageBadge">{lang}wcf.message.new{/lang}</p>
 										{/if}
 										<p>
-											<span class="username">
-												{if $news->userID != 0}
-												<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
-													{$news->username}
-												</a>
-												{else}
-													{$news->username}
-												{/if}
-											</span>
 											<a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
 												{@$news->time|time}
 											</a>
@@ -63,15 +54,6 @@
 										<p class="newMessageBadge">{lang}wcf.message.new{/lang}</p>
 										{/if}
 										<p>
-											<span class="username">
-												{if $news->userID != 0}
-												<a class="userLink" data-user-id="{$news->userID}" href="{link controller='User' object=$news->getUserProfile()}{/link}">
-													{$news->username}
-												</a>
-												{else}
-													{$news->username}
-												{/if}
-											</span>
 											<a class="permalink" href="{link controller='News' object=$news application='cms'}{/link}">
 												{@$news->time|time}
 											</a>
