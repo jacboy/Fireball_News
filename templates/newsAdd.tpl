@@ -93,7 +93,7 @@
 			</fieldset>
 
 			<fieldset>
-				<legend>{lang}cms.news.general{/lang}</legend>
+				<legend>{lang}wcf.global.form.data{/lang}</legend>
 				{if $action =='add'}{include file='messageFormMultilingualism'}{/if}
 
 				<dl{if $errorField == 'subject'} class="formError"{/if}>

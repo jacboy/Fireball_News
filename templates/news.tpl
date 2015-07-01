@@ -53,19 +53,6 @@
 		</fieldset>
 	{/if}
 
-	<fieldset>
-		<legend>{lang}cms.news.general{/lang}</legend>
-		<dl class="plain inlineDataList">
-			<dt>{lang}cms.news.clicks{/lang}</dt>
-			<dd>{$news->clicks}</dd>
-
-			{if CMS_NEWS_COMMENTS}
-				<dt>{lang}cms.news.comments{/lang}</dt>
-				<dd>{@$commentList->countObjects()}</dd>
-			{/if}
-		</dl>
-	</fieldset>
-
 	{if $news->getCategories()|count}
 		<fieldset>
 			<legend>{lang}cms.news.category.categories{/lang}</legend>
