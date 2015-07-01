@@ -235,8 +235,20 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 		return true;
 	}
 
+	/**
+	 * Returns whether the active user can read this news.
+	 * 
+	 * @return	bool
+	 */
 	public function canRead() {
-		return WCF::getSession()->getPermission('user.cms.news.canViewCategory');
+		if (!WCF::getSession()->getPermission('user.cms.news.canViewCategory')) {
+			return false;
+		}
+
+		// user needs access permissions to at least one category to read this message
+		foreach ($this->getCategories() as $category) {
+			if ($category->isAccessible()) return true;
+		}
 	}
 
 	public function canAdd() {

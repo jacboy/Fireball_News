@@ -50,12 +50,14 @@ class NewsPage extends AbstractPage {
 		parent::readParameters();
 
 		if (isset($_REQUEST['id'])) $this->newsID = intval($_REQUEST['id']);
-		else throw new IllegalLinkException();
-		if (! isset($this->newsID) || $this->newsID == 0) throw new IllegalLinkException();
 		$this->news = ViewableNews::getNews($this->newsID);
-		if ($this->news === null) throw new IllegalLinkException();
-		foreach ($this->news->getCategories() as $category) {
-			if (! $category->getPermission('canViewNews')) throw new PermissionDeniedException();
+		if ($this->news === null) {
+			throw new IllegalLinkException();
+		}
+
+		// validate permissions
+		if (!$this->news->canRead()) {
+			throw new PermissionDeniedException();
 		}
 	}
 
