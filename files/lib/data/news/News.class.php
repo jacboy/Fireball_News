@@ -51,23 +51,6 @@ class News extends DatabaseObject implements IMessage, IRouteController, IBreadc
 
 	protected $categoryIDs = array();
 
-	public function __construct($id, $row = null, $object = null) {
-		if ($id !== null) {
-			$sql = "SELECT *
-					FROM " . static::getDatabaseTableName() . "
-					WHERE (" . static::getDatabaseTableIndexName() . " = ?)";
-			$statement = WCF::getDB()->prepareStatement($sql);
-			$statement->execute(array(
-				$id
-			));
-			$row = $statement->fetchArray();
-
-			if ($row === false) $row = array();
-		}
-
-		parent::__construct(null, $row, $object);
-	}
-
 	/**
 	 * Returns the authors of this news.
 	 * 

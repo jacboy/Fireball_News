@@ -69,9 +69,11 @@ class NewsPage extends AbstractPage {
 			'application' => 'cms'
 		))));
 
-		$this->commentObjectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.cms.news.comment');
-		$this->commentManager = CommentHandler::getInstance()->getObjectType($this->commentObjectTypeID)->getProcessor();
-		$this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->commentObjectTypeID, $this->newsID);
+		if (CMS_NEWS_COMMENTS && $this->news->enableComments) {
+			$this->commentObjectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.cms.news.comment');
+			$this->commentManager = CommentHandler::getInstance()->getObjectType($this->commentObjectTypeID)->getProcessor();
+			$this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->commentObjectTypeID, $this->newsID);
+		}
 
 		$newsEditor = new NewsEditor($this->news->getDecoratedObject());
 		$newsEditor->update(array(
@@ -124,18 +126,23 @@ class NewsPage extends AbstractPage {
 		WCF::getTPL()->assign(array(
 			'newsID' => $this->newsID,
 			'news' => $this->news,
-			'likeData' => ((MODULE_LIKE && $this->commentList) ? $this->commentList->getLikeData() : array()),
 			'newsLikeData' => $this->likeData,
-			'commentCanAdd' => (WCF::getUser()->userID && WCF::getSession()->getPermission('user.cms.news.canAddComment')),
-			'commentList' => $this->commentList,
-			'commentObjectTypeID' => $this->commentObjectTypeID,
 			'tags' => $this->tags,
-			'lastCommentTime' => ($this->commentList ? $this->commentList->getMinCommentTime() : 0),
 			'attachmentList' => $this->news->getAttachments(),
 			'allowSpidersToIndexThisPage' => true,
 			'sidebarCollapsed' => UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.cms.news.news'),
 			'sidebarName' => 'de.codequake.cms.news.news'
 		));
+
+		if (CMS_NEWS_COMMENTS && $this->enableComments) {
+			WCF::getTPL()->assign(array(
+				'commentCanAdd' => (WCF::getUser()->userID && WCF::getSession()->getPermission('user.cms.news.canAddComment')),
+				'commentList' => $this->commentList,
+				'commentObjectTypeID' => $this->commentObjectTypeID,
+				'lastCommentTime' => ($this->commentList ? $this->commentList->getMinCommentTime() : 0),
+				'likeData' => ((MODULE_LIKE && $this->commentList) ? $this->commentList->getLikeData() : array()),
+			));
+		}
 	}
 
 	public function getObjectType() {

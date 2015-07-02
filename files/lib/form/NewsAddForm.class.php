@@ -52,6 +52,13 @@ class NewsAddForm extends MessageForm {
 
 	public $activeMenuItem = 'cms.page.news';
 
+	/**
+	 * Indicates whether users can comment on this news.
+	 * 
+	 * @var	bool
+	 */
+	public $enableComments = true;
+
 	public $enableTracking = true;
 
 	public $neededPermissions = array(
@@ -88,6 +95,11 @@ class NewsAddForm extends MessageForm {
 		if (isset($_POST['time'])) $this->time = $_POST['time'];
 		if (isset($_POST['imageID'])) $this->imageID = intval($_POST['imageID']);
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
+
+		// message form settings
+		if (CMS_NEWS_COMMENTS) {
+			$this->enableComments = isset($_POST['enableComments']);
+		}
 
 		if (MODULE_POLL && WCF::getSession()->getPermission('user.cms.news.canStartPoll')) PollManager::getInstance()->readFormParameters();
 	}
@@ -205,6 +217,10 @@ class NewsAddForm extends MessageForm {
 			'lastChangeTime' => TIME_NOW
 		));
 
+		if (CMS_NEWS_COMMENTS) {
+			$data['enableComments'] = $this->enableComments ? 1 : 0;
+		}
+
 		$newsData = array(
 			'attachmentHandler' => $this->attachmentHandler,
 			'authorIDs' => $this->authorIDs,
@@ -253,7 +269,10 @@ class NewsAddForm extends MessageForm {
 			'time' => $this->time,
 			'action' => $this->action,
 			'tags' => $this->tags,
-			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.cms.news.allowedAttachmentExtensions')))
+			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.cms.news.allowedAttachmentExtensions'))),
+
+			// message form settings
+			'enableComments' => $this->enableComments
 		));
 	}
 }

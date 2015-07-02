@@ -38,29 +38,21 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 	public $news = null;
 
 	public function create() {
-		$data = $this->parameters['data'];
-
 		// count attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
-			$data['attachments'] = count($this->parameters['attachmentHandler']);
+			$this->parameters['data']['attachments'] = count($this->parameters['attachmentHandler']);
 		}
 
 		if (LOG_IP_ADDRESS) {
 			// add ip address
-			if (! isset($data['ipAddress'])) {
-				$data['ipAddress'] = WCF::getSession()->ipAddress;
+			if (!isset($this->parameters['data']['ipAddress'])) {
+				$this->parameters['data']['ipAddress'] = WCF::getSession()->ipAddress;
 			}
-		} else {
-			// do not track ip address
-			if (isset($data['ipAddress'])) {
-				unset($data['ipAddress']);
-			}
+		} elseif (isset($this->parameters['data']['ipAddress'])) {
+			unset($this->parameters['data']['ipAddress']);
 		}
 
-		$news = call_user_func(array(
-			$this->className,
-			'create'
-		), $data);
+		$news = parent::create();
 		$newsEditor = new NewsEditor($news);
 
 		// news authors

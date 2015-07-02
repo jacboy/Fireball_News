@@ -2,19 +2,20 @@
 namespace cms\data\news;
 
 use wcf\data\DatabaseObjectEditor;
-use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\WCF;
 
 /**
  * Functions to edit a news.
  * 
- * @author	Jens Krumsieck
+ * @author	Jens Krumsieck, Florian Frantzen
  * @copyright	2014 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.cms
  */
 class NewsEditor extends DatabaseObjectEditor {
-
+	/**
+	 * {@inheritdoc}
+	 */
 	protected static $baseClass = 'cms\data\news\News';
 
 	/**
@@ -29,7 +30,7 @@ class NewsEditor extends DatabaseObjectEditor {
 		$statement = WCF::getDB()->prepareStatement($sql);
 		$statement->execute(array($this->newsID));
 
-		// new authors
+		// assign new authors
 		if (!empty($authorIDs)) {
 			WCF::getDB()->beginTransaction();
 
@@ -46,30 +47,31 @@ class NewsEditor extends DatabaseObjectEditor {
 		}
 	}
 
+	/**
+	 * Updates the categories of this news to the given list of categories.
+	 * 
+	 * @param	int[]		$categoryIDs
+	 */
 	public function updateCategoryIDs(array $categoryIDs = array()) {
 		// remove old assigns
-		$sql = "DELETE FROM	cms" . WCF_N . "_news_to_category
-			WHERE		newsID = ?";
+		$sql = 'DELETE FROM	cms'.WCF_N.'_news_to_category
+			WHERE		newsID = ?';
 		$statement = WCF::getDB()->prepareStatement($sql);
-		$statement->execute(array(
-			$this->newsID
-		));
-		
+		$statement->execute(array($this->newsID));
+
 		// assign new categories
-		if (! empty($categoryIDs)) {
+		if (!empty($categoryIDs)) {
 			WCF::getDB()->beginTransaction();
-			
-			$sql = "INSERT INTO	cms" . WCF_N . "_news_to_category
+
+			$sql = 'INSERT INTO	cms'.WCF_N.'_news_to_category
 						(categoryID, newsID)
-				VALUES		(?, ?)";
+				VALUES		(?, ?)';
 			$statement = WCF::getDB()->prepareStatement($sql);
+
 			foreach ($categoryIDs as $categoryID) {
-				$statement->execute(array(
-					$categoryID,
-					$this->newsID
-				));
+				$statement->execute(array($categoryID, $this->newsID));
 			}
-			
+
 			WCF::getDB()->commitTransaction();
 		}
 	}

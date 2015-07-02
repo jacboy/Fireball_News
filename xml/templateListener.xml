@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
 	<import>
-
+		<!-- user -->
 		<templatelistener name="javascriptInclude">
 			<environment>user</environment>
 			<templatename>headInclude</templatename>
@@ -22,6 +21,13 @@
 			<templatename>searchArea</templatename>
 			<eventname>settings</eventname>
 			<templatecode><![CDATA[{include file='__searchAreaSettings' application='cms'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="messageFormSettings">
+			<environment>user</environment>
+			<templatename>messageFormSettings</templatename>
+			<eventname>settings</eventname>
+			<templatecode><![CDATA[{include file='__messageFormSettings' application='cms'}]]></templatecode>
 		</templatelistener>
 		<!-- /user -->
 	</import>

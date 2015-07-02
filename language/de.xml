@@ -38,6 +38,8 @@
 		<item name="cms.news.edit"><![CDATA[Nachricht „{$news->getTitle()|language}“ bearbeiten]]></item>
 		<item name="cms.news.comments"><![CDATA[Kommentare]]></item>
 		<item name="cms.news.comments.count"><![CDATA[{#$news->comments} {if $news->comments == 1}Kommentar{else}Kommentare{/if}]]></item>
+		<item name="cms.news.comments.enable"><![CDATA[Kommentare aktivieren]]></item>
+		<item name="cms.news.comments.enable.description"><![CDATA[Berechtigte Benutzer dürfen diese Nachricht kommentieren.]]></item>
 		<item name="cms.news.read"><![CDATA[Weiterlesen]]></item>
 		<item name="cms.news.ipAddress"><![CDATA[IP-Adresse]]></item>
 		<item name="cms.news.ipAddress.title"><![CDATA[IP-Adresse]]></item>

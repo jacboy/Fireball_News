@@ -185,6 +185,7 @@
 			</article>
 		</li>
 	</ul>
+
 	<div class="contentNavigation">
 		<nav>
 			<ul>
@@ -196,7 +197,8 @@
 		{include file='shareButtons'}
 		{/if}
 	</div>
-	{if CMS_NEWS_COMMENTS}
+
+	{if CMS_NEWS_COMMENTS && $news->enableComments}
 		{include file='newsCommentList' application='cms'}
 	{/if}
 {/if}

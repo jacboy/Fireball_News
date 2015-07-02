@@ -1,4 +1,3 @@
-
 --news
 DROP TABLE IF EXISTS cms1_news;
 CREATE TABLE cms1_news (
@@ -24,7 +23,8 @@ CREATE TABLE cms1_news (
 	lastEditor VARCHAR (255) NOT NULL DEFAULT '',
 	lastEditorID INT(10) NOT NULL DEFAULT 0,
 	ipAddress VARCHAR(39) NOT NULL DEFAULT '',
-	cumulativeLikes INT(10) NOT NULL DEFAULT 0
+	cumulativeLikes INT(10) NOT NULL DEFAULT 0,
+	enableComments TINYINT(1) NOT NULL DEFAULT 1
 );
 
 DROP TABLE IF EXISTS cms1_news_author;

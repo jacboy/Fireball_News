@@ -69,6 +69,10 @@ class NewsEditForm extends NewsAddForm {
 		}
 		$this->authors = implode(', ', $usernames);
 
+		if (CMS_NEWS_COMMENTS) {
+			$this->enableComments = (bool) $this->news->enableComments;
+		}
+
 		WCF::getBreadcrumbs()->add(new Breadcrumb($this->news->subject, LinkHandler::getInstance()->getLink('News', array(
 			'application' => 'cms',
 			'object' => $this->news
@@ -107,6 +111,10 @@ class NewsEditForm extends NewsAddForm {
 			'lastEditor' => WCF::getUser()->username,
 			'lastEditorID' => WCF::getUser()->userID
 		);
+
+		if (CMS_NEWS_COMMENTS) {
+			$data['enableComments'] = $this->enableComments ? 1 : 0;
+		}
 
 		$newsData = array(
 			'attachmentHandler' => $this->attachmentHandler,
