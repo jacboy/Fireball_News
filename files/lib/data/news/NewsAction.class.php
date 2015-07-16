@@ -48,7 +48,7 @@ class NewsAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			if (!isset($this->parameters['data']['ipAddress'])) {
 				$this->parameters['data']['ipAddress'] = WCF::getSession()->ipAddress;
 			}
-		} elseif (isset($this->parameters['data']['ipAddress'])) {
+		} else if (isset($this->parameters['data']['ipAddress'])) {
 			unset($this->parameters['data']['ipAddress']);
 		}
 
