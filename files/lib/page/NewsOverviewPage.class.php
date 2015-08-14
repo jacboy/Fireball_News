@@ -34,6 +34,19 @@ class NewsOverviewPage extends SortablePage {
 
 	public $categoryList = null;
 
+	public $validSortFields = array(
+		'username',
+		'newsID',
+		'time',
+		'subject',
+		'clicks',
+		'comments'
+	);
+
+	public $defaultSortField = 'time';
+
+	public $defaultSortOrder = 'DESC';
+
 	public function readData() {
 		parent::readData();
 		$categoryTree = new NewsCategoryNodeTree('de.codequake.cms.category.news');
